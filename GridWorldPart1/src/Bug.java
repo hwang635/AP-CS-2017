@@ -33,6 +33,8 @@ public class Bug extends Actor
 	boolean couldMove;
 	//does slightly diff steps every 8, 12 steps
 	int steps = 0;
+	//counts how many times can't move, turns red every 5th time
+	int count = 0;
 	
     /**
      * Constructs a red bug.
@@ -87,8 +89,14 @@ public class Bug extends Actor
         else {
             turn();
             couldMove = false;
-            
+            count++;
+ 
             setColor(Purple);
+            
+            if(count == 5) {
+            	setColor(Color.RED);
+            	count = 0;
+            }
         }
     }
 
