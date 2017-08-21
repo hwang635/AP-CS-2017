@@ -20,8 +20,6 @@ public class DrawingSurface extends PApplet {
 		stroke(135, 206, 235);
 		rect(135, 220, 50, 50);
 		rect(315, 220, 50, 50);
-		
-		
 	}
 	
 	
@@ -39,7 +37,4 @@ public class DrawingSurface extends PApplet {
 
 		window.setVisible(true);
 	}
-	
-	
-
 }
