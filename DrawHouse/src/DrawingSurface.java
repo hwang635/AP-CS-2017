@@ -7,6 +7,12 @@ public class DrawingSurface extends PApplet {
 	
 	public void draw() {
 		
+		//for scaling house
+		double xRatio = (double)width/500.0;
+		double yRatio = (double)height/500.0;
+		
+		scale((float)xRatio, (float)yRatio);
+		
 		background(255, 255, 255);
 		
 		stroke(0, 0, 0);	
