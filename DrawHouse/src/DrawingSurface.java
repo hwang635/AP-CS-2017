@@ -6,9 +6,11 @@ import processing.core.PApplet;
 public class DrawingSurface extends PApplet {
 	
 	private House house;
+	private Person bob;
 	
 	public DrawingSurface() {
 		house = new House();
+		bob = new Person();
 	}
 	
 	public void draw() {
@@ -18,6 +20,27 @@ public class DrawingSurface extends PApplet {
 		scale((float)xRatio, (float)yRatio);
 		
 		house.draw(this);
+		bob.draw(this);
 	
+	}
+	
+	public void keyPressed() {
+	}
+
+	public void keyReleased() {
+		if (keyCode == UP) {
+			house.moveUp();
+		}
+		else if(keyCode == DOWN) {
+			house.moveDown();
+		}
+		else if(keyCode == LEFT) {
+			house.moveLeft();
+		}
+		else if(keyCode == RIGHT) {
+			house.moveRight();
+		}
+		
+		redraw();
 	}
 }
