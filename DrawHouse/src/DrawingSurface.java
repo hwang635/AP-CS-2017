@@ -18,6 +18,7 @@ public class DrawingSurface extends PApplet {
 		stroke(0, 0, 0);	
 		//building
 		rect(100, 180, 300, 200);
+		stroke(200, 100, 80);
 		triangle(100, 180, 250, 100, 400, 180);
 		//door
 		stroke(200, 120, 5);
