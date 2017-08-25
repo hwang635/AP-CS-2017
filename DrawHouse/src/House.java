@@ -15,14 +15,18 @@ public class House{
 		//building
 		drawer.rect(houseX, houseY, 300, 200);
 		drawer.stroke(200, 100, 80);
+		drawer.fill(200, 100, 80);
 		drawer.triangle(houseX, houseY, houseX + 150, houseY - 50, houseX + 300, houseY);
 		//door
 		drawer.stroke(200, 120, 5);
+		drawer.fill(200, 120, 5);
 		drawer.rect(houseX + 120, houseY + 110, 60, 90);
 		//windows
 		drawer.stroke(135, 206, 235);
+		drawer.fill(135, 206, 235);
 		drawer.rect(houseX + 35, houseY + 40, 50, 50);
 		drawer.rect(houseX + 215, houseY + 40, 50, 50);
+		drawer.noFill();
 	}
 
 	//4 methods that move house according to arrow keys
