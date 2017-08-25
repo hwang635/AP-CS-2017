@@ -14,13 +14,16 @@ public class House{
 		drawer.stroke(0, 0, 0);	
 		//building
 		drawer.rect(houseX, houseY, 300, 200);
-		drawer.stroke(200, 100, 80);
-		drawer.fill(200, 100, 80);
+		drawer.stroke(180, 100, 80);
+		drawer.fill(150, 80, 80);
 		drawer.triangle(houseX, houseY, houseX + 150, houseY - 50, houseX + 300, houseY);
 		//door
 		drawer.stroke(200, 120, 5);
 		drawer.fill(200, 120, 5);
 		drawer.rect(houseX + 120, houseY + 110, 60, 90);
+		drawer.stroke(5);
+		drawer.fill(0);
+		drawer.ellipse(houseX + 170, houseY + 150, 6, 6);
 		//windows
 		drawer.stroke(135, 206, 235);
 		drawer.fill(135, 206, 235);
@@ -31,12 +34,12 @@ public class House{
 
 	//4 methods that move house according to arrow keys
 	public void moveUp() {
-		if(houseY>0)
+		if(houseY>50)
 			houseY -= 10;
 	}
 	
 	public void moveDown() {
-		if(houseY<500)
+		if(houseY<300)
 			houseY += 10;
 	}
 
@@ -46,7 +49,7 @@ public class House{
 	}
 	
 	public void moveRight() {
-		if(houseX<400)
+		if(houseX<200)
 			houseX += 10;
 	}
 }
