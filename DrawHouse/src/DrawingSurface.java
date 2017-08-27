@@ -51,6 +51,7 @@ public class DrawingSurface extends PApplet {
 	}
 	
 	public void mousePressed() {
+		//changes colour of face/eye when left/right is pressed
 		if(mouseButton == LEFT)
 			bob.changeHeadColour();
 		else if(mouseButton == RIGHT)
@@ -60,6 +61,7 @@ public class DrawingSurface extends PApplet {
 	public void mouseWheel(MouseEvent event) {
 		float e = event.getCount();
 		
+		//scales house larger and smaller
 		if(e>0)
 			ratio += 25;
 		else if(e<0)
