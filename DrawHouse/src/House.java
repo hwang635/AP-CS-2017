@@ -9,7 +9,7 @@ public class House{
 	int houseY = 180;
 	int width = 300;
 	int height = 200;
-
+	
 	public void draw(PApplet drawer) {
 		drawer.background(255, 255, 255);
 
@@ -58,14 +58,14 @@ public class House{
 	//called in DrawingSurface to make house bigger/smaller
 	public void scaleDown( ) {
 
-		if(width > 0 && height > 0) {
+		if(width > 15) {
 			width -= 15;
 			height -= 10;
 		}
 	}
 
 	public void scaleUp() {
-		if(width < 500 && height < 500) {
+		if(width < 475) {
 			width += 15;
 			height += 10;
 		}
