@@ -8,19 +8,17 @@ public class DrawingSurface extends PApplet {
 	
 	private House house;
 	private Person bob;
-	double ratio;
 	
 	public DrawingSurface() {
 		house = new House();
 		bob = new Person();
 		
-		ratio = 500.0;
 	}
 	
 	public void draw() {
 		//for scaling
-		double xRatio = (double)width/ratio;
-		double yRatio = (double)height/ratio;
+		double xRatio = (double)width/500.0;
+		double yRatio = (double)height/500.0;
 		scale((float)xRatio, (float)yRatio);
 		
 		house.draw(this);
@@ -47,6 +45,14 @@ public class DrawingSurface extends PApplet {
 		else if(key == 'l' || key == 'L')
 			bob.goLeft();
 		
+		
+		/*testing purposes for scaling since laptop doesn't have mouse wheel
+		 * else if(key == 'a')
+			house.scaleDown();
+		else if(key == 's')
+			house.scaleUp();
+		*/
+		
 		redraw();
 	}
 	
@@ -63,9 +69,9 @@ public class DrawingSurface extends PApplet {
 		
 		//scales house larger and smaller
 		if(e>0)
-			ratio += 25;
+			house.scaleUp();
 		else if(e<0)
-			ratio -= 25;
+			house.scaleDown();
 			
 	}
 }
