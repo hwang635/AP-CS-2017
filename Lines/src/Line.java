@@ -2,7 +2,9 @@ import processing.core.PApplet;
 
 public class Line {
 	
-	double x1, x2, y1, y2;
+	private double x1, x2, y1, y2;
+	private double x3, y3, x4, y4;
+	private int pointX, pointY;
 	
 	//line w coordinates (x1, y1) to (x2, y2)
 	public Line(double x1, double y1, double x2, double y2) {
@@ -23,8 +25,15 @@ public class Line {
 	}
 	
 	public boolean intersects(Line other) {
-		int pointX, pointY;
-		pointX = (x1*x2)*(
+		this.x3 = other.x1;
+		this.x4 = other.x2;
+		this.y3 = other.y1;
+		this.y4 =  other.y2;
+		
+		pointX = (int) (((x1*y2)*(x3 - x4) - (x1 - x2)*(x3*y4 - y3*x4))/((x1-x2)*(y3-y4) - (y1-y2)*(x3-x4)));
+		pointY = (int) (((x1*y2 - y1*x2)*(y3-y4) - (y1-y2)*(x3*y4 - y3*x4))/((x1-x2)*(y3-y4) - (y1-y2)*(x3-x4)));
+		
+		//if(pointX > this.x1 && pointX < this.x2 && pointX 
 		return false;
 	}
 
