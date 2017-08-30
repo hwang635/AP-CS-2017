@@ -27,6 +27,7 @@ public class DrawingSurface extends PApplet {
 	}
 	
 	public void keyPressed() {
+		//for house movement
 		if (keyCode == UP)
 			house.moveUp();
 		else if(keyCode == DOWN)
@@ -36,6 +37,7 @@ public class DrawingSurface extends PApplet {
 		else if(keyCode == RIGHT)
 			house.moveRight();
 		
+		//for person movement
 		else if(key == 'u' || key == 'U')
 			bob.goUp();
 		else if(key == 'd' || key == 'D')

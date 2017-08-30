@@ -9,12 +9,13 @@ public class House{
 	int houseY = 180;
 	int width = 300;
 	int height = 200;
-	
+
 	public void draw(PApplet drawer) {
 		drawer.background(255, 255, 255);
 
 		drawer.stroke(0, 0, 0);	
 		//building
+		drawer.fill(250,228,195);
 		drawer.rect(houseX, houseY, width, height);
 		drawer.stroke(180, 100, 80);
 		drawer.fill(150, 80, 80);
@@ -54,7 +55,7 @@ public class House{
 		if(houseX<200)
 			houseX += 10;
 	}
-	
+
 	//called in DrawingSurface to make house bigger/smaller
 	public void scaleDown( ) {
 
