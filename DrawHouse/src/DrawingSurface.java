@@ -29,23 +29,23 @@ public class DrawingSurface extends PApplet {
 	public void keyPressed() {
 		//for house movement
 		if (keyCode == UP)
-			house.moveUp();
+			house.move(1);
 		else if(keyCode == DOWN)
-			house.moveDown();
+			house.move(2);
 		else if(keyCode == LEFT)
-			house.moveLeft();
+			house.move(3);
 		else if(keyCode == RIGHT)
-			house.moveRight();
+			house.move(4);
 		
 		//for person movement
 		else if(key == 'u' || key == 'U')
-			bob.goUp();
+			bob.go(1);
 		else if(key == 'd' || key == 'D')
-			bob.goDown();
+			bob.go(2);
 		else if(key == 'r' || key == 'R')
-			bob.goRight();
+			bob.go(3);
 		else if(key == 'l' || key == 'L')
-			bob.goLeft();
+			bob.go(4);
 		
 		
 		/*testing purposes for scaling since laptop doesn't have mouse wheel
@@ -71,9 +71,9 @@ public class DrawingSurface extends PApplet {
 		
 		//scales house larger and smaller
 		if(e>0)
-			house.scaleUp();
+			house.scale(1);
 		else if(e<0)
-			house.scaleDown();
+			house.scale(2);
 			
 	}
 }

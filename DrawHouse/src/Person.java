@@ -5,17 +5,28 @@ import processing.awt.PSurfaceAWT;
 import processing.core.PApplet;
 
 public class Person {
-	
-		int headX = 50;
-		int headY = 350;
-		int headColour = 15;
-		int eyeR = 180;
-		int eyeG = 80;
-		int eyeB = 100;
-	
+
+	private int headX;
+	private int headY;
+	private int headColour;
+	private int eyeR;
+	private int eyeG;
+	private int eyeB;
+
+
+	public Person() {
+		headX = 50;
+		headY = 350;
+		headColour = 15;
+		eyeR = 180;
+		eyeG = 80;
+		eyeB = 100;
+	}
+
+
 	public void draw(PApplet drawer) {
 		drawer.stroke(0);
-		
+
 		//head
 		drawer.fill(headColour);
 		drawer.ellipse(headX, headY, 50, 50);
@@ -34,31 +45,31 @@ public class Person {
 	}
 
 	//moves up, down, right, left within boundaries of screen
-	public void goUp() {
-		if(headY>5)
-			headY-= 20;
+	public void go(int i) {
+		if(i == 1) {
+			if(headY>5)
+				headY -= 20;
+		}
+		else if(i == 2) {
+			if(headY<400)
+				headY+= 20;
+		}
+		else if(i == 3) {
+			if(headX<480)
+				headX += 20;
+		}
+		else if(i == 4) {
+			if(headX>20)
+				headX -= 20;
+		}
+
 	}
-	
-	public void goDown() {
-		if(headY<400)
-			headY+= 20;
-	}
-	
-	public void goRight() {
-		if(headX<480)
-			headX += 20;
-	}
-	
-	public void goLeft() {
-		if(headX>20)
-			headX -= 20;
-	}
-	
+
 	//changes colour of head to random greyscale
 	public void changeHeadColour() {
 		headColour = (int) (Math.random()*256.0);
 	}
-	
+
 	//changes colour of eyes to random RBG colours
 	public void changeEyeColour() {
 		eyeR = (int) (Math.random()*256.0);

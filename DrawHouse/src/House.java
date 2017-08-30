@@ -5,10 +5,17 @@ import processing.core.PApplet;
 
 public class House{
 
-	int houseX = 100;
-	int houseY = 180;
-	int width = 300;
-	int height = 200;
+	int houseX;
+	int houseY;
+	int width;
+	int height;
+
+	public House() {
+		houseX = 100;
+		houseY = 180;
+		width = 300;
+		height = 200;
+	}
 
 	public void draw(PApplet drawer) {
 		drawer.background(255, 255, 255);
@@ -35,40 +42,32 @@ public class House{
 		drawer.noFill();
 	}
 
-	//4 methods that move house according to arrow keys
-	public void moveUp() {
-		if(houseY>50)
+	//method that moves house according to arrow keys
+	public void move(int i) {
+		if(i == 1)
 			houseY -= 10;
-	}
-
-	public void moveDown() {
-		if(houseY<300)
+		else if(i == 2)
 			houseY += 10;
-	}
-
-	public void moveLeft() {
-		if(houseX>0)
-			houseX -= 10;
-	}
-
-	public void moveRight() {
-		if(houseX<200)
+		else if(i == 3)
+			houseX -=10;
+		else if(i == 4)
 			houseX += 10;
 	}
 
 	//called in DrawingSurface to make house bigger/smaller
-	public void scaleDown( ) {
-
-		if(width > 15) {
-			width -= 15;
-			height -= 10;
+	public void scale(int i) {
+		if(i == 1) {
+			if(width > 15) {
+				width -= 15;
+				height -= 10;
+			}
+		}
+		else if(i == 2) {
+			if(width < 475) {
+				width += 15;
+				height += 10;
+			}
 		}
 	}
 
-	public void scaleUp() {
-		if(width < 475) {
-			width += 15;
-			height += 10;
-		}
-	}
 }
