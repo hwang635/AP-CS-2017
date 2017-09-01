@@ -12,6 +12,9 @@ public class Person {
 	private int eyeR;
 	private int eyeG;
 	private int eyeB;
+	
+	Lines rightArm1, leftArm1;
+	Lines rightArm2, leftArm2;
 
 
 	public Person(int headX, int headY, int headColour, int eyeR, int eyeG, int eyeB) {
