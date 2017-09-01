@@ -25,7 +25,7 @@ public class DrawingSurface extends PApplet {
 		bob.draw(this);
 		shelby.draw(this);
 	
-	}
+	} 
 	
 	public void keyPressed() {
 		//for house movement
