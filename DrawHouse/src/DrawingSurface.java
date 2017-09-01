@@ -7,12 +7,12 @@ import processing.event.MouseEvent;
 public class DrawingSurface extends PApplet {
 	
 	private House house;
-	private Person bob;
+	private Person bob, shelby;
 	
 	public DrawingSurface() {
 		house = new House();
-		bob = new Person();
-		
+		bob = new Person(50, 350, 15, 180, 80, 100);
+		shelby = new Person( 80, 350, 60, 30, 255, 30);
 	}
 	
 	public void draw() {
@@ -23,6 +23,7 @@ public class DrawingSurface extends PApplet {
 		
 		house.draw(this);
 		bob.draw(this);
+		shelby.draw(this);
 	
 	}
 	
@@ -38,14 +39,24 @@ public class DrawingSurface extends PApplet {
 			house.move(4);
 		
 		//for person movement
-		else if(key == 'u' || key == 'U')
+		else if(key == 'u')
 			bob.go(1);
-		else if(key == 'd' || key == 'D')
+		else if(key == 'd')
 			bob.go(2);
-		else if(key == 'r' || key == 'R')
+		else if(key == 'r')
 			bob.go(3);
-		else if(key == 'l' || key == 'L')
+		else if(key == 'l')
 			bob.go(4);
+		
+		//for line final goal
+		else if(key == 'U')
+			shelby.go(1);
+		else if(key == 'D')
+			shelby.go(2);
+		else if(key == 'R')
+			shelby.go(3);
+		else if(key == 'L')
+			shelby.go(4);
 		
 		
 		/*testing purposes for scaling since laptop doesn't have mouse wheel
@@ -60,10 +71,14 @@ public class DrawingSurface extends PApplet {
 	
 	public void mousePressed() {
 		//changes colour of face/eye when left/right is pressed
-		if(mouseButton == LEFT)
+		if(mouseButton == LEFT) {
 			bob.changeHeadColour();
-		else if(mouseButton == RIGHT)
+			shelby.changeHeadColour();
+		}
+		else if(mouseButton == RIGHT) {
 			bob.changeEyeColour();
+			shelby.changeEyeColour();
+		}
 	}
 	
 	public void mouseWheel(MouseEvent event) {

@@ -14,13 +14,13 @@ public class Person {
 	private int eyeB;
 
 
-	public Person() {
-		headX = 50;
-		headY = 350;
-		headColour = 15;
-		eyeR = 180;
-		eyeG = 80;
-		eyeB = 100;
+	public Person(int headX, int headY, int headColour, int eyeR, int eyeG, int eyeB) {
+		this.headX = headX;
+		this.headY = headY;
+		this.headColour = headColour;
+		this.eyeR = eyeR;
+		this.eyeG = eyeG;
+		this.eyeB = eyeB;
 	}
 
 
