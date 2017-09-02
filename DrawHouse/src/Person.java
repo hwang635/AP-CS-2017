@@ -13,9 +13,7 @@ public class Person {
 	private int eyeG;
 	private int eyeB;
 	
-	Lines rightArm1, leftArm1;
-	Lines rightArm2, leftArm2;
-
+	Line rightArm, leftArm;
 
 	public Person(int headX, int headY, int headColour, int eyeR, int eyeG, int eyeB) {
 		this.headX = headX;
@@ -24,6 +22,9 @@ public class Person {
 		this.eyeR = eyeR;
 		this.eyeG = eyeG;
 		this.eyeB = eyeB;
+		
+		rightArm = new Line(headX, headY + 40, headX + 15, headY + 35);
+		leftArm = new Line(headX, headY + 40, headX - 15, headY + 35);
 	}
 
 
