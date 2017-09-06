@@ -14,13 +14,16 @@ import processing.core.PApplet;
 public class Line {
 	
 	private double x1, x2, y1, y2;
+	//public int intersections;
 	
 	public Line() {
-		//i'm not sure what this does
+		//intersections = 0;
 	}
 	
 	//line w coordinates (x1, y1) to (x2, y2)
 	public Line(double x1, double y1, double x2, double y2) {
+		//intersections = 0;
+		
 		this.x1 = x1;
 		this.y1 = y1;
 		this.x2 = x2;
@@ -105,8 +108,10 @@ public class Line {
 				check2 = true;
 		}
 		
-		if(check1 == true && check2 == true)
+		if(check1 == true && check2 == true) {
+			//intersections++;
 			return true;
+		}
 		else
 			return false;
 	}

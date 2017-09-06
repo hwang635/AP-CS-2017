@@ -6,6 +6,7 @@ import processing.core.PApplet;
 
 public class Person {
 
+	private String name;
 	private int headX;
 	private int headY;
 	private int headColour;
@@ -13,15 +14,20 @@ public class Person {
 	private int eyeG;
 	private int eyeB;
 	
+	boolean isSmiling;
+	
 	Line rightArm, leftArm;
 
-	public Person(int headX, int headY, int headColour, int eyeR, int eyeG, int eyeB) {
+	public Person(String name, int headX, int headY, int headColour, int eyeR, int eyeG, int eyeB) {
+		this.name = name;
 		this.headX = headX;
 		this.headY = headY;
 		this.headColour = headColour;
 		this.eyeR = eyeR;
 		this.eyeG = eyeG;
 		this.eyeB = eyeB;
+		
+		isSmiling = false;
 	}
 
 
@@ -36,6 +42,7 @@ public class Person {
 		drawer.fill(headColour);
 		drawer.ellipse(headX, headY, 50, 50);
 		drawer.fill(eyeR, eyeG, eyeB);
+		drawer.text(name, headX-12, headY + 50, 100,100);
 		drawer.ellipse(headX - 10, headY - 5, 8, 8);
 		drawer.ellipse(headX + 10, headY-5, 8, 8);
 		drawer.noFill();
@@ -47,6 +54,11 @@ public class Person {
 		//legs
 		drawer.line(headX, headY + 70, headX + 20, headY + 95);
 		drawer.line(headX, headY + 70, headX - 20, headY + 95);
+		
+		if(isSmiling == true) {
+			drawer.fill(255, 249, 27);
+			drawer.curve(headX + 10, headY - 50, headX - 12, headY + 10, headX + 15, headY + 10, headX + 5, headY - 50);
+		}
 	}
 
 	//moves up, down, right, left within boundaries of screen
@@ -70,6 +82,10 @@ public class Person {
 
 	}
 
+	//boolean for smile if person wins
+	public void smile() {
+		isSmiling = !isSmiling;
+	}
 	//changes colour of head to random greyscale
 	public void changeHeadColour() {
 		headColour = (int) (Math.random()*256.0);

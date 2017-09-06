@@ -18,7 +18,6 @@ public class House{
 	}
 
 	public void draw(PApplet drawer) {
-		drawer.background(153, 203, 255);
 
 		drawer.stroke(0, 0, 0);	
 		//building
