@@ -18,8 +18,8 @@ public class DrawingSurface extends PApplet {
 
 	public DrawingSurface() {
 		house = new House();
-		bob = new Person("Bob", 50, 350, 15, 180, 80, 100);
-		shelby = new Person("Shelby", 180, 350, 60, 30, 255, 30);
+		bob = new Person("Bob!", 50, 350, 15, 180, 80, 100);
+		shelby = new Person("Shelby!", 180, 350, 60, 30, 255, 30);
 		tester = new Line();
 		sun = new Sun();
 
@@ -39,7 +39,6 @@ public class DrawingSurface extends PApplet {
 
 		house.draw(this);
 		sun.draw(this);
-		
 		if(bobDead == false)
 			bob.draw(this);
 		else {

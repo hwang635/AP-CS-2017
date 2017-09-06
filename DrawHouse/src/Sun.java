@@ -1,8 +1,7 @@
 import processing.core.PApplet;
 
+//was meant to be used for line method, changed idea
 public class Sun {
-
-	//will change position when the two people intersect arms
 	
 	private int x, y, width, height;
 	private int r, g, b;
@@ -24,6 +23,8 @@ public class Sun {
 		drawer.ellipse(x, y, width, height);
 		 
 	}
+	
+	//not used
 	public void change(int n) {
 		if(n==1)
 			x = (int) (Math.random()*500.0);

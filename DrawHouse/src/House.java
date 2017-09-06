@@ -39,6 +39,9 @@ public class House{
 		drawer.rect(houseX + (int)(0.12*width), houseY + height/5, width/6, width/6);
 		drawer.rect(houseX + (int)(0.71*width), houseY + height/5, width/6, width/6);
 		drawer.noFill();
+		
+		//background
+		
 	}
 
 	//method that moves house according to arrow keys
