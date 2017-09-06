@@ -22,13 +22,14 @@ public class Person {
 		this.eyeR = eyeR;
 		this.eyeG = eyeG;
 		this.eyeB = eyeB;
-		
-		rightArm = new Line(headX, headY + 40, headX + 15, headY + 35);
-		leftArm = new Line(headX, headY + 40, headX - 15, headY + 35);
 	}
 
 
 	public void draw(PApplet drawer) {
+		//called here so would be cont recalced for intersect use
+		rightArm = new Line(headX, headY + 40, headX + 15, headY + 35);
+		leftArm = new Line(headX, headY + 40, headX - 15, headY + 35);
+		
 		drawer.stroke(0);
 
 		//head
