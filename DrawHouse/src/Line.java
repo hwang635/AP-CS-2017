@@ -95,14 +95,17 @@ public class Line {
 			yDown2 = (int) y3;
 		}
 		
+		//equations that find the hypothetical pt of intersection
 		double pointX = ((x1*y2-y1*x2)*(x3 - x4) - (x1 - x2)*(x3*y4 - y3*x4))/((x1-x2)*(y3-y4) - (y1-y2)*(x3-x4));
 		double pointY = ((x1*y2 - y1*x2)*(y3-y4) - (y1-y2)*(x3*y4 - y3*x4))/((x1-x2)*(y3-y4) - (y1-y2)*(x3-x4));
 		
+		//checks on line 1
 		if(pointX >= xLeft1 && pointX <= xRight1) {
 			if(pointY <= yUp1 && pointY >= yDown1)
 				check1 = true;
 		}
 		
+		//checks if on line2
 		if(pointX >= xLeft2 && pointX <= xRight2) {
 			if(pointY <= yUp2 && pointY >= yDown2)
 				check2 = true;

@@ -11,8 +11,8 @@ public class House{
 	int height;
 
 	public House() {
-		houseX = 100;
-		houseY = 180;
+		houseX = 250; //-150;
+		houseY = 280; //-80;
 		width = 300;
 		height = 200;
 	}
@@ -21,27 +21,29 @@ public class House{
 
 		drawer.stroke(0, 0, 0);	
 		//building
+		drawer.rectMode(PApplet.CENTER);
 		drawer.fill(250,228,195);
 		drawer.rect(houseX, houseY, width, height);
 		drawer.stroke(180, 100, 80);
 		drawer.fill(150, 80, 80);
-		drawer.triangle(houseX, houseY, houseX + width/2, houseY - height/4, houseX + width, houseY);
+		drawer.triangle(houseX-width/2, houseY-height/2, houseX, houseY - height*3/4, houseX + width/2, houseY - height/2);
 		//door
 		drawer.stroke(200, 120, 5);
 		drawer.fill(200, 120, 5);
-		drawer.rect(houseX + (int)(0.4*width), houseY + (int)(0.55*height), width/5, (int)(0.4*height));
+		drawer.rect(houseX, houseY+height*3/10, width/5, (int)(0.35*height));
 		drawer.stroke(5);
 		drawer.fill(0);
-		drawer.ellipse(houseX + (int)(0.56*width), houseY + 3*height/4, width/50, width/50);
+		drawer.ellipseMode(PApplet.CENTER);
+		drawer.ellipse(houseX+width/14, houseY + height/3, width/50, width/50);
 		//windows
 		drawer.stroke(135, 206, 235);
 		drawer.fill(135, 206, 235);
-		drawer.rect(houseX + (int)(0.12*width), houseY + height/5, width/6, width/6);
-		drawer.rect(houseX + (int)(0.71*width), houseY + height/5, width/6, width/6);
+		drawer.rect(houseX - width/4, houseY - height/9, width/6, width/6);
+		drawer.rect(houseX + width/4, houseY - height/9, width/6, width/6);
 		drawer.noFill();
-		
+
 		//background
-		
+
 	}
 
 	//method that moves house according to arrow keys

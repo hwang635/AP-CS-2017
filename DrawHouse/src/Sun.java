@@ -1,6 +1,7 @@
 import processing.core.PApplet;
 
 //was meant to be used for line method, changed idea
+//current use: just draws a yellow elipse
 public class Sun {
 	
 	private int x, y, width, height;

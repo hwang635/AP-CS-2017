@@ -39,6 +39,8 @@ public class DrawingSurface extends PApplet {
 
 		house.draw(this);
 		sun.draw(this);
+		
+		//effects after the death of one of the persons
 		if(bobDead == false)
 			bob.draw(this);
 		else {
@@ -47,7 +49,7 @@ public class DrawingSurface extends PApplet {
 			text("Bob has died :(", 190, 60);
 			noFill();		
 		}
-	
+
 		if(shelbyDead == false)
 			shelby.draw(this);
 		else {
@@ -114,17 +116,17 @@ public class DrawingSurface extends PApplet {
 			if(sIntersect == 10) {
 				shelbyDead = true;
 				System.out.println("shelby has died");
-				
+
 				bob.smile();
 			}
 		}
 
-		/*testing purposes for scaling since laptop doesn't have mouse wheel
-		 * else if(key == 'a')
-			house.scaleDown();
+		//testing purposes for scaling since laptop doesn't have mouse wheel
+		else if(key == 'a')
+			house.scale(1);
 		else if(key == 's')
-			house.scaleUp();
-		 */
+			house.scale(2);
+
 
 		redraw();
 	}

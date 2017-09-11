@@ -16,6 +16,7 @@ public class Person {
 	
 	boolean isSmiling;
 	
+	//for the line intersection application
 	Line rightArm, leftArm;
 
 	public Person(String name, int headX, int headY, int headColour, int eyeR, int eyeG, int eyeB) {
@@ -27,6 +28,7 @@ public class Person {
 		this.eyeG = eyeG;
 		this.eyeB = eyeB;
 		
+		//when successfully kills other person, smile will appear
 		isSmiling = false;
 	}
 
@@ -42,7 +44,7 @@ public class Person {
 		drawer.fill(headColour);
 		drawer.ellipse(headX, headY, 50, 50);
 		drawer.fill(eyeR, eyeG, eyeB);
-		drawer.text(name, headX-12, headY + 50, 100,100);
+		drawer.text(name, headX-12, headY + 50, 100, 100);
 		drawer.ellipse(headX - 10, headY - 5, 8, 8);
 		drawer.ellipse(headX + 10, headY-5, 8, 8);
 		drawer.noFill();
@@ -86,7 +88,7 @@ public class Person {
 	public void smile() {
 		isSmiling = !isSmiling;
 	}
-	//changes colour of head to random greyscale
+	//changes colour of person's head to random greyscale
 	public void changeHeadColour() {
 		headColour = (int) (Math.random()*256.0);
 	}
