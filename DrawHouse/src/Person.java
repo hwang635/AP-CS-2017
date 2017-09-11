@@ -57,6 +57,7 @@ public class Person {
 		drawer.line(headX, headY + 70, headX + 20, headY + 95);
 		drawer.line(headX, headY + 70, headX - 20, headY + 95);
 		
+		//smile appears
 		if(isSmiling == true) {
 			drawer.fill(255, 249, 27);
 			drawer.curve(headX + 10, headY - 50, headX - 12, headY + 10, headX + 15, headY + 10, headX + 5, headY - 50);
