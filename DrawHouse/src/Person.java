@@ -44,7 +44,7 @@ public class Person {
 		drawer.fill(headColour);
 		drawer.ellipse(headX, headY, 50, 50);
 		drawer.fill(eyeR, eyeG, eyeB);
-		drawer.text(name, headX-12, headY + 50, 100, 100);
+		drawer.text(name, headX+8, headY + 80, 100, 100);
 		drawer.ellipse(headX - 10, headY - 5, 8, 8);
 		drawer.ellipse(headX + 10, headY-5, 8, 8);
 		drawer.noFill();
