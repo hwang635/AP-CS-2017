@@ -16,27 +16,40 @@ public class Rectangle{
 		this.height = height;
 	}
 	
-	public double getPerimeter() {		
-		return 2*x + 2*y;
+	public double getPerimeter() {
+		double perimeter = Math.abs(2*width + 2*height);
+		
+		//printline to check answer
+		System.out.println("Perimeter is " + perimeter);
+		
+		return perimeter;
 	}
 	
 	public double getArea() {
-		return x*y;
+		double area = Math.abs(width*height);
+		
+		//printline to check answer
+		System.out.println("Area is " + area);
+		
+		return area;
 	}
 	
 	//checks the point is inside rect
 	public boolean isPointInside(double x, double y) {
 		boolean checkX = false, checkY = false;
-		
 		if(x>=this.x && x<=(this.x + width))
 			checkX = true;
 		if(y>= this.y && y<= (this.y + height)) 
 			checkY = true;
 		
-		if(checkX == true && checkY == true)
+		if(checkX == true && checkY == true) {
+			System.out.println("isPointInside is true"); //printline to check answer
 			return true;
-		else
+		}
+		else {
+			System.out.println("isPointInside is false"); //pln to check answer
 			return false;
+		}
 	}
 	
 	//draw @default mode, (x,y) at the top left corner
@@ -47,9 +60,13 @@ public class Rectangle{
 	//additional method #1
 	//checks if height > width or vice versa or square
 	public void isSquare() {
-		if(height>width)
+		//in case height, width are negative
+		double h = Math.abs(height);
+		double w = Math.abs(width);
+		
+		if(h>w)
 			System.out.println("The rectangle has a longer height than width");
-		else if(width>height)
+		else if(w>h)
 			System.out.println("The rectangle has a longer width than height");
 		else
 			System.out.println("The rectangle is a square");
@@ -60,7 +77,10 @@ public class Rectangle{
 	public Rectangle scaledShape(double n) {
 		double newWidth = width*(1.0/n);
 		double newHeight = height*(1.0/n);
+		Rectangle scaledRect = new Rectangle(this.x, this.y, newWidth, newHeight);
+		 
+		System.out.println("check, inside scaled shape for rect");
 		
-		return new Rectangle(this.x, this.y, newWidth, newHeight);
+		return scaledRect;
 	}
 }
