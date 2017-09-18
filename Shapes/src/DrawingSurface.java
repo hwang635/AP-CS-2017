@@ -40,7 +40,7 @@ public class DrawingSurface extends PApplet{
 			rectTest.isPointInside(10, 5);
 			rectTest.isSquare();
 			rectTest.translate(50, 50);
-			rectTest.changeColour(true);
+			rectTest.changeColour(false);
 			
 
 			circle2.getPerimeter();

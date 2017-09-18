@@ -86,6 +86,7 @@ public class Rectangle{
 		x = x + shiftX;
 		y = y + shiftY;
 	}
+	
 	//additional method #3
 	//sets fill, if isGreyScale == true random greyscale colour, else = an actual rbg colour
 	public void changeColour(boolean isGrey) {
