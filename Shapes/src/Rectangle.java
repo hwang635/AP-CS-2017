@@ -1,5 +1,11 @@
 import processing.core.PApplet;
 
+/**
+ * 
+ * This class models a Processing-drawable Rectangle.
+ * @author hwang635
+ *
+ */
 public class Rectangle{
 
 	private double x, y, width, height;
@@ -11,6 +17,15 @@ public class Rectangle{
 	}
 
 	//sets rect to arguments
+	/**
+	 * 
+	 * Creates new instance of Rectangle object
+	 * 
+	 * @param x X coordinate of the upper left corner of the rectangle
+	 * @param y Y coordinate of the upper left corner of the rectangle
+	 * @param width Pixel width
+	 * @param height Pixel height
+	 */
 	public Rectangle(double x, double y, double width, double height) {
 		this.x = x;
 		this.y = y;
