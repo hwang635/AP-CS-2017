@@ -13,6 +13,9 @@ public class Rectangle{
 	private int r, g, b;
 	
 	//default rect, set all to zero
+	/**
+	 * sets default Rectangle, all to zero
+	 */
 	public Rectangle() {
 	}
 
@@ -35,6 +38,10 @@ public class Rectangle{
 		isGrey = true;
 	}
 
+	/**
+	 * 
+	 * @return absolute value of the rectangle's perimeter
+	 */
 	public double getPerimeter() {
 		double perimeter = Math.abs(2*width + 2*height);
 		//printline to check answer
@@ -43,6 +50,10 @@ public class Rectangle{
 		return perimeter;
 	}
 
+	/**
+	 * 
+	 * @return absolute value of the rectangle's area
+	 */
 	public double getArea() {
 		double area = Math.abs(width*height);
 		//printline to check answer
@@ -52,6 +63,13 @@ public class Rectangle{
 	}
 
 	//checks the point is inside rect
+	/**
+	 * Checks if a point is inside the rectangle
+	 * 
+	 * @param x X coordinate of the point
+	 * @param y Y coordinate of the point
+	 * @return boolean of whether the point is inside the rectangle
+	 */
 	public boolean isPointInside(double x, double y) {
 		boolean checkX = false, checkY = false;
 		if(x>=this.x && x<=(this.x + width))
@@ -70,6 +88,11 @@ public class Rectangle{
 	}
 	
 	//draw @default mode, (x,y) at the top left corner
+	/**
+	 * draws the rectangle and fills
+	 * @param marker PApplet object
+	 * @post rectangle should be drawn
+	 */
 	public void draw(PApplet marker) {		
 		if(isGrey == true)
 			marker.fill(g);
@@ -82,6 +105,9 @@ public class Rectangle{
 
 	//additional method #1
 	//checks if height > width or vice versa or square
+	/**
+	 * Prints out the side (width vs. height) that is greater or prints that it is a square
+	 */
 	public void isSquare() {
 		//in case height, width are negative
 		double h = Math.abs(height);
@@ -97,6 +123,12 @@ public class Rectangle{
 	
 	//additiona method #2
 	//moves by entered x, y
+	/**
+	 * Moves the rectangle
+	 * 
+	 * @param shiftX X pixels that the rectangle will be translated by
+	 * @param shiftY Y pixels that the rectangle will be translated by
+	 */
 	public void translate(double shiftX, double shiftY) {
 		x = x + shiftX;
 		y = y + shiftY;
@@ -104,6 +136,11 @@ public class Rectangle{
 	
 	//additional method #3
 	//sets fill, if isGreyScale == true random greyscale colour, else = an actual rbg colour
+	/**
+	 * 
+	 * @param isGrey boolean of whether or not the shape should be filled in greyscale or with rbg colour
+	 * @post the implicit parameter (shape) will be filled in with a colour
+	 */
 	public void changeColour(boolean isGrey) {
 		this.isGrey = isGrey;
 		
