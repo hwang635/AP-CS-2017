@@ -3,7 +3,8 @@ import processing.core.PApplet;
 /**
  * 
  * This class models a Processing-drawable Rectangle.
- * @author hwang635
+ * @author Helen Wang
+ * @version 9.20.17
  *
  */
 public class Rectangle{
@@ -89,7 +90,7 @@ public class Rectangle{
 	
 	//draw @default mode, (x,y) at the top left corner
 	/**
-	 * draws the rectangle and fills
+	 * Draws the rectangle and fills, called on a Rectangle object in DrawingSurface
 	 * @param marker PApplet object
 	 * @post rectangle should be drawn
 	 */
@@ -137,7 +138,7 @@ public class Rectangle{
 	//additional method #3
 	//sets fill, if isGreyScale == true random greyscale colour, else = an actual rbg colour
 	/**
-	 * 
+	 * Will fill the rectangle in either w random gray shade or with a colour
 	 * @param isGrey boolean of whether or not the shape should be filled in greyscale or with rbg colour
 	 * @post the implicit parameter (shape) will be filled in with a colour
 	 */
