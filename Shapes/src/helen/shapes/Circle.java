@@ -152,7 +152,7 @@ public class Circle {
 	/**
 	 * Will fill the circle in either w random gray shade or with a colour
 	 * @param isGrey boolean of whether or not the shape should be filled in greyscale or with rbg colour
-	 * @post int r, g, b will be set to new numbers
+	 * @post r, g, b will be set to new numbers
 	 */
 	public void changeColour(boolean isGrey) {
 		this.isGrey = isGrey;
