@@ -1,3 +1,4 @@
+package helen.shapes;
 import processing.core.PApplet;
 
 /**
@@ -149,7 +150,5 @@ public class Rectangle{
 		this.r = (int) (Math.random()*256);
 		this.g = (int) (Math.random()*256);
 		this.b = (int) (Math.random()*256);
-		
-		System.out.println("colour, rect has been accessed");
 	}
 }

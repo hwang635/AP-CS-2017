@@ -1,3 +1,6 @@
+package helen.testers;
+import helen.shapes.Circle;
+import helen.shapes.Rectangle;
 import processing.core.PApplet;
 
 public class DrawingSurface extends PApplet{

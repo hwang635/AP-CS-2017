@@ -1,3 +1,4 @@
+package helen.shapes;
 import processing.core.PApplet;
 
 /**
@@ -26,6 +27,7 @@ public class Circle {
 	 * @param x X coordinate of the upper left corner of the rectangle the circle is inscribed in
 	 * @param y Y coordinate of the upper left corner of the rectangle the circle is inscribed in
 	 * @param radius Radius of the circle
+	 * @post boolean isGrey is set to true, area and perimeter are set by the area/perimeter methods
 	 */
 	public Circle(double x, double y, double radius) {
 		this.x = x;
@@ -50,7 +52,7 @@ public class Circle {
 
 	/**
 	 * 
-	 * @return returns the area of the circle
+	 * @return returns the positive area of the circle
 	 */
 	public double getArea() {
 		double a = Math.abs(2*Math.PI*radius*radius); //abs in case neg arg
@@ -62,7 +64,7 @@ public class Circle {
 
 	//checks if entered point is inside the circle
 	/**
-	 * Checks if a point is inside the circle
+	 * Checks if a point is inside the circle it is called on
 	 * 
 	 * @param x X coordinate of the point
 	 * @param y Y coordinate of the point
@@ -87,7 +89,7 @@ public class Circle {
 	/**
 	 * Draws the circle and fills it in, called on a Circle object in DrawingSurface
 	 * @param marker PApplet object
-	 * @post circle should be drawn
+	 * @post circle should be drawn, fill is set to none
 	 */
 	public void draw(PApplet marker) {		
 		if(isGrey == true)
@@ -106,20 +108,30 @@ public class Circle {
 	 * @param area the area that is being compared to the circle's area
 	 * @param perimeter the perimeter/circumference being compared to the circle's
 	 */
-	public void isLessThan(double area, double perimeter) {
+	public String isLessThan(double area, double perimeter) {
+		
+		String resultA, resultP;
+		
 		if (area>this.area)
-			System.out.println("The circle has smaller area");
+			resultA = "The circle has smaller area.";
 		else if (area<this.area)
-			System.out.println("The circle has greater area");
+			resultA = "The circle has greater area.";
 		else
-			System.out.println("The cirlce has the same area");
+			resultA = "The circle has the same area.";
 
 		if(perimeter>this.perimeter)
-			System.out.println("The circle has smaller perimeter");
+			resultA = resultA + "The circle has less perimeter.";
 		else if(perimeter<this.perimeter)
-			System.out.println("The circle has greater perimeter");
+			resultA = resultA + "The circle has greater perimeter.";
 		else
-			System.out.println("The circle has the same perimeter");
+			resultA = resultA + "The circle has the same perimeter.";
+		
+		if(Math.abs(area-this.area) <0.00001)
+			resultA = resultA + "The areas may be the same, the previous answer may be wrong due to rounding error.";
+		if(Math.abs(perimeter-this.perimeter) <0.00001)
+			resultA = resultA + "The perimeters may be the same, the previous answer may be wrong due to rounding eror.";
+		
+		return resultA;
 	}
 
 	//additional method #2
@@ -140,7 +152,7 @@ public class Circle {
 	/**
 	 * Will fill the circle in either w random gray shade or with a colour
 	 * @param isGrey boolean of whether or not the shape should be filled in greyscale or with rbg colour
-	 * @post the implicit parameter (shape) will be filled in with a colour
+	 * @post int r, g, b will be set to new numbers
 	 */
 	public void changeColour(boolean isGrey) {
 		this.isGrey = isGrey;
