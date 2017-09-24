@@ -52,7 +52,7 @@ public class Line {
 	/**
 	 * Uses PApplet to draw the line, called on a Line object in DrawingSurface
 	 * @param drawer PApplet object
-	 * @post a Line should be drawn
+	 * @post a Line should be drawn 
 	 */
 	public void draw(PApplet drawer) {
 		drawer.line((float)x1, (float)y1, (float)x2, (float)y2);

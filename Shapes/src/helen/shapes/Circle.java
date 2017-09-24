@@ -40,24 +40,22 @@ public class Circle {
 	}
 
 	/**
-	 * @return returns absolute value of the circumference of the circle
+	 * @return prints absolute value of the circumference of the circle
 	 */
 	public double getPerimeter() {
 		double p = Math.abs(2*Math.PI*radius); //abs in case negative arg
 		//pln to check
-		System.out.println("Perimeter is " + p); 
 
 		return p;
 	}
 
 	/**
 	 * 
-	 * @return returns the positive area of the circle
+	 * @return prints the positive area of the circle
 	 */
 	public double getArea() {
 		double a = Math.abs(2*Math.PI*radius*radius); //abs in case neg arg
 		//pln to check
-		System.out.println("Area is " + a);
 
 		return a;
 	}
@@ -77,11 +75,9 @@ public class Circle {
 		double yPart = (y-this.y)*(y-this.y); //y^2
 
 		if((xPart + yPart) <= (radius*radius)) {
-			System.out.println("The point is inside");
 			return true;
 		}
 		else {
-			System.out.println("The point is outside");
 			return false;
 		}
 	}
@@ -107,6 +103,7 @@ public class Circle {
 	 * checks the implicit parameter circle has less, equal, or greater area/perimeter and prints out the answer
 	 * @param area the area that is being compared to the circle's area
 	 * @param perimeter the perimeter/circumference being compared to the circle's
+	 * @return String w/ the result
 	 */
 	public String isLessThan(double area, double perimeter) {
 		
@@ -126,9 +123,9 @@ public class Circle {
 		else
 			resultA = resultA + "The circle has the same perimeter.";
 		
-		if(Math.abs(area-this.area) <0.00001)
+		if(area != this.area && Math.abs(area-this.area) <0.00001)
 			resultA = resultA + "The areas may be the same, the previous answer may be wrong due to rounding error.";
-		if(Math.abs(perimeter-this.perimeter) <0.00001)
+		if(perimeter != this.perimeter && Math.abs(perimeter-this.perimeter) <0.00001)
 			resultA = resultA + "The perimeters may be the same, the previous answer may be wrong due to rounding eror.";
 		
 		return resultA;
@@ -141,6 +138,7 @@ public class Circle {
 	 * 
 	 * @param shiftX X pixels that the circle will be translated by
 	 * @param shiftY Y pixels that the circle will be translated by
+	 * @post fields x, y will be changed
 	 */
 	public void translate(double shiftX, double shiftY) {
 		this.x = this.x + shiftX;
@@ -152,7 +150,7 @@ public class Circle {
 	/**
 	 * Will fill the circle in either w random gray shade or with a colour
 	 * @param isGrey boolean of whether or not the shape should be filled in greyscale or with rbg colour
-	 * @post r, g, b will be set to new numbers
+	 * @post r, g, b will be set to new numbers and boolean isGrey may be changed
 	 */
 	public void changeColour(boolean isGrey) {
 		this.isGrey = isGrey;
