@@ -161,4 +161,13 @@ public class Circle {
 		this.b = (int) (Math.random()*256);
 	}
 
+	//set method to draw illusion w,
+	/**
+	 * sets the colour of the circle, called in draw
+	 * @pre draw will only draw w/ this grey colour if isGrey == true
+	 * @param colour int greyscale value
+	 */
+	public void setColour(int colour) {
+		g = colour;
+	}
 }
