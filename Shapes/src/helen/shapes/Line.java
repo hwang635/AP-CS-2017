@@ -22,6 +22,7 @@ import processing.core.PApplet;
 public class Line {
 	
 	private double x1, x2, y1, y2;
+	private int lineSize, lineColour;
 		
 	//line w coordinates (x1, y1) to (x2, y2)
 	/**
@@ -55,6 +56,8 @@ public class Line {
 	 * @post a Line should be drawn 
 	 */
 	public void draw(PApplet drawer) {
+		drawer.stroke(lineColour);
+		drawer.strokeWeight(lineSize);
 		drawer.line((float)x1, (float)y1, (float)x2, (float)y2);
 	}
 	
@@ -132,4 +135,22 @@ public class Line {
 			return false;
 	}
 
+	//set methods to make illusion w, set colour + line thickness
+	/**
+	 * sets the colour of the line, called in draw
+	 * @param colour greyscale value
+	 * @post field lineColour changed
+	 */
+	public void setColour (int colour) {
+		lineColour = colour;
+	}
+	
+	/**
+	 * sets thickness of the line, called in draw
+	 * @param size strokeWeight of the line
+	 * @post field lineSize changed
+	 */
+	public void setThickness (int size) {
+		lineSize = size;
+	}
 }
