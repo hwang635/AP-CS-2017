@@ -21,16 +21,33 @@ public class DrawingSurface extends PApplet{
 		whiteBackground.setColour(255);
 		whiteBackground.draw(this);
 		
-		lines = new Line(250, 250, 250, 70);
+		double x = 250.0;
+		double r = 188.0;
+		double y = 65.0;
+		
+		lines = new Line(250, 250, x, y);
 		lines.setThickness(7);
+		lines.changeStrokeShape(2);
 		lines.setColour(50);
 		lines.draw(this);
 		
-	
+		double angle = 0;
+		
+		for(int i = 0; i<40; i++) {
+			
+			angle += (Math.PI/20.0);
+			
+			x = 250+r*(Math.cos(angle));
+			y = 250+r*Math.sin(angle);
+			
+			lines.setPoint2(x, y);
+			lines.draw(this);
+		}
 	
 		
+		
 		//vertical == the six rectangles at the front of the illusion
-		vertical = new Rectangle(76, 70, 10, 350);
+		vertical = new Rectangle(76, 70, 6, 350);
 		vertical.setColour(50);
 		vertical.draw(this);
 		
@@ -39,7 +56,6 @@ public class DrawingSurface extends PApplet{
 			vertical.translate(68, 0);
 			vertical.draw(this);
 		}
-	
 		
 	}
 }
