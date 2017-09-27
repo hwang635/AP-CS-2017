@@ -23,6 +23,9 @@ public class Line {
 	
 	private double x1, x2, y1, y2;
 	private int lineSize, lineColour;
+	
+	//for drawing illusion
+	private int strokeCap;
 		
 	//line w coordinates (x1, y1) to (x2, y2)
 	/**
@@ -58,6 +61,14 @@ public class Line {
 	public void draw(PApplet drawer) {
 		drawer.stroke(lineColour);
 		drawer.strokeWeight(lineSize);
+		
+		if(strokeCap == 1)
+			drawer.strokeCap(drawer.ROUND);
+		else if(strokeCap == 2)
+			drawer.strokeCap(drawer.SQUARE);
+		else if(strokeCap == 3)
+			drawer.strokeCap(drawer.PROJECT);
+			
 		drawer.line((float)x1, (float)y1, (float)x2, (float)y2);
 	}
 	
@@ -153,4 +164,16 @@ public class Line {
 	public void setThickness (int size) {
 		lineSize = size;
 	}
+	
+	//for drawing illusion
+	/**
+	 * changes the strokecap shape of the line, called in draw method
+	 * 
+	 * @param n int 1, 2, 3 that determines which strokecap it is
+	 * @post will change field strokecap
+	 */
+	public void changeStrokeShape(int n) {
+		 strokeCap = n;
+	}
+
 }
