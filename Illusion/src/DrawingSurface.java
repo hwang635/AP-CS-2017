@@ -38,7 +38,7 @@ public class DrawingSurface extends PApplet{
 			angle += (Math.PI/20.0);
 			
 			x = 250+r*(Math.cos(angle));
-			y = 250+r*Math.sin(angle);
+			y = 245+r*Math.sin(angle);
 			
 			lines.setPoint2(x, y);
 			lines.draw(this);
