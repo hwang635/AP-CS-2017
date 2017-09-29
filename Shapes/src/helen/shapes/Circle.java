@@ -7,7 +7,7 @@ import processing.core.PApplet;
  * @version 9.20.17
  *
  */
-public class Circle {
+public class Circle extends Shape{
 
 	private double x, y, radius;
 	private double area, perimeter;

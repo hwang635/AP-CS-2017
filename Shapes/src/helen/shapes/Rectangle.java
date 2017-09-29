@@ -8,7 +8,7 @@ import processing.core.PApplet;
  * @version 9.20.17
  *
  */
-public class Rectangle{
+public class Rectangle extends Shape {
 
 	private double x, y, width, height;
 	private boolean isGrey;

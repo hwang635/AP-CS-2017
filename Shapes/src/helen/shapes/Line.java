@@ -19,7 +19,7 @@ import processing.core.PApplet;
  * @version 9.20.17
  *
  */
-public class Line {
+public class Line extends Shape {
 	
 	private double x1, x2, y1, y2;
 	private int lineSize, lineColour;
