@@ -8,9 +8,9 @@ import processing.core.PApplet;
  * @version 9.20.17
  *
  */
-public class Rectangle extends Shape {
+public class Rectangle extends Shape{
 
-	private double x, y, width, height;
+	private double width, height;
 	private boolean isGrey;
 	private int r, g, b;
 	
@@ -19,6 +19,7 @@ public class Rectangle extends Shape {
 	 * sets default Rectangle, all to zero
 	 */
 	public Rectangle() {
+		super(0, 0);
 	}
 
 	//sets rect to arguments
@@ -33,8 +34,7 @@ public class Rectangle extends Shape {
 	 * @post boolean isGrey is true
 	 */
 	public Rectangle(double x, double y, double width, double height) {
-		this.x = x;
-		this.y = y;
+		super(x,y);
 		this.width = width;
 		this.height = height;
 		
@@ -45,7 +45,7 @@ public class Rectangle extends Shape {
 	 * 
 	 * @return absolute value of the rectangle's perimeter
 	 */
-	public double getPerimeter() {
+	public double calcPerimeter() {
 		double perimeter = Math.abs(2*width + 2*height);
 		//printline to check answer
 
@@ -56,7 +56,7 @@ public class Rectangle extends Shape {
 	 * 
 	 * @return absolute value of the rectangle's area
 	 */
-	public double getArea() {
+	public double calcArea() {
 		double area = Math.abs(width*height);
 		//printline to check answer
 
@@ -93,7 +93,9 @@ public class Rectangle extends Shape {
 	 * @param marker PApplet object
 	 * @post rectangle should be drawn, fill is set to noFill
 	 */
-	public void draw(PApplet marker) {		
+	public void draw(PApplet marker) {
+		super.draw(marker);
+		
 		if(isGrey == true)
 			marker.fill(g);
 		else
@@ -137,9 +139,8 @@ public class Rectangle extends Shape {
 	 * @param shiftY Y pixels that the rectangle will be translated by
 	 * @post fields x, y will be changed
 	 */
-	public void translate(double shiftX, double shiftY) {
-		x = x + shiftX;
-		y = y + shiftY;
+	public void moveBy(double shiftX, double shiftY) {
+		super.moveBy(shiftX, shiftY);
 	}
 	
 	//additional method #3

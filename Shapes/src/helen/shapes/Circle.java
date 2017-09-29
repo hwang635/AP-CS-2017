@@ -7,7 +7,7 @@ import processing.core.PApplet;
  * @version 9.20.17
  *
  */
-public class Circle extends Shape{
+public class Circle {
 
 	private double x, y, radius;
 	private double area, perimeter;
@@ -35,14 +35,14 @@ public class Circle extends Shape{
 		this.radius = radius;
 		isGrey = true;
 
-		this.area = this.getArea();
-		this.perimeter = this.getPerimeter();
+		this.area = this.calcArea();
+		this.perimeter = this.calcPerimeter();
 	}
 
 	/**
 	 * @return prints absolute value of the circumference of the circle
 	 */
-	public double getPerimeter() {
+	public double calcPerimeter() {
 		double p = Math.abs(2*Math.PI*radius); //abs in case negative arg
 		//pln to check
 
@@ -53,7 +53,7 @@ public class Circle extends Shape{
 	 * 
 	 * @return prints the positive area of the circle
 	 */
-	public double getArea() {
+	public double calcArea() {
 		double a = Math.abs(2*Math.PI*radius*radius); //abs in case neg arg
 		//pln to check
 

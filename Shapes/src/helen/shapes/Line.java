@@ -19,10 +19,10 @@ import processing.core.PApplet;
  * @version 9.20.17
  *
  */
-public class Line extends Shape {
+public class Line extends Shape{
 	
-	private double x1, x2, y1, y2;
-	private int lineSize, lineColour;
+	private double x2, y2;
+	private int lineColour;
 	
 	//for drawing illusion
 	private int strokeCap;
@@ -36,8 +36,7 @@ public class Line extends Shape {
 	 * @param y2 Y coordinate of the second point
 	 */
 	public Line(double x1, double y1, double x2, double y2) {
-		this.x1 = x1;
-		this.y1 = y1;
+		super(x1, y1);
 		this.x2 = x2;
 		this.y2 = y2;
 	}
@@ -59,8 +58,10 @@ public class Line extends Shape {
 	 * @post a Line should be drawn 
 	 */
 	public void draw(PApplet drawer) {
-		drawer.stroke(lineColour);
-		drawer.strokeWeight(lineSize);
+		//drawer.stroke(strokeColour);
+		//drawer.strokeWeight(strokeWeight);
+		
+		drawer.stroke(super.getColour(2)); //check if this is redundant
 		
 		if(strokeCap == 1)
 			drawer.strokeCap(drawer.ROUND);
@@ -69,7 +70,7 @@ public class Line extends Shape {
 		else if(strokeCap == 3)
 			drawer.strokeCap(drawer.PROJECT);
 			
-		drawer.line((float)x1, (float)y1, (float)x2, (float)y2);
+		drawer.line((float)x, (float)y, (float)x2, (float)y2);
 	}
 	
 	/**
@@ -85,19 +86,19 @@ public class Line extends Shape {
 		boolean check1 = false;
 		boolean check2 = false;
 				
-		double x3 = other.x1;
+		double x3 = other.x;
 		double x4 = other.x2;
-		double y3 = other.y1;
+		double y3 = other.y;
 		double y4 =  other.y2;
 		
 		//if x1 is more right than x2 ==> x2 is left, to use later
 		// or if same, doesn't matter
-		if(x1>=x2) {
+		if(x>=x2) {
 			xLeft1 =  (int) x2;
-			xRight1 = (int) x1;
+			xRight1 = (int) x;
 		}
 		else {
-			xLeft1 = (int) x1;
+			xLeft1 = (int) x;
 			xRight1 = (int) x2;
 		}
 		if(x3>=x4) {
@@ -110,13 +111,13 @@ public class Line extends Shape {
 		}
 			
 		//same for y
-		if(y1>=y2) {
-			yUp1 = (int) y1;
+		if(y>=y2) {
+			yUp1 = (int) y;
 			yDown1 = (int) y2;
 		}
 		else {
 			yUp1 = (int) y2;
-			yDown1 = (int) y1;
+			yDown1 = (int) y;
 		}
 		if(y3>=y4) {
 			yUp2 = (int) y3;
@@ -127,8 +128,8 @@ public class Line extends Shape {
 			yDown2 = (int) y3;
 		}
 		
-		double pointX = ((x1*y2-y1*x2)*(x3 - x4) - (x1 - x2)*(x3*y4 - y3*x4))/((x1-x2)*(y3-y4) - (y1-y2)*(x3-x4));
-		double pointY = ((x1*y2 - y1*x2)*(y3-y4) - (y1-y2)*(x3*y4 - y3*x4))/((x1-x2)*(y3-y4) - (y1-y2)*(x3-x4));
+		double pointX = ((x*y2-y*x2)*(x3 - x4) - (x-x2)*(x3*y4 - y3*x4))/((x-x2)*(y3-y4) - (y-y2)*(x3-x4));
+		double pointY = ((x*y2 - y*x2)*(y3-y4) - (y-y2)*(x3*y4 - y3*x4))/((x-x2)*(y3-y4) - (y-y2)*(x3-x4));
 		
 		if(pointX >= xLeft1 && pointX <= xRight1) {
 			if(pointY <= yUp1 && pointY >= yDown1)
@@ -153,7 +154,7 @@ public class Line extends Shape {
 	 * @post field lineColour changed
 	 */
 	public void setColour (int colour) {
-		lineColour = colour;
+		super.setColour(0, colour, 0);
 	}
 	
 	/**
@@ -161,8 +162,8 @@ public class Line extends Shape {
 	 * @param size strokeWeight of the line
 	 * @post field lineSize changed
 	 */
-	public void setThickness (int size) {
-		lineSize = size;
+	public void setStrokeWeight (int weight) {
+		super.setStrokeWeight(weight);
 	}
 	
 	//for drawing illusion
@@ -174,6 +175,16 @@ public class Line extends Shape {
 	 */
 	public void changeStrokeShape(int n) {
 		 strokeCap = n;
+	}
+
+	@Override
+	public double calcArea() {
+		return 0;
+	}
+
+	@Override
+	public double calcPerimeter() {
+		return 0;
 	}
 
 }
