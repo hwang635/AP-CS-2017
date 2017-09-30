@@ -7,18 +7,20 @@ import processing.core.PApplet;
  * @version 9.20.17
  *
  */
-public class Circle {
+public class Circle extends Shape{
 
-	private double x, y, radius;
-	private double area, perimeter;
+	private double radius;
 	public boolean isGrey;
-	private int r, g, b;
+	
+	//fields bc used in choice method
+	private double area, perimeter;
 
 	//sets to zero
 	/**
 	 * Creates default instance of Circle, set to zero
 	 */
 	public Circle() {
+		super(0,0);
 	}
 
 	//sets to entered arguments
@@ -30,8 +32,8 @@ public class Circle {
 	 * @post boolean isGrey is set to true, area and perimeter are set by the area/perimeter methods
 	 */
 	public Circle(double x, double y, double radius) {
-		this.x = x;
-		this.y = y;
+		super(x,y);
+
 		this.radius = radius;
 		isGrey = true;
 
@@ -55,7 +57,6 @@ public class Circle {
 	 */
 	public double calcArea() {
 		double a = Math.abs(2*Math.PI*radius*radius); //abs in case neg arg
-		//pln to check
 
 		return a;
 	}
@@ -89,9 +90,9 @@ public class Circle {
 	 */
 	public void draw(PApplet marker) {		
 		if(isGrey == true)
-			marker.fill(g);
+			marker.fill(super.getColour(2));
 		else
-			marker.fill(r, b, g);
+			marker.fill(getColour(1), getColour(2), getColour(3));
 
 		marker.ellipse((float)x, (float)y, (float)radius, (float)radius);
 		marker.noFill();
@@ -140,9 +141,8 @@ public class Circle {
 	 * @param shiftY Y pixels that the circle will be translated by
 	 * @post fields x, y will be changed
 	 */
-	public void translate(double shiftX, double shiftY) {
-		this.x = this.x + shiftX;
-		this.y = this.y + shiftY;
+	public void moveTo(double shiftX, double shiftY) {
+		super.moveTo(shiftX, shiftY);
 	}
 
 	//additional method #3
@@ -155,10 +155,8 @@ public class Circle {
 	public void changeColour(boolean isGrey) {
 		this.isGrey = isGrey;
 
-		//random three values, only g is used if grayscale
-		this.r = (int) (Math.random()*256);
-		this.g = (int) (Math.random()*256);
-		this.b = (int) (Math.random()*256);
+		//random three values for fbg, only g is used if grayscale
+		super.setColour((int) (Math.random()*256), (int) (Math.random()*256), (int) (Math.random()*256));
 	}
 
 	//set method to draw illusion w,
@@ -168,6 +166,6 @@ public class Circle {
 	 * @param colour int greyscale value
 	 */
 	public void setColour(int colour) {
-		g = colour;
+		super.setColour(0, colour, 0);
 	}
 }

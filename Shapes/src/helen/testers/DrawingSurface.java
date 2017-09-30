@@ -51,7 +51,7 @@ public class DrawingSurface extends PApplet{
 			circle2.isPointInside(0, 100);
 			circle2.isPointInside(80, 75);
 			circle2.isLessThan(50, 50);
-			circle2.translate(20, -2);
+			circle2.moveBy(20, -2);
 			circle2.changeColour(true);
 
 			keyPressed = false;

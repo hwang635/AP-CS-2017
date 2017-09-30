@@ -47,7 +47,6 @@ public class Rectangle extends Shape{
 	 */
 	public double calcPerimeter() {
 		double perimeter = Math.abs(2*width + 2*height);
-		//printline to check answer
 
 		return perimeter;
 	}
@@ -58,7 +57,6 @@ public class Rectangle extends Shape{
 	 */
 	public double calcArea() {
 		double area = Math.abs(width*height);
-		//printline to check answer
 
 		return area;
 	}
@@ -99,7 +97,7 @@ public class Rectangle extends Shape{
 		if(isGrey == true)
 			marker.fill(g);
 		else
-			marker.fill(r, b, g);
+			marker.fill(getColour(1), getColour(2), getColour(3));
 
 		marker.rect((float)x, (float)y, (float)width, (float)height);
 		marker.noFill();
@@ -154,9 +152,7 @@ public class Rectangle extends Shape{
 		this.isGrey = isGrey;
 		
 		//random three values, only g is used if grayscale
-		this.r = (int) (Math.random()*256);
-		this.g = (int) (Math.random()*256);
-		this.b = (int) (Math.random()*256);
+		super.setColour((int) (Math.random()*256), (int) (Math.random()*256), (int) (Math.random()*256));
 	}
 	
 	//set method to draw illusion w/
@@ -167,6 +163,6 @@ public class Rectangle extends Shape{
 	 * @post changes value of g
 	 */
 	public void setColour(int colour) {
-		g = colour;
+		super.setColour(0, colour, 0);
 	}
 }

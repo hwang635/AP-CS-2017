@@ -187,4 +187,31 @@ public class Line extends Shape{
 		return 0;
 	}
 
+	@Override
+	/**
+	 * checks if the point is on the line
+	 * @param x X coordinate of point
+	 * @param y Y coordinate of the point
+	 * @return returns true or false whether the point is on the line
+	 */
+	public boolean isPointInside(double x, double y) {
+		boolean checkX = false, checkY= false;
+		
+		if((x >= this.x && x <= this.x2) || (x<= this.x && x>= this.x2))
+			checkX = true;
+		if((y >= this.y && y <= this.y2) || (y<= this.y && y>= this.y2))
+			checkY = true;
+		
+		if(checkX == true && checkY == true)
+			return true;
+		else
+			return false;
+	}
+
+	@Override
+	public void changeColour(boolean isGrey) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
