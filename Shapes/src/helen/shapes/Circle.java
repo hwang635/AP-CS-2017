@@ -94,6 +94,7 @@ public class Circle extends Shape{
 		else
 			marker.fill(getColour(1), getColour(2), getColour(3));
 
+		marker.ellipseMode(PApplet.CORNER);
 		marker.ellipse((float)x, (float)y, (float)radius, (float)radius);
 		marker.noFill();
 	}
