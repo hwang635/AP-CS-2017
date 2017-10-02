@@ -12,10 +12,10 @@ public class DrawingSurface extends PApplet{
 		blackBackground = new Rectangle(0, 0, 630, 500);
 		whiteBackground = new Rectangle(0,0, 500, 500);
 		
-		rect1 = new Rectangle(66, 60, 7, 360);
-		rect2 = new Rectangle(66, 414, 366, 7);
-		rect3 = new Rectangle(425, 60, 7, 360);
-		rect4 = new Rectangle(66, 60, 360, 7);
+		rect1 = new Rectangle(66, 60, 6, 360);
+		rect2 = new Rectangle(66, 414, 365, 6);
+		rect3 = new Rectangle(425, 60, 6, 359);
+		rect4 = new Rectangle(66, 60, 360, 6);
 	}
 	
 	public void draw() {
@@ -51,22 +51,22 @@ public class DrawingSurface extends PApplet{
 		//code for the purple box
 		rect1.changeColour(false);
 		rect1.setStrokeWeight(0);
-		rect1.setColour(128, 9, 168);
+		rect1.setColour(128, 90, 168);
 		rect1.draw(this);
 		
 		rect2.changeColour(false);
 		rect2.setStrokeWeight(0);
-		rect2.setColour(128, 9, 168);
+		rect2.setColour(128, 90, 168);
 		rect2.draw(this);
 		
 		rect3.changeColour(false);
 		rect3.setStrokeWeight(0);
-		rect3.setColour(128, 9, 168);
+		rect3.setColour(128, 90, 168);
 		rect3.draw(this);
 		
 		rect4.changeColour(false);
 		rect4.setStrokeWeight(0);
-		rect4.setColour(128, 9, 168);
+		rect4.setColour(128, 90, 168);
 		rect4.draw(this);
 	}
 }
