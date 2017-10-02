@@ -29,9 +29,9 @@ public class DrawingSurface extends PApplet{
 		
 		//variables for circle
 		int width = 455;
-		int count = 0; //counts number of circles drawn
+		int count = 0; //counts number of circles drawn to keep track of even/odd
 	
-		//loop, draws increasingly smaller circles
+		//while loop, draws increasingly smaller circles
 		//fills in odd circles with white and even circles with black
 		while(width >= 50) {
 			count++;
