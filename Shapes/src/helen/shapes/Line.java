@@ -60,6 +60,7 @@ public class Line extends Shape{
 	public void draw(PApplet drawer) {
 		//drawer.stroke(strokeColour);
 		//drawer.strokeWeight(strokeWeight);
+		super.draw(drawer);
 		
 		drawer.stroke(super.getColour(2)); //check if this is redundant
 		

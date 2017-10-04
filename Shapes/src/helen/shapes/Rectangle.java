@@ -38,7 +38,7 @@ public class Rectangle extends Shape{
 		this.width = width;
 		this.height = height;
 		
-		isGrey = true;
+		isGrey = false;
 	}
 
 	/**
@@ -158,7 +158,7 @@ public class Rectangle extends Shape{
 	//set method to draw illusion w/
 	/**
 	 * sets the colour of the rect, called in draw
-	 * @pre will make it some kind of grey if isGrey is set to true, set isGrey to false w/ changeColour for an actual colour
+	 * @pre draw will only draw w/ this grey colour if isGrey == true
 	 * @param colour int greyscale value
 	 * @post changes value of g
 	 */

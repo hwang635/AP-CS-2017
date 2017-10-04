@@ -39,7 +39,6 @@ public class DrawingSurface extends PApplet{
 			circles = new Circle(250, 240, width); //starts large, then radius decreases
 			
 			if(count%2 == 0) {
-				circles.changeColour(false);
 				circles.setColour(255, 255, 255); //even circle = black
 			}
 			else

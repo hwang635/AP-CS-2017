@@ -35,7 +35,7 @@ public class Circle extends Shape{
 		super(x,y);
 
 		this.radius = radius;
-		isGrey = true;
+		isGrey = false;
 
 		this.area = this.calcArea();
 		this.perimeter = this.calcPerimeter();
@@ -88,7 +88,9 @@ public class Circle extends Shape{
 	 * @param marker PApplet object
 	 * @post circle should be drawn, fill is set to none
 	 */
-	public void draw(PApplet marker) {		
+	public void draw(PApplet marker) {	
+		super.draw(marker);
+		
 		if(isGrey == true)
 			marker.fill(super.getColour(2));
 		else
