@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry excluding="DrawHouse/src/|GridWorldPart1/src/|Shapes/src/|ShapeDemo/src/|Shapes2/src/|Illusion/src/|Illusion2/src/|SampleRectangles/src/|Lines/src/" kind="src" path=""/>
+	<classpathentry kind="src" path="DrawHouse/src"/>
+	<classpathentry kind="src" path="GridWorldPart1/src"/>
+	<classpathentry kind="src" path="Illusion/src"/>
+	<classpathentry kind="src" path="Illusion2/src"/>
+	<classpathentry kind="src" path="Lines/src"/>
+	<classpathentry kind="src" path="SampleRectangles/src"/>
+	<classpathentry kind="src" path="ShapeDemo/src"/>
+	<classpathentry kind="src" path="Shapes/src"/>
+	<classpathentry kind="src" path="Shapes2/src"/>
+	<classpathentry kind="output" path="Illusion2/bin"/>
+</classpath>
