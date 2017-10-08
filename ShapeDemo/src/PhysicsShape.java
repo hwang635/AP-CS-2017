@@ -42,6 +42,7 @@ public class PhysicsShape {
 
 
 	//circle will return to starting position if dragged
+	//unfinished method
 	public void returnToStart (Circle circle, int startX, int startY) {
 		int x = (int) circle.getX();
 		int y = (int) circle.getY();	
@@ -56,7 +57,6 @@ public class PhysicsShape {
 		if(y>startY);
 		//y is being pulled up
 		if(y<startY);
-
 	}
 
 	//for line acc = g sin(tan-1 y/x)
@@ -112,10 +112,6 @@ public class PhysicsShape {
 		if(bound instanceof Shapes2D) {
 			Shapes2D bound2d = (Shapes2D) bound;
 			bound2d.moveBy(vx, vy);
-			if(gravity > 0.5) {
-				gravity -= 0.5;
-			}
-			System.out.println("vy is " + vy + "gravity is " + gravity);
 		}
 
 		/*if(bound instanceof Shapes2D) {
