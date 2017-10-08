@@ -40,25 +40,6 @@ public class PhysicsShape {
 		return bound;
 	}
 
-
-	//circle will return to starting position if dragged
-	//unfinished method
-	public void returnToStart (Circle circle, int startX, int startY) {
-		int x = (int) circle.getX();
-		int y = (int) circle.getY();	
-
-		//x is being pulled to the right;
-		if(x < startX) {
-
-		}
-		//x is being pulled to the left
-		if(x>startX);
-		//y is being pulled down
-		if(y>startY);
-		//y is being pulled up
-		if(y<startY);
-	}
-
 	//for line acc = g sin(tan-1 y/x)
 	//for normal velocity for dragged circle = v1 = 4, a = -0.8
 	public void setVelocity(double vx, double vy) {

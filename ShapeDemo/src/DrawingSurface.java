@@ -12,10 +12,9 @@ public class DrawingSurface extends PApplet{
 	//private Line l1;
 	private Rectangle r1;
 
-	private boolean circleDragged, circleRight;
+	private boolean circleDragged, circleRight, circleColour;
 	private boolean rectDragged, rectRight;
 
-	private double circleCount;
 
 	public DrawingSurface() {
 		c1 = new Circle(280, 200, 50);
@@ -25,10 +24,10 @@ public class DrawingSurface extends PApplet{
 		//line = new PhysicsShape(l1);
 
 		r1 = new Rectangle(180, 176, 30, 49);
-		r1.setFill(158, 20, 80);
+		r1.setFill(158, 30, 80);
 
 		circleDragged = false;
-		circleCount = -0.5;
+		circleColour = true;
 	}
 
 	public void draw() {
@@ -70,7 +69,6 @@ public class DrawingSurface extends PApplet{
 				else
 					rectangle.setVelocity(-1.5, -rectangle.getGravity()+(500-rectangle.getCoordinate(2))/53);
 
-				System.out.println("vy is" + rectangle.getVy());
 				rectangle.act();
 			}
 			else if(rectangle.getCoordinate(2)>1) {
@@ -82,6 +80,22 @@ public class DrawingSurface extends PApplet{
 				rectangle.act();
 			}
 		}
+
+		double xCheck = Math.pow(circle.getCoordinate(1)-rectangle.getCoordinate(1), 2.0);
+		double yCheck = Math.pow(circle.getCoordinate(2)-rectangle.getCoordinate(2), 2.0);
+
+		if(xCheck + yCheck <= 2500) {//checks if rectangle and circle intersect
+			c1.setFill(18, 230, 128);
+			r1.setFill(150, 120, 180);
+		}
+		else {
+			c1.setFill(50, 170, 180);
+			r1.setFill(158, 30, 80);
+		}
+		
+		circle.act();
+		rectangle.act();
+
 	}
 
 
