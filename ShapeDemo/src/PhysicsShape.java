@@ -12,11 +12,13 @@ public class PhysicsShape {
 	private Shape bound;
 
 	private double vx, vy;
+	private double gravity;
 
 	//constructors
 	public PhysicsShape(Shape boundingShape) {
 		vx = 0;
 		vy = 0;
+		gravity = 9.81;
 
 		this.bound = boundingShape;
 	}
@@ -62,6 +64,30 @@ public class PhysicsShape {
 	public void setVelocity(double vx, double vy) {
 		this.vx = vx;
 		this.vy = vy;
+
+		/*double endX = Math.random()*500;
+		double endY = Math.random()*500;
+
+		if(bound instanceof Shapes2D) {
+			Shapes2D bound2d = (Shapes2D)bound;
+			double deltaX = endX-bound2d.getX();
+			double deltaY = endY-bound2d.getY();
+
+			this.vx = deltaX/20.0;
+			this.vy = deltaY/20.0;
+		} */
+	}
+
+	public double getVx() {
+		return vx;
+	}
+
+	public double getVy() {	
+		return vy ;
+	}
+	
+	public double getGravity() {
+		return gravity;
 	}
 
 	//stops, sets all velocity to zero
@@ -70,33 +96,41 @@ public class PhysicsShape {
 		vy = 0;
 	}
 
+	//return x/y coordinate depending on int entered in
+	public double getCoordinate(int choice) {
+		Shapes2D bound2d = (Shapes2D) bound;
+
+		if(choice == 1)
+			return bound2d.getX();
+		else if(choice == 2)
+			return bound2d.getY();
+		else
+			return 0;
+	}
 	//for circle movement
 	public void act() {
-		//boundingShape.moveBy(boundingShape.getX(), boundingShape.getY());
-
 		if(bound instanceof Shapes2D) {
+			Shapes2D bound2d = (Shapes2D) bound;
+			bound2d.moveBy(vx, vy);
+			if(gravity > 0.5) {
+				gravity -= 0.5;
+			}
+			System.out.println("vy is " + vy + "gravity is " + gravity);
+		}
+
+		/*if(bound instanceof Shapes2D) {
 			Shapes2D bound2d = (Shapes2D) bound;
 			//bound2d.moveBy(vx, vy);
 
-			double ax = vx/-10.0;
-			double ay = vy/-10.0;
-			
+			double ax = vx/-20.0;
+			double ay = vy/-20.0;
+
 			while(Math.abs(vx) > 0.5 || Math.abs(vy) > 0.5) {
-				bound2d.move(bound2d.getX()+vx, bound2d.getY()+vy);
-				vx += ax;
+				bound2d.moveBy(bound2d.getX()+vx, bound2d.getY()+vy);
+				vx -= ax;
 				vy += ay;
 				System.out.println("vx is " + vx + " vy is " + vy);
-			}
-
-
-			/*try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
 			} */
 
-		}
 	}
-
 }

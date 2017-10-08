@@ -31,6 +31,18 @@ public class DrawingSurface extends PApplet{
 
 		circle.draw(this);
 		line.draw(this);
+
+		if(circleDragged == true) {
+			double endX = Math.random()*500;
+			double endY = Math.random()*500;
+			double vx = (endX-c1.getX())/10.0;
+			double vy = (endY-c1.getY())/10.0;
+
+			circle.setVelocity(vx, vy); //10 = value for time
+
+			circle.act();
+			//System.out.println("x is" + vx + " y is " + vy);
+		}
 	}
 
 	public void mousePressed() {
@@ -52,7 +64,7 @@ public class DrawingSurface extends PApplet{
 				circleDragged = true;
 			if(circleDragged == true) //if the circle is being dragged, move it
 				c1.move(mouseX, mouseY);
-			
+
 			//if circle and line intersect
 		}
 
@@ -66,12 +78,12 @@ public class DrawingSurface extends PApplet{
 	}
 
 	public void mouseReleased() {
-		if(mouseButton == LEFT && circleDragged == true) {
+		/*if(mouseButton == LEFT && circleDragged == true) {
 			double endX = Math.random()*500;
 			double endY = Math.random()*500;
 			double vx = (endX-c1.getX())/10.0;
 			double vy = (endY-c1.getY())/10.0;
-			
+
 			circle.setVelocity(vx, vy); //10 = value for time
 
 			for(int i = 0; i<9; i++) {
@@ -79,8 +91,8 @@ public class DrawingSurface extends PApplet{
 				//System.out.println("x is" + vx + " y is " + vy);
 			}
 		}
-		
-		this.redraw();
+
+		this.redraw(); */
 	}
 
 }
