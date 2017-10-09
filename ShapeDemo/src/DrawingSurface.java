@@ -8,11 +8,15 @@ public class DrawingSurface extends PApplet{
 	private PhysicsShape circle;
 	//private PhysicsShape line; //ended up not using line for any movement things
 	private PhysicsShape rectangle;
+	private PhysicsShape boundary, secondBound;
 	private Circle c1;
 	//private Line l1;
 	private Rectangle r1;
+	private Rectangle r2; //the purple box
+	private Rectangle r3; //purple line on the bottom
+	
 
-	private boolean circleDragged, circleRight, circleColour;
+	private boolean circleDragged, circleRight;
 	private boolean rectDragged, rectRight;
 
 
@@ -25,9 +29,14 @@ public class DrawingSurface extends PApplet{
 
 		r1 = new Rectangle(180, 176, 30, 49);
 		r1.setFill(158, 30, 80);
+		r2 = new Rectangle(150, 150, 184, 100);
+		r2.setFill(128, 110, 128);
+		boundary = new PhysicsShape(r2);
+		r3 = new Rectangle(180, 400, 124, 5);
+		r3.setFill(128, 110, 128);
+		secondBound = new PhysicsShape(r3);
 
 		circleDragged = false;
-		circleColour = true;
 	}
 
 	public void draw() {
@@ -39,6 +48,8 @@ public class DrawingSurface extends PApplet{
 		//l1.draw(this);
 		//line = new PhysicsShape(l1);
 
+		boundary.draw(this);
+		secondBound.draw(this);
 		circle.draw(this);
 		//line.draw(this);
 		rectangle.draw(this);
@@ -46,33 +57,34 @@ public class DrawingSurface extends PApplet{
 		if(circleDragged == true) { //circle moves downwards
 			if(circle.getCoordinate(2)<450 && circle.getCoordinate(1) > 30 && circle.getCoordinate(1) <470) {
 				if(circleRight==true)
-					circle.setVelocity(1.5, circle.getGravity()-circle.getCoordinate(2)/48);
+					circle.setVelocity(1.5, circle.getGravity()-circle.getCoordinate(2)/46);
 				else
-					circle.setVelocity(-1.5, circle.getGravity()-circle.getCoordinate(2)/48);
+					circle.setVelocity(-1.5, circle.getGravity()-circle.getCoordinate(2)/46);
 
 				circle.act();
 			}
 			else if(circle.getCoordinate(2)<450) {
-				circle.setVelocity(0, circle.getGravity()-circle.getCoordinate(2)/48);
+				circle.setVelocity(0, circle.getGravity()-circle.getCoordinate(2)/46);
 				circle.act();
 			}
 			else {
 				circle.stop();
 				circle.act();
+				circleDragged = false;
 			}
 		}
 
 		if(rectDragged == true) { //rectangle goes upwards
 			if(rectangle.getCoordinate(2) > 1 && rectangle.getCoordinate(1)>1 && rectangle.getCoordinate(1)<469) {
 				if(rectRight==true)
-					rectangle.setVelocity(1.5, -rectangle.getGravity()+(500-rectangle.getCoordinate(2))/53);
+					rectangle.setVelocity(1.5, -rectangle.getGravity()+(500-rectangle.getCoordinate(2))/52);
 				else
-					rectangle.setVelocity(-1.5, -rectangle.getGravity()+(500-rectangle.getCoordinate(2))/53);
+					rectangle.setVelocity(-1.5, -rectangle.getGravity()+(500-rectangle.getCoordinate(2))/52);
 
 				rectangle.act();
 			}
 			else if(rectangle.getCoordinate(2)>1) {
-				rectangle.setVelocity(0, -rectangle.getGravity()+(500-rectangle.getCoordinate(2))/55);
+				rectangle.setVelocity(0, -rectangle.getGravity()+(500-rectangle.getCoordinate(2))/52);
 				rectangle.act();
 			}
 			else {
@@ -93,9 +105,14 @@ public class DrawingSurface extends PApplet{
 			r1.setFill(158, 30, 80);
 		}
 		
-		circle.act();
-		rectangle.act();
-
+		if(circle.getCoordinate(1)>=180 && circle.getCoordinate(1)<=304) {
+			if(circle.getCoordinate(2)>=400 && circle.getCoordinate(2)>=405) {
+				c1.move(280, 200);
+				circleDragged = false;
+				circle.act();
+			}
+		}
+		
 	}
 
 
