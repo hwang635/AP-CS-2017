@@ -3,7 +3,16 @@ import kush.shapes.Line;
 import kush.shapes.Rectangle;
 import processing.core.PApplet;
 
-public class DrawingSurface extends PApplet{
+
+/*
+ * The program has two shapes (rectangle and circle) drawn in a purple boundary, and a rectangle at the bottom
+ * left click and drag the circle, right click and drag the rectangle
+ * the circle floats down, the rectangle floats up
+ * if the circle and rectangle intersect, they change colours temporarily
+ * if the circle and purple thin rectangle intersect, the circle returns to it original position
+ * 
+ */
+public class DrawingSurface1 extends PApplet{
 
 	private PhysicsShape circle;
 	//private PhysicsShape line; //ended up not using line for any movement things
@@ -14,13 +23,13 @@ public class DrawingSurface extends PApplet{
 	private Rectangle r1;
 	private Rectangle r2; //the purple box
 	private Rectangle r3; //purple line on the bottom
-	
+
 
 	private boolean circleDragged, circleRight;
 	private boolean rectDragged, rectRight;
 
 
-	public DrawingSurface() {
+	public DrawingSurface1() {
 		c1 = new Circle(280, 200, 50);
 		c1.setFill(50, 170,  180);
 
@@ -33,7 +42,7 @@ public class DrawingSurface extends PApplet{
 		r2.setFill(128, 110, 128);
 		boundary = new PhysicsShape(r2);
 		r3 = new Rectangle(180, 400, 124, 5);
-		r3.setFill(128, 110, 128);
+		r3.setFill(128, 100, 128);
 		secondBound = new PhysicsShape(r3);
 
 		circleDragged = false;
@@ -49,10 +58,10 @@ public class DrawingSurface extends PApplet{
 		//line = new PhysicsShape(l1);
 
 		boundary.draw(this);
-		secondBound.draw(this);
 		circle.draw(this);
 		//line.draw(this);
 		rectangle.draw(this);
+		secondBound.draw(this);
 
 		if(circleDragged == true) { //circle moves downwards
 			if(circle.getCoordinate(2)<450 && circle.getCoordinate(1) > 30 && circle.getCoordinate(1) <470) {
@@ -90,6 +99,7 @@ public class DrawingSurface extends PApplet{
 			else {
 				rectangle.stop();
 				rectangle.act();
+				rectDragged = false;
 			}
 		}
 
@@ -104,15 +114,15 @@ public class DrawingSurface extends PApplet{
 			c1.setFill(50, 170, 180);
 			r1.setFill(158, 30, 80);
 		}
-		
-		if(circle.getCoordinate(1)>=180 && circle.getCoordinate(1)<=304) {
-			if(circle.getCoordinate(2)>=400 && circle.getCoordinate(2)>=405) {
+
+		if(circle.getCoordinate(1)>=secondBound.getCoordinate(1)-25 && circle.getCoordinate(1)<= (secondBound.getCoordinate(1)+85)) { //if the circle comes into contact w line, will go back to original position 
+			if(circle.getCoordinate(2)>= secondBound.getCoordinate(2) && circle.getCoordinate(2)>=secondBound.getCoordinate(2)) {
 				c1.move(280, 200);
 				circleDragged = false;
 				circle.act();
 			}
 		}
-		
+
 	}
 
 
@@ -126,6 +136,11 @@ public class DrawingSurface extends PApplet{
 			System.out.println("right");
 			this.redraw();
 		} */
+		
+		/*if(r3.isPointInside(mouseX, mouseY)) {
+			boundDragged = true;
+		} */
+
 	}
 
 	public void mouseDragged() {
@@ -135,18 +150,21 @@ public class DrawingSurface extends PApplet{
 				circleDragged = true;
 				rectDragged = false;
 			}
+
 			if(circleDragged == true) {//if the circle is being dragged, move it
 				c1.move(mouseX, mouseY);
 			}
+
 		}
 
 		//right click is for rectangle
 		else if (mouseButton == RIGHT) {
 			//l1.setPoint2(mouseX,mouseY);
 			if(r1.isPointInside(mouseX, mouseY)) {
-				rectDragged = true;
 				circleDragged = false;
+				rectDragged = true;
 			}
+
 			if(rectDragged == true) {
 				r1.move(mouseX, mouseY);
 			}
@@ -154,6 +172,7 @@ public class DrawingSurface extends PApplet{
 		}
 
 		this.redraw();
+
 	}
 
 	public void mouseReleased() {
@@ -184,6 +203,7 @@ public class DrawingSurface extends PApplet{
 			else
 				rectRight = false;
 		}
+		
 		this.redraw();
 	}
 

@@ -8,7 +8,7 @@ import processing.core.PApplet;
 public class Main {
 
 	public static void main(String args[]) {
-		DrawingSurface drawing = new DrawingSurface();
+		DrawingSurface1 drawing = new DrawingSurface1();
 		PApplet.runSketch(new String[]{""}, drawing);
 		PSurfaceAWT surf = (PSurfaceAWT) drawing.getSurface();
 		PSurfaceAWT.SmoothCanvas canvas = (PSurfaceAWT.SmoothCanvas) surf.getNative();
