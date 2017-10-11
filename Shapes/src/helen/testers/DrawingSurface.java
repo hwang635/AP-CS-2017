@@ -1,35 +1,43 @@
 package helen.testers;
 import helen.shapes.Circle;
 import helen.shapes.Rectangle;
+import helen.shapes.RegularPolygon;
 import processing.core.PApplet;
 
 public class DrawingSurface extends PApplet{
 
-	public Rectangle rect1, rect2, rect3, rectTest;
-	public Circle circle1, circle2;
+	//public Rectangle rect1, rect2, rect3, rectTest;
+	//public Circle circle1, circle2;
+	
+	public RegularPolygon p1;
 
 	public DrawingSurface() {
-		rect1 = new Rectangle();
+		/*rect1 = new Rectangle();
 		rect2 = new Rectangle(0, 80, 400, 160);
 		rect3 = new Rectangle(100, -100, 20, -300);
 		
 		rectTest = new Rectangle(200, 100, 100, 100);
 
 		circle1 = new Circle();
-		circle2 = new Circle(50, 50, 50);
+		circle2 = new Circle(50, 50, 50); */
+		
+		p1 = new RegularPolygon(3, 20);
+		
 	}
 
 	public void draw() {
-		rect1.draw(this);
+		/*rect1.draw(this);
 		//rect2.draw(this);
 		rect3.draw(this);
 		rectTest.draw(this);
 
 		circle1.draw(this);
-		circle2.draw(this);
+		circle2.draw(this); */
 
+		p1.draw(this);
+		
 		if(keyPressed == true) {
-			rect3.calcPerimeter();
+			/*rect3.calcPerimeter();
 			rect3.calcArea();
 			rect3.isPointInside(0, 100);
 			rect3.isPointInside(10, 5);
@@ -52,7 +60,7 @@ public class DrawingSurface extends PApplet{
 			circle2.isPointInside(80, 75);
 			circle2.isLessThan(50, 50);
 			circle2.moveBy(20, -2);
-			circle2.changeColour(true);
+			circle2.changeColour(true); */
 
 			keyPressed = false;
 		}
