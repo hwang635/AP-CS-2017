@@ -9,7 +9,7 @@ public class DrawingSurface extends PApplet{
 	//public Rectangle rect1, rect2, rect3, rectTest;
 	//public Circle circle1, circle2;
 	
-	public RegularPolygon p1;
+	public RegularPolygon p0, p1, p2, p3;
 
 	public DrawingSurface() {
 		/*rect1 = new Rectangle();
@@ -21,7 +21,11 @@ public class DrawingSurface extends PApplet{
 		circle1 = new Circle();
 		circle2 = new Circle(50, 50, 50); */
 		
-		p1 = new RegularPolygon(3, 20);
+		//p0 = new RegularPolygon(0,0);
+		//p1 = new RegularPolygon(5, 100);
+		p2 = new RegularPolygon(8, 130);
+		p3 = new RegularPolygon(3, -90);
+		//p4 = new RegularPolygon()
 		
 	}
 
@@ -34,10 +38,13 @@ public class DrawingSurface extends PApplet{
 		circle1.draw(this);
 		circle2.draw(this); */
 
-		p1.draw(this);
+		//p0.draw(this);
+		//p1.draw(this);
+		p2.draw(this);
+		p3.draw(this);
 		
-		if(keyPressed == true) {
-			/*rect3.calcPerimeter();
+		/*if(keyPressed == true) { //for testing purposes
+			rect3.calcPerimeter();
 			rect3.calcArea();
 			rect3.isPointInside(0, 100);
 			rect3.isPointInside(10, 5);
@@ -60,9 +67,9 @@ public class DrawingSurface extends PApplet{
 			circle2.isPointInside(80, 75);
 			circle2.isLessThan(50, 50);
 			circle2.moveBy(20, -2);
-			circle2.changeColour(true); */
+			circle2.changeColour(true);
 
 			keyPressed = false;
-		}
+		} */
 	}
 }
