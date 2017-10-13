@@ -56,7 +56,6 @@ public class RegularPolygon extends Shape {
 		}
 
 		/*double initialAngle = (sides-2)*Math.PI; //finding the interior angle in degrees
-		double angle = initialAngle; //to use in loop
 
 		for(int i = 0; i<sides; i++) {
 			drawer.line((float)x, (float)y, (float)(x+length*Math.cos(angle)), (float)(y+length*Math.sin(angle)));
