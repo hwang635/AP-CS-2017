@@ -12,7 +12,7 @@ public class Rectangle extends Shape{
 
 	private double width, height;
 	private boolean isGrey;
-	private int r, g, b;
+	private int g;
 	
 	//default rect, set all to zero
 	/**

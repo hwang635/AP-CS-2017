@@ -111,7 +111,7 @@ public class Circle extends Shape{
 	 */
 	public String isLessThan(double area, double perimeter) {
 		
-		String resultA, resultP;
+		String resultA;
 		
 		if (area>this.area)
 			resultA = "The circle has smaller area.";

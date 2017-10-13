@@ -22,7 +22,6 @@ import processing.core.PApplet;
 public class Line extends Shape{
 	
 	private double x2, y2;
-	private int lineColour;
 	
 	//for drawing illusion
 	private int strokeCap;
