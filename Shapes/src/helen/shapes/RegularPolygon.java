@@ -86,7 +86,7 @@ public class RegularPolygon extends Shape {
 	 * creates new Line representing each side, and adds it to the sides array
 	 * @post sides array has new Lines added to it
 	 */
-	public void calcSides() {
+	private void calcSides() {
 		double startX = x + calcR();
 		double startY = y;
 		//double angle = Math.toRadians(findAngle());
