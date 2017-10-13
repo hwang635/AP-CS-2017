@@ -80,11 +80,11 @@ public class RegularPolygon extends Shape {
 			double endY = y + calcR()*Math.sin(angle);
 
 			Line l1 = new Line(startX, startY, endX, endY);
-			System.out.println("startX, startY =" + startX + " " + startY);
+			/*System.out.println("startX, startY =" + startX + " " + startY);
 			System.out.println("endX, endY =" + endX + " " + endY);
 			System.out.println("angle" + angle + "degrees" + findAngle());
 			System.out.println("cos theta" + Math.cos(angle));
-			System.out.println("x is " + x);
+			System.out.println("x is " + x); */
 			sides[i] = l1;
 
 			startX = endX;
@@ -138,9 +138,10 @@ public class RegularPolygon extends Shape {
 	/**
 	 * returns the area of the shape as a double
 	 */
-	public double calcArea() {
-		// TODO Auto-generated method stub
-		return 0;
+	public double calcArea() {		
+		double area = numSides/2*calcR()*calcR()*Math.sin(2*Math.PI/numSides); //formula for area
+		
+		return area;
 	}
 
 	@Override
