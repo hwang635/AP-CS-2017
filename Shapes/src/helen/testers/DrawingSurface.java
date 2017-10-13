@@ -21,7 +21,7 @@ public class DrawingSurface extends PApplet{
 		circle1 = new Circle();
 		circle2 = new Circle(50, 50, 50); */
 		
-		p0 = new RegularPolygon(0,0);
+		p0 = new RegularPolygon();
 		p1 = new RegularPolygon(4, 100);
 		p2 = new RegularPolygon(8, 5.75);
 		p3 = new RegularPolygon(19, 2);
@@ -38,18 +38,20 @@ public class DrawingSurface extends PApplet{
 		circle1.draw(this);
 		circle2.draw(this); */
 
-		p0.draw(this);
+		p1.drawBoundingCircles(this);
 		p1.draw(this);
-		p2.draw(this);
-		p3.draw(this);
-		p4.draw(this);
+		//p1.drawBoundingCircles(this);
+		//p1.draw(this);
+		//p2.draw(this);
+		//p3.draw(this);
+		//p4.draw(this);
 		
 		if(keyPressed == true) { //for testing purposes
 			
 			System.out.println(p4.calcPerimeter());
 			System.out.println(p4.calcArea());
-			System.out.println(p4.calcR());
-			System.out.println(p4.calcr());
+			System.out.println(p4.getR());
+			System.out.println(p4.getr());
 			
 			/*rect3.calcPerimeter();
 			rect3.calcArea();

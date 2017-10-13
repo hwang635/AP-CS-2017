@@ -17,10 +17,10 @@ public class RegularPolygon extends Shape {
 	private Line[] sides;
 
 	/**
-	 * constructs default polygon with x, y, sides, and length all equal to zero
+	 * constructs default polygon: a triangle starting at 250, 250 and sideLengths = to 100
 	 */
-	public RegularPolygon() {
-		super(0,0);
+	public RegularPolygon() {		
+		this(3, 100);
 	}
 
 	/**
@@ -36,15 +36,17 @@ public class RegularPolygon extends Shape {
 
 		numSides = sides;
 		sideLength = length;
-
 		this.sides = new Line[numSides];
 		calcSides();
+		
+		outCircle = new Circle(250-calcR(), 250-calcR(), 2*calcR());
+		inCircle = new Circle(250-calcr(), 250-calcr(), 2*calcr());
 	}
 
 	/**
 	 * draws the polygon
-	 * @param drawer PApplet object
 	 * @pre affected by PApplet pre-set conditions
+	 * @param drawer PApplet object
 	 */
 	public void draw(PApplet drawer) {
 		super.draw(drawer);
@@ -62,6 +64,24 @@ public class RegularPolygon extends Shape {
 			y += length*Math.sin(angle);
 			angle += initialAngle;
 		}*/
+	}
+	
+	/**
+	 * draws the circumscribed and inscribed circle
+	 * @pre affected by preset PApplet object
+	 * @param drawer PApplet object
+	 * @post draws the circumscribed circle around the polygon, filled in blue, and the inscribed circle, filled in red and sets their colours
+	 */
+	public void drawBoundingCircles(PApplet drawer) {
+		super.draw(drawer);
+		
+		outCircle.changeColour(false);
+		outCircle.setColour(100,  70,  210); //blue to differentiate outside circle
+		outCircle.draw(drawer);
+		
+		inCircle.changeColour(false);
+		inCircle.setColour(210, 70, 100); //red to differentiate inside circle
+		inCircle.draw(drawer);
 	}
 	
 	/**
@@ -94,25 +114,23 @@ public class RegularPolygon extends Shape {
 		}
 
 	}
-	/**
-	 * calculates the full angle of the polygon and returns individual interior angle value
-	 * @return returns the angle in degrees
-	 */
-	public double findAngleDegrees() {
-		double angle = (numSides-2)*180;
-		angle = angle/numSides;
 
+	/**
+	 * finds an angle in radians
+	 * @return 2*pi divided by the number of sides
+	 */
+	public double findAngle() {		
+		double angle = Math.PI*2/numSides;
+		
 		return angle;
 	}
-
+	
 	/**
-	 * finds the angle in radians
-	 * @return the interior angle of the polygon in raidnas
+	 * calculates the interior angle of the polygon and returns it
+	 * @return returns the interior angle in radians
 	 */
-	public double findAngle() {
-		//double angle = (numSides-2)*Math.PI/numSides;
-		
-		double angle = Math.PI*2/numSides;
+	public double calcVertexAngle() {
+		double angle = (numSides-2)*Math.PI/numSides;
 		
 		return angle;
 	}
@@ -121,7 +139,7 @@ public class RegularPolygon extends Shape {
 	 * calculate the radius of the circumscribed circle
 	 * @return the large radius
 	 */
-	public double calcR() {		
+	private double calcR() {		
 		double R = sideLength/(2*Math.sin(Math.PI/numSides)); //radius of big circle
 		return R;
 	}
@@ -129,7 +147,7 @@ public class RegularPolygon extends Shape {
 	 * calculates the radius of the inscribed circle
 	 * @return the small radius
 	 */
-	public double calcr() {
+	private double calcr() {
 		double r = sideLength/(2*Math.tan(Math.PI/numSides));
 		return r;
 	}
@@ -137,6 +155,7 @@ public class RegularPolygon extends Shape {
 	@Override
 	/**
 	 * returns the area of the shape as a double
+	 * @return returns the area of the polygon as a double
 	 */
 	public double calcArea() {		
 		double area = numSides/2*calcR()*calcR()*Math.sin(2*Math.PI/numSides); //formula for area
@@ -147,12 +166,45 @@ public class RegularPolygon extends Shape {
 	@Override
 	/**
 	 * returns the perimeter of the shape as a double
+	 * @return returns the perimeter as a double
 	 */
 	public double calcPerimeter() {
 		// TODO Auto-generated method stub
 		return numSides*sideLength;
 	}
-
+	
+	/**
+	 * accesses the number of sides/numSides field
+	 * @return the number of sides as an int
+	 */
+	public int getNumSides() {
+		return numSides;
+	}
+	
+	/**
+	 * accesses the sideLength field/finds the length of each side
+	 * @return the length of each side as a double
+	 */
+	public double getSideLength() {
+		return sideLength;
+	}
+	
+	/**
+	 * accesses private method calcR() to find the large radius
+	 * @return returns the large radius as a double
+	 */
+	public double getR() {
+		return calcR();
+	}
+	
+	/**
+	 * accesses the private method calcr() to find the small radius
+	 * @return returns the small radius as a double
+	 */
+	public double getr() {
+		return calcr();
+	}
+	
 	@Override
 	public boolean isPointInside(double x, double y) {
 		// TODO Auto-generated method stub
