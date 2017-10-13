@@ -25,11 +25,9 @@ public class RegularPolygon extends Shape {
 
 	/**
 	 * Constructs a regular polygon with the specified starting point, sides, and sidelengths, and starting point at (250,250)
-	 * @param x X-coordinate of the starting vertex
-	 * @param y Y-coordinate of the starting vertex
 	 * @param sides number of sides on the shape, must be non-negative
 	 * @param length how long each side is
-	 * @post array sides is initialised, 
+	 * @post array sides is initialised, outCircle and inCircle are created as the circumscribed/inscribed circles
 	 */
 	public RegularPolygon(int sides, double length) {
 		super(250, 250); //centre of window 

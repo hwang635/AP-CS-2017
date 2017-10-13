@@ -159,7 +159,7 @@ public class Line extends Shape{
 	
 	/**
 	 * sets thickness of the line, called in draw
-	 * @param size strokeWeight of the line
+	 * @param weight strokeWeight of the line
 	 * @post field lineSize changed
 	 */
 	public void setStrokeWeight (int weight) {
