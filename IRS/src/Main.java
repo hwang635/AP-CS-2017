@@ -8,7 +8,7 @@ public class Main {
 		System.out.println("Enter 1 if single, 2 if married: ");
 		int marriageStatus = keyboard.nextInt();
 		System.out.println("Enter your income: ");
-		int income = keyboard.nextInt();
+		double income = keyboard.nextDouble();
 
 		IRS tester = new IRS();
 		double tax = tester.calcTax(marriageStatus, income);
