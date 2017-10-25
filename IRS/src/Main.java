@@ -10,8 +10,8 @@ public class Main {
 		System.out.println("Enter your income: ");
 		double income = keyboard.nextDouble();
 
-		IRS tester = new IRS();
-		double tax = tester.calcTax(marriageStatus, income);
+		IRS tester = new IRS(marriageStatus, income);
+		double tax = tester.calcTax();
 
 		//prints answer in console
 		System.out.println("Your tax is: $" + tax + ".");

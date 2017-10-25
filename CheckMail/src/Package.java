@@ -1,8 +1,8 @@
-
+//flowchart by Johnry Zhao
 public class Package {
 	
 	//private double dim1, dim2, dim3, weight;
-	private double x, y, z, weight; //variable names according to johnry's flowchart
+	private double x, y, z, weight;
 	
 	public Package(double dim1, double dim2, double dim3, double weight) {
 		x = dim1;
@@ -34,7 +34,7 @@ public class Package {
 			y = b;
 		} //does nothing if x>y
 				
-		//y>z part if false, second time after returning to xy, why johnry
+		//y>z part if false, second time after returning to xy
 		if(!(y>z)) { //switches y and z if z is less than/equal to y
 			double a = z;
 			z = y ;
@@ -43,7 +43,7 @@ public class Package {
 		
 		//after both are true
 		
-		boolean tooLarge = !(x+2*y+2*z <= 100); //@johnry confusing variable names
+		boolean tooLarge = !(x+2*y+2*z <= 100);
 		boolean tooHeavy;
 		
 		if(weight<=70) //weight is ok
@@ -60,7 +60,7 @@ public class Package {
 		else if(tooHeavy == true) //only too heavy
 			System.out.println("The package is too heavy.");
 		else //if none are true, it's good
-			System.out.println("The packacge is acceptable");
+			System.out.println("The package is acceptable");
 	}
 
 }

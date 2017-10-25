@@ -15,12 +15,21 @@
  * 
  */
 public class IRS {
+	
+	int status;
+	double income;
+	
+	public IRS(int status, double income) {
+		this.status = status;
+		this.income = income;
+		
+	}
 
-	public double calcTax (int stat, double income) {
+	public double calcTax () {
 
 		double tax = 0;
 
-		if(stat == 1) { //single
+		if(status == 1) { //single
 			if(income <= 27050)
 				tax = 0.15*income;
 			else if(income <= 65550)
@@ -32,7 +41,7 @@ public class IRS {
 			else
 				tax = 93374 + .391*(income - 297350);				
 		}
-		else if(stat == 2) { //married
+		else if(status == 2) { //married
 			if(income <= 45200)
 				tax = 0.15*income;
 			else if(income <= 109250)
