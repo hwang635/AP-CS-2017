@@ -75,16 +75,16 @@ public class Elevator extends JPanel implements ActionListener
   	// buttons[3] (in which buttons[0] represents the first floor button)
 
   	// Problem 4:
-  	doorOpen = (floorBits[1]&& (buttons[1] && !floorBits[0] || buttons[2] && floorBits[0]) ) || (!floorBits[1] && buttons[0] && floorBits[0]);
-
+  	doorOpen = (buttons[1] && !floorBits[0]) || (buttons[0] && !floorBits[1]) || (buttons[2] && floorBits[0] && floorBits[1]);
+  	//doorOpen = (floorBits[1]&& (buttons[1] && !floorBits[0] || buttons[2] && floorBits[0]) ) || (!floorBits[1] && buttons[0] && floorBits[0]);
 
   	// Problem 5:
-  	direction[0] = buttons[2] && (!floorBits[0] || (!floorBits[1] && !buttons[1])) || (floorBits[2] && buttons[1]) || (floorBits[1] && buttons[0]);
-  	direction[1] = (buttons[1] && !floorBits[1]) || (buttons[2] && !floorBits[1]) || (buttons[2] && !floorBits[0]);
+  	direction[0] = (buttons[1] && !floorBits[1]) || (buttons[2] && !floorBits[1]) || (buttons[2] && !floorBits[0]);
+  	direction[1] = buttons[2] && (!floorBits[0] || (!floorBits[1] && !buttons[1])) || (floorBits[0] && buttons[1]) || (floorBits[1] && buttons[0]);
 
   	// Problem 6:
-  	lightUp = !floorBits[0] && (!buttons[1] && (buttons[2] || !buttons[0]) || buttons[1]);
-  	lightDown = floorBits[0] || ((buttons[1] || !buttons[2] && buttons[0]) && !buttons[1]);
+  	lightUp =  !floorBits[1] || !floorBits[0] && (buttons[2] || !buttons[0]);
+  	lightDown = floorBits[1] && (floorBits[0] || !buttons[2] && buttons[0]);
 
   }
 
