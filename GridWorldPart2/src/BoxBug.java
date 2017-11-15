@@ -28,23 +28,23 @@ import info.gridworld.grid.Location;
  */
 public class BoxBug extends Bug
 {
-    private int steps;
-    private int sideLength;
+	private int steps;
+	private int sideLength;
 
-    /**
-     * Constructs a box bug that traces a square of a given side length
-     * @param length the side length
-     */
-    public BoxBug(int length)
-    {
-        steps = 0;
-        sideLength = length;
-    }
+	/**
+	 * Constructs a box bug that traces a square of a given side length
+	 * @param length the side length
+	 */
+	public BoxBug(int length)
+	{
+		steps = 0;
+		sideLength = length;
+	}
 
-    /**
-     * Moves to the next location of the square.
-     */
-    /*public void act()
+	/**
+	 * Moves to the next location of the square.
+	 */
+	/*public void act()
     {
         if (steps < sideLength && canMove())
         {
@@ -58,29 +58,42 @@ public class BoxBug extends Bug
             steps = 0;
         }
     } */
-    
-    /**
-     * Tests whether this bug can move forward into a location that is empty or
-     * contains a flower.
-     * @return true if this bug can move.
-     */
-    public boolean canMove()
-    {
-    	if(super.canMove() && steps<sideLength) {
-    		return true;
-    	} else {
-    		return false;
-    	}
-    }
-    
-    public void move() {
-    	super.move();
-    	steps++;
-    }
-    
-    public void turn() {
-    	super.turn();
-    	super.turn();
-    	steps = 0;
-    }
+
+	/**
+	 * Tests whether this bug can move forward into a location that is empty or
+	 * contains a flower.
+	 * @return true if this bug can move.
+	 */
+	public boolean canMove()
+	{
+		if(super.canMove() && steps<sideLength) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public void move() {
+		super.move();
+		steps++;
+	}
+
+	public void turn() {
+		super.turn();
+		super.turn();
+		steps = 0;
+	}
+
+	/**
+	 * Adds or subtracts from the sideLength
+	 * @param x the integer number that will be added to the sidelength
+	 * @post the field sideLength will be modified
+	 */
+	public void addSideLength(int x) {
+		sideLength += x;
+	}
+	
+	public int getSteps() {
+		return steps;
+	}
 }
