@@ -81,7 +81,7 @@ public class Elevator extends JPanel implements ActionListener
   	// Problem 5:
   	
   	//direction[0] = (buttons[1] && !floorBits[1]) || (buttons[2] && !floorBits[1]) || (buttons[2] && !floorBits[0]);
-  	direction[1] = (!floorBits[1] && (!buttons[0] && !buttons[1] && buttons[2] || !buttons[0] && buttons[1])) || (!floorBits[0] && (!buttons[1] && buttons[2] || buttons[0] && !buttons[1])) || (floorBits[0] && floorBits[1] && buttons[0] && !buttons[2]);
+  	direction[1] = ((floorBits[1] && !buttons[2] && (floorBits[0] && buttons[1] || buttons[0] && !buttons[1])) || (!floorBits[1] && !buttons[0] && (buttons[2] || buttons[1])) || (!floorBits[0] && !buttons[1] && buttons[2]));
   	//direction[1] = buttons[2] && (!floorBits[0] || (!floorBits[1] && !buttons[1])) || (floorBits[0] && buttons[1]) || (floorBits[1] && buttons[0]);
   	direction[0] = ((!floorBits[1] && !buttons[0]) && (buttons[2] || buttons[1])) || (!floorBits[0] && buttons[2] && !buttons[1]);
 

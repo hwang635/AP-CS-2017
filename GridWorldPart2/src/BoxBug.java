@@ -16,7 +16,11 @@
  * @author Barbara Cloud Wells
  */
 
+import info.gridworld.actor.Actor;
 import info.gridworld.actor.Bug;
+import info.gridworld.actor.Flower;
+import info.gridworld.grid.Grid;
+import info.gridworld.grid.Location;
 
 /**
  * A <code>BoxBug</code> traces out a square "box" of a given size. <br />
@@ -40,7 +44,7 @@ public class BoxBug extends Bug
     /**
      * Moves to the next location of the square.
      */
-    public void act()
+    /*public void act()
     {
         if (steps < sideLength && canMove())
         {
@@ -53,5 +57,30 @@ public class BoxBug extends Bug
             turn();
             steps = 0;
         }
+    } */
+    
+    /**
+     * Tests whether this bug can move forward into a location that is empty or
+     * contains a flower.
+     * @return true if this bug can move.
+     */
+    public boolean canMove()
+    {
+    	if(super.canMove() && steps<sideLength) {
+    		return true;
+    	} else {
+    		return false;
+    	}
+    }
+    
+    public void move() {
+    	super.move();
+    	steps++;
+    }
+    
+    public void turn() {
+    	super.turn();
+    	super.turn();
+    	steps = 0;
     }
 }
