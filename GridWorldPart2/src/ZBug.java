@@ -3,55 +3,47 @@ import info.gridworld.grid.Location;
 
 public class ZBug extends Bug{
 
-	int steps, turns, sideLength;
+	int steps, length, turns;
 
-	public ZBug(int length) {
+	public ZBug(int zLength) {
 		steps = 0;
-		turns = 1;
-		sideLength = length;
+		turns = 0;
+		length = zLength;
+
+		setDirection(Location.EAST);
 	}
 
-	public boolean canMove()
-	{	
-		if(super.canMove()) {
-			return true;
-		} else {
-			return false;
+	public void act() {
+
+		if(canMove()) {
+			if(steps<length && turns < 3) {
+				move();
+				steps++;
+			}
+			else {
+				if(turns == 0) {
+					turn();
+					turn();
+					turn();
+
+					steps = 0;
+					turns++;
+				}
+				else if(turns == 1) {
+					super.turn();
+					super.turn();
+					super.turn();
+					super.turn();
+					super.turn();
+
+					steps = 0;
+					turns++;
+				}
+				else if(turns == 2) {
+					steps = 0;
+					turns++;
+				}
+			}
 		}
-	}
-
-	public void move() {		
-		super.move();
-
-		/*if(steps == -1) {
-			Zturn();
-			steps = 0;
-		}
-		else */ if(steps == sideLength && turns <= 2) {
-			Zturn();
-			steps--;
-		}
-
-		steps++;
-	}
-
-	public void Zturn() {
-		 if(turns == 1) {
-			super.turn();
-			super.turn();
-			super.turn();
-		}
-		else if(turns == 2) {
-			super.turn();
-			setDirection(getDirection() - 4*Location.HALF_RIGHT);
-		}
-
-		turns++;
-		steps = 0;
-	}
-
-	public void turn() {
-		super.turn();
-		steps = 0;
 	}
 }
