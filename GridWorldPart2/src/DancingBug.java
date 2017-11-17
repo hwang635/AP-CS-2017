@@ -29,5 +29,4 @@ public class DancingBug extends Bug{
 			steps++;
 		}
 	}
-
 }
