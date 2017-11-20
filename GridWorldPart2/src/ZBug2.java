@@ -1,6 +1,8 @@
 import info.gridworld.actor.Bug;
 import info.gridworld.grid.Location;
 
+
+//this ZBug doesn't work, Zbug.java works
 public class ZBug2 extends Bug{
 
 	int steps, turns, sideLength;
