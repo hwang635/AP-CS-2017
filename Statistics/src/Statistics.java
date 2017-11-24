@@ -52,9 +52,10 @@ public class Statistics {
 	//only finds one mode
 	public int[] findMode() {
 		int modeCount = 1;
-		int[] mode = new int[1];
+		int[] mode = new int[arrayLength];
 		int indCount;
 
+		//first mode, finds the number of times repeated
 		for(int i = 0; i<arrayLength; i++) {
 			indCount = 0;
 			int choice = data[i];
@@ -66,12 +67,44 @@ public class Statistics {
 
 				if(indCount > modeCount) {
 					modeCount = indCount;
-					mode[0] = data[i];
+					mode[0] = choice;
 				}
 			}	
 		}
-		
+
+		//for second/more modes
+		boolean duplicate = false;
+		int numOfModes = 1;
+
+		for(int j = 0; j<arrayLength; j++) {
+			indCount = 0;
+			int choice2 = data[j];
+
+			for(int check = 0; check<mode.length; check++) {
+				if(choice2 == mode[check]) {
+					duplicate = true;
+					break;
+				}
+
+			}
+
+			for(int x = 0; x<arrayLength; x++) {
+				if(choice2 == data[x]) {
+					indCount++;
+				}
+
+				if(indCount == modeCount ) {
+					if(duplicate == false) {
+						mode[numOfModes] = choice2;
+						if(numOfModes<arrayLength-1)
+							numOfModes++;
+					}
+				}
+			} //end of x loop
+
+			duplicate = false;
+		} //end of j loop		
 		return mode;
 
-	}
+	} //end of method
 }

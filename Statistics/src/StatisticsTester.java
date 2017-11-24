@@ -4,7 +4,7 @@ public class StatisticsTester {
 	public static void main(String[] args) {
 
 		Statistics tester = new Statistics(10000);
-		tester.readData("numbers2.txt");
+		tester.readData("numbers.txt");
 		
 		double avg = tester.calcAverage();
 		double sd = tester.calcStdDev();
@@ -13,10 +13,12 @@ public class StatisticsTester {
 		System.out.println("Average is " + avg);
 		System.out.println("Standard deviation is " + sd);
 		
-		System.out.println("Mode is ");
-		for(int i = 0; i<mode.length; i++) { 
-			//loop if more than one mode, but current findMode() only finds one mode
-			System.out.println(mode[i] + " ");
+		System.out.println("Mode = ");
+		System.out.println(mode[0]);
+		for(int i = 1; i<mode.length; i++) {
+			if (!(mode[i] == mode[i-1]))
+				System.out.println(mode[i]);
+				
 		}
 		
 	}
