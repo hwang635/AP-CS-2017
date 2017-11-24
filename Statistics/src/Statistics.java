@@ -45,29 +45,33 @@ public class Statistics {
 		}
 
 		sum = sum/(arrayLength-1);
-		
+
 		return Math.pow(sum, 0.5);
 	}
 
 	public int[] findMode() {
 		int modeCount = 1;
 		int[] mode = new int[1];
+		int indCount;
 
-		for(int i: data) {
-			int indCount = 0;
+		for(int i = 0; i<arrayLength; i++) {
+			indCount = 0;
+			int choice = data[i];
 
-			for(int x = 0; i<arrayLength; i++) {
-				if(i == data[x]) {
+			for(int x = 0; x<arrayLength; x++) {
+				if(choice == data[x]) {
 					indCount++;
 				}
-			}
 
-			if(indCount > modeCount) {
-				modeCount = indCount;
-				mode[0] = i;
+				if(indCount > modeCount) {
+					modeCount = indCount;
+					mode[0] = data[i];
+				}
 			}
-
+			
 		}
+		
 		return mode;
+
 	}
 }
