@@ -49,6 +49,7 @@ public class Statistics {
 		return Math.pow(sum, 0.5);
 	}
 
+	//only finds one mode
 	public int[] findMode() {
 		int modeCount = 1;
 		int[] mode = new int[1];
@@ -67,8 +68,7 @@ public class Statistics {
 					modeCount = indCount;
 					mode[0] = data[i];
 				}
-			}
-			
+			}	
 		}
 		
 		return mode;

@@ -14,7 +14,8 @@ public class StatisticsTester {
 		System.out.println("Standard deviation is " + sd);
 		
 		System.out.println("Mode is ");
-		for(int i = 0; i<mode.length; i++) {
+		for(int i = 0; i<mode.length; i++) { 
+			//loop if more than one mode, but current findMode() only finds one mode
 			System.out.println(mode[i] + " ");
 		}
 		
