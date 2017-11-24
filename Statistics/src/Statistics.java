@@ -3,70 +3,70 @@ public class Statistics {
 
 	private int[] data;
 	private int arrayLength;
-	
+
 	public Statistics(int maxLength) {
 		//initialises data to length maxLength
 		data = new int[maxLength];
+		arrayLength = 0;
 	}
-	
+
 	public void readData(String filename) {
 		//creates an ArrayReader obj
 		//fillArray method to get data from file
-		
-		ArrayReader reader = new ArrayReader("numbers.txt");
-		reader.fillArray(data);
-		arrayLength = 0;
+
+		ArrayReader reader = new ArrayReader(filename);
+		arrayLength = reader.fillArray(data);
 	}
-	
+
 	public void read() {
 		//print out each element in data to the commandline
 		for(int i: data) {
 			System.out.println(i);
 		}
 	}
-	
+
 	//calculates the average + returns it as a double
 	public double calcAverage() {
 		long total = 0;
-		
-		for(int i: data) {
-			total += i;
+
+		for(int i = 0; i<arrayLength; i++) {
+			total += data[i];
 		}
-		
-		return total/data.length;
+
+		return total/(double)arrayLength;
 	}
-	
+
 	public double calcStdDev() {
 		double avg = calcAverage();
 		double sum = 0;
 
-		for(int i: data) {
-			sum += Math.pow(avg-i, 2);
+		for(int i = 0; i<arrayLength; i++) {
+			sum += Math.pow(avg-data[i], 2);
 		}
+
+		sum = sum/(arrayLength-1);
 		
-		sum = sum/(data.length-1);
-		
-		return Math.pow(sum/(data.length-1), 0.5);
+		return Math.pow(sum, 0.5);
 	}
-	
+
 	public int[] findMode() {
 		int modeCount = 1;
 		int[] mode = new int[1];
-		
+
 		for(int i: data) {
 			int indCount = 0;
-			
-			for(int x = 0; i<data.length; i++) {
+
+			for(int x = 0; i<arrayLength; i++) {
 				if(i == data[x]) {
 					indCount++;
 				}
 			}
-			
+
 			if(indCount > modeCount) {
 				modeCount = indCount;
 				mode[0] = i;
 			}
-			
+
 		}
 		return mode;
 	}
