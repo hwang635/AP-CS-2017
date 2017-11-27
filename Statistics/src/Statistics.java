@@ -107,10 +107,9 @@ public class Statistics {
 			} //end of x loop
 
 			duplicate = false;
-		} //end of j loop		
+		} //end of j 
 		
 		numModes = numOfModes;
-		
 		return mode;
 
 	} //end of method
