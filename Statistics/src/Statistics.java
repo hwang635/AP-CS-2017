@@ -2,12 +2,14 @@
 public class Statistics {
 
 	private int[] data;
-	private int arrayLength;
+	private int actualLength;
+	private int numModes;
 
 	public Statistics(int maxLength) {
 		//initialises data to length maxLength
 		data = new int[maxLength];
-		arrayLength = 0;
+		actualLength = 0;
+		numModes = 0;
 	}
 
 	public void readData(String filename) {
@@ -15,13 +17,15 @@ public class Statistics {
 		//fillArray method to get data from file
 
 		ArrayReader reader = new ArrayReader(filename);
-		arrayLength = reader.fillArray(data);
+		actualLength = reader.fillArray(data);
 	}
 
 	public void read() {
 		//print out each element in data to the commandline
 		for(int i: data) {
-			System.out.println(i);
+			for(int j = 0; j<actualLength; j++) {
+				System.out.println(i);
+			}
 		}
 	}
 
@@ -29,22 +33,22 @@ public class Statistics {
 	public double calcAverage() {
 		long total = 0;
 
-		for(int i = 0; i<arrayLength; i++) {
+		for(int i = 0; i<actualLength; i++) {
 			total += data[i];
 		}
 
-		return total/(double)arrayLength;
+		return total/(double)actualLength;
 	}
 
 	public double calcStdDev() {
 		double avg = calcAverage();
 		double sum = 0;
 
-		for(int i = 0; i<arrayLength; i++) {
+		for(int i = 0; i<actualLength; i++) {
 			sum += Math.pow(avg-data[i], 2);
 		}
 
-		sum = sum/(arrayLength-1);
+		sum = sum/(actualLength-1);
 
 		return Math.pow(sum, 0.5);
 	}
@@ -52,15 +56,15 @@ public class Statistics {
 	//only finds one mode
 	public int[] findMode() {
 		int modeCount = 1;
-		int[] mode = new int[arrayLength];
+		int[] mode = new int[actualLength];
 		int indCount;
 
 		//first mode, finds the number of times repeated
-		for(int i = 0; i<arrayLength; i++) {
+		for(int i = 0; i<actualLength; i++) {
 			indCount = 0;
 			int choice = data[i];
 
-			for(int x = 0; x<arrayLength; x++) {
+			for(int x = 0; x<actualLength; x++) {
 				if(choice == data[x]) {
 					indCount++;
 				}
@@ -76,11 +80,11 @@ public class Statistics {
 		boolean duplicate = false;
 		int numOfModes = 1;
 
-		for(int j = 0; j<arrayLength; j++) {
+		for(int j = 0; j<actualLength; j++) {
 			indCount = 0;
 			int choice2 = data[j];
 
-			for(int check = 0; check<mode.length; check++) {
+			for(int check = 0; check<actualLength; check++) {
 				if(choice2 == mode[check]) {
 					duplicate = true;
 					break;
@@ -88,7 +92,7 @@ public class Statistics {
 
 			}
 
-			for(int x = 0; x<arrayLength; x++) {
+			for(int x = 0; x<actualLength; x++) {
 				if(choice2 == data[x]) {
 					indCount++;
 				}
@@ -96,7 +100,7 @@ public class Statistics {
 				if(indCount == modeCount ) {
 					if(duplicate == false) {
 						mode[numOfModes] = choice2;
-						if(numOfModes<arrayLength-1)
+						if(numOfModes<actualLength-1)
 							numOfModes++;
 					}
 				}
@@ -104,7 +108,14 @@ public class Statistics {
 
 			duplicate = false;
 		} //end of j loop		
+		
+		numModes = numOfModes;
+		
 		return mode;
 
 	} //end of method
+	
+	public int getNumModes() {
+		return numModes;
+	}
 }
