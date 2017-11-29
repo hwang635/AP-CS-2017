@@ -20,12 +20,15 @@ public class Statistics {
 		actualLength = reader.fillArray(data);
 	}
 
-	public void read() {
+	public void print() {
 		//print out each element in data to the commandline
-		for(int i: data) {
-			for(int j = 0; j<actualLength; j++) {
-				System.out.println(i);
-			}
+		for(int j = 0; j<actualLength; j++) {
+			System.out.println(data[j]);
+		}
+		
+		compact(data, data.length);
+		for(int i = 0; i<compact(data, data.length); i++) {
+			System.out.println(data[i]);
 		}
 	}
 
@@ -108,13 +111,26 @@ public class Statistics {
 
 			duplicate = false;
 		} //end of j 
-		
+
 		numModes = numOfModes;
 		return mode;
 
 	} //end of method
-	
+
 	public int getNumModes() {
 		return numModes;
+	}
+
+	public int compact(int[] data, int realSize) {
+		realSize = 0;
+
+		for(int i = 0; i<data.length; i++) {
+			if(data[i] != 0) {
+				data[realSize] = data[i];
+				realSize++;
+			}
+		}
+		
+		return realSize;
 	}
 }

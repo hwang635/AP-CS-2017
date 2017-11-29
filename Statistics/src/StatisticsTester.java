@@ -4,7 +4,8 @@ public class StatisticsTester {
 	public static void main(String[] args) {
 
 		Statistics tester = new Statistics(10000);
-		tester.readData("numbers4.txt");
+		tester.readData("compact.txt");
+		tester.print();
 		
 		double avg = tester.calcAverage();
 		double sd = tester.calcStdDev();
@@ -17,9 +18,9 @@ public class StatisticsTester {
 		System.out.println(mode[0]);
 		for(int i = 1; i<tester.getNumModes(); i++) {
 			if (!(mode[i] == mode[i-1]))
-				System.out.println(mode[i]);
-				
-		}
+				System.out.println(mode[i]);				
+		}	
+		
 		
 	}
 }
