@@ -4,7 +4,7 @@ public class StatisticsTester {
 	public static void main(String[] args) {
 
 		Statistics tester = new Statistics(10000);
-		tester.readData("compact.txt");
+		tester.readData("numbers2.txt");
 		tester.print();
 		
 		double avg = tester.calcAverage();

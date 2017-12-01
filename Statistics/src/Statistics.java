@@ -22,12 +22,12 @@ public class Statistics {
 
 	public void print() {
 		//print out each element in data to the commandline
-		for(int j = 0; j<actualLength; j++) {
+		/*for(int j = 0; j<actualLength; j++) {
 			System.out.println(data[j]);
-		}
+		} */
 		
-		compact(data, data.length);
-		for(int i = 0; i<compact(data, data.length); i++) {
+		int compactLength = compact(data, data.length);
+		for(int i = 0; i<compactLength; i++) {
 			System.out.println(data[i]);
 		}
 	}
@@ -39,6 +39,8 @@ public class Statistics {
 		for(int i = 0; i<actualLength; i++) {
 			total += data[i];
 		}
+		
+		System.out.println("total" + total + ", length " + actualLength);
 
 		return total/(double)actualLength;
 	}
@@ -124,12 +126,14 @@ public class Statistics {
 	public int compact(int[] data, int realSize) {
 		realSize = 0;
 
-		for(int i = 0; i<data.length; i++) {
+		for(int i = 0; i<actualLength; i++) {
 			if(data[i] != 0) {
 				data[realSize] = data[i];
 				realSize++;
 			}
 		}
+		
+		actualLength = realSize;
 		
 		return realSize;
 	}
