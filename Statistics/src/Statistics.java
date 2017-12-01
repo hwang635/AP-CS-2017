@@ -123,18 +123,16 @@ public class Statistics {
 		return numModes;
 	}
 
-	public int compact(int[] data, int realSize) {
-		realSize = 0;
+	public int compact(int[] data, int size) {
+		actualLength = 0;
 
-		for(int i = 0; i<actualLength; i++) {
+		for(int i = 0; i<size; i++) {
 			if(data[i] != 0) {
-				data[realSize] = data[i];
-				realSize++;
+				data[actualLength] = data[i];
+				actualLength++;
 			}
 		}
-		
-		actualLength = realSize;
-		
-		return realSize;
+				
+		return actualLength;
 	}
 }
