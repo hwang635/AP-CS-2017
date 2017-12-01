@@ -25,7 +25,7 @@ public class Statistics {
 		/*for(int j = 0; j<actualLength; j++) {
 			System.out.println(data[j]);
 		} */
-		
+
 		int compactLength = compact(data, data.length);
 		for(int i = 0; i<compactLength; i++) {
 			System.out.println(data[i]);
@@ -39,7 +39,7 @@ public class Statistics {
 		for(int i = 0; i<actualLength; i++) {
 			total += data[i];
 		}
-		
+
 		System.out.println("total" + total + ", length " + actualLength);
 
 		return total/(double)actualLength;
@@ -124,15 +124,17 @@ public class Statistics {
 	}
 
 	public int compact(int[] data, int size) {
-		actualLength = 0;
+		int numReal = 0;
 
 		for(int i = 0; i<size; i++) {
 			if(data[i] != 0) {
-				data[actualLength] = data[i];
-				actualLength++;
+				data[numReal] = data[i];
+				numReal++;
 			}
+			else
+				data[size-numReal+2] = 0;
 		}
-				
-		return actualLength;
+
+		return (actualLength = numReal);
 	}
 }
