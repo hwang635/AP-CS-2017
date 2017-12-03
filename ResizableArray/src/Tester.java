@@ -12,7 +12,10 @@ public class Tester {
 		data.add(0);
 		
 		System.out.println(data);
-		data.remove(0);
+		//data.remove(0);
+		data.insert(3, -1);
+		System.out.println(data);
+		data.insert(0, -1);
 		System.out.println(data);
 	}
 }

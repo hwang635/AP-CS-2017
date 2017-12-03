@@ -45,7 +45,6 @@ public class ResizableArray {
 		size--;
 
 		return removed;
-
 	}
 
 	public int getSize() {
@@ -60,12 +59,11 @@ public class ResizableArray {
 			data[index] = value;
 
 			for(int i = index+1; i<size-1; i++) {
-				if(i == index+1)
-					data[i] = old;
-				else {
-					data[i+1] = data[i];
-				} //end of small else
+				data[i+1] = data[i];
 			} //end of loop
+			
+			data[index+1] = old;
+			size++;
 		}//end of big else
 	}
 
@@ -82,12 +80,12 @@ public class ResizableArray {
 		return output;
 	}
 
-	public int getValue() {
-		return 0;
+	public int get(int index) {
+		return data[index];
 	}
 
-	public int setValue(int index, int value) {
-		return 0;
+	public void setValue(int index, int value) {
+		data[index] = value;
 	}
 
 	//finds the value's index in the array, returns -1 if not there
