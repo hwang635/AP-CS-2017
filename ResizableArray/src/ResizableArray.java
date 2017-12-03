@@ -54,15 +54,13 @@ public class ResizableArray {
 	public void insert(int index, int value) {
 		if(index<0 || index>size-1) 
 			throw new IllegalArgumentException("Bad index");
-		else {
-			int old = data[index];
-			data[index] = value;
-
-			for(int i = index+1; i<size-1; i++) {
-				data[i+1] = data[i];
+		else {			
+			for(int i = size+1; i>index; i--) {
+				data[i] = data[i-1];
+				//System.out.println("data[i+1], data[i]" + data[i+1] + " " + data[i]);
 			} //end of loop
 			
-			data[index+1] = old;
+			data[index] = value;
 			size++;
 		}//end of big else
 	}
