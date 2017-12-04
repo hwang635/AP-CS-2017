@@ -47,7 +47,7 @@ public class ResizableArray {
 		return removed;
 	}
 
-	public int getSize() {
+	public int size() {
 		return size;
 	}
 
