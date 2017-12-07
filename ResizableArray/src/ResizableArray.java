@@ -6,7 +6,7 @@ public class ResizableArray {
 	private int[] data;
 	private int size;
 
-	private int INITIAL_LENGTH = 1;
+	private int INITIAL_LENGTH = 100;
 
 	public ResizableArray() {
 		data = new int[INITIAL_LENGTH];
@@ -59,12 +59,19 @@ public class ResizableArray {
 	public int remove(int index) {
 		int removed = data[index];
 
-		for(int i = index; i<size-1; i++) {
-			data[i] = data[i+1];
+		if(index<0 || index>size-1) {
+			throw new IllegalArgumentException("Bad index");
 		}
-		size--;
+		else {
+			for(int i = index; i<size-1; i++) {
+				data[i] = data[i+1];
+			}
+			
+			size--;
+		}
 
 		return removed;
+
 	}
 
 	public int size() {
@@ -116,10 +123,10 @@ public class ResizableArray {
 			if(data[i] == value) 
 				count++;
 		}
-		
+
 		if(count == 0)
 			count = -1;
-		
+
 		return 0;
 	}
 
@@ -129,30 +136,30 @@ public class ResizableArray {
 		data[index1] = data[index2];
 		data[index2] = temp;
 	}
-	
+
 	public boolean equals(Object other) {
 		boolean output = true;
-		
+
 		ResizableArray otherArray = new ResizableArray();
 		otherArray = (ResizableArray)other;
-		
-		if(otherArray.size() != data.length)
+
+		if(otherArray.size() != size)
 			output = false;
 		for(int i = 0; i<size; i++) {
 			if(data[i] != otherArray.get(i))
 				output = false;
 		}
-		
+
 		return output;
 	}
 
 	public int[] toArray() {
 		int[] newData = new int[size];
-		
+
 		for(int i = 0; i<size; i++) {
 			newData[i] = data[i];
 		}
-		
+
 		return newData;
 	}
 }

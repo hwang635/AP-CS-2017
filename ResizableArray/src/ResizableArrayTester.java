@@ -23,8 +23,8 @@ public class ResizableArrayTester {
     	// Only run 1 test at a time (so that memory and timing data is as accurate as possible).
     	
     	//worker.runFirstWaveFunctionalTest();
-    	worker.runFunctionalTest();
-    	//worker.runEfficiencyTest(10000);
+    	//worker.runFunctionalTest();
+    	worker.runEfficiencyTest(10000);
 
     	worker.runDown();
 
@@ -143,7 +143,6 @@ public class ResizableArrayTester {
 
 	// STEP 3: UNCOMMENT THE FOLLOWING TO DO EFFICIENCY TESTING
 	// This code tests the efficiency of the ResizableArray by performing a large number of adds, inserts, and removes.
-	/*
 	
 	public void runEfficiencyTest (int num) {
 		runAddTest(num,true);
@@ -190,8 +189,6 @@ public class ResizableArrayTester {
 		}
 
 	}
-	
-	 */
 	
 
 	public void setUp() {
