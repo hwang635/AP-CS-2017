@@ -92,23 +92,32 @@ public class ResizableArray {
 	}
 
 	public void insert(int index, int value) {
-		if(index<0 || index>size) 
+		if(index<0 || index>=size) {
 			throw new IllegalArgumentException("Bad index");
-		else {			
-			for(int i = size+1; i>index; i--) {
-				data[i] = data[i-1];
-				//System.out.println("data[i+1], data[i]" + data[i+1] + " " + data[i]);
-			} //end of loop
+		}
+		if(size >= INITIAL_LENGTH) {
+			resize();
+		}	
+		for(int i = size; i>index; i--) {
+			data[i] = data[i-1];
+			//System.out.println("data[i+1], data[i]" + data[i+1] + " " + data[i]);
+		} //end of loop
+		size ++;
 
-			data[index] = value;
-			size++;
-		}//end of big else
+		data[index] = value;
+		//end of big else
 	}
 	public int get(int index) {
+		if(index<0 || index>=size) {
+			throw new IllegalArgumentException("Bad index");
+		}
 		return data[index];
 	}
 
 	public void set(int index, int value) {
+		if(index<0 || index>=size) {
+			throw new IllegalArgumentException("Bad index");
+		}
 		data[index] = value;
 	}
 
