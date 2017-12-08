@@ -24,7 +24,7 @@ public class ResizableArrayTester {
     	
     	//worker.runFirstWaveFunctionalTest();
     	//worker.runFunctionalTest();
-    	worker.runEfficiencyTest(10000);
+    	worker.runEfficiencyTest(100000);
  
     	worker.runDown();
 

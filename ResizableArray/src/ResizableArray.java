@@ -122,7 +122,17 @@ public class ResizableArray {
 	}
 
 	public void sort() {
-		Arrays.sort(data, 0, size);
+		//Arrays.sort(data, 0, size);
+		for(int i = 0; i<size; i++) {
+			for(int c = i; c<size; c++) {
+				if(data[i] > data[c]) {
+					int greater = data[i];
+					data[i] = data[c];
+					data[c] = greater;
+				}
+			} //end of small for
+		} //end of i for
+		
 	}
 
 	//finds the value's index in the array, returns -1 if not there
