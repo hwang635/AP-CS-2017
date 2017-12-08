@@ -41,7 +41,7 @@ public class ResizableArray {
 		//creates a new, larger array
 		//copies all element from data into new array
 		//set the data field to the new array
-		INITIAL_LENGTH += 25;
+		INITIAL_LENGTH += 100;
 		int[] newData = new int[INITIAL_LENGTH];
 
 		for(int i = 0; i<size; i++) {
