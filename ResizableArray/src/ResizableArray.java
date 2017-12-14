@@ -137,16 +137,15 @@ public class ResizableArray {
 
 	//finds the value's index in the array, returns -1 if not there
 	public int indexOf(int value) {
-		int count = 0;
+		int count = -1;
 		for(int i = 0; i<size; i++) {
-			if(data[i] == value) 
-				count++;
+			if(data[i] == value) {
+				count = i;
+				return count;
+			}
 		}
-
-		if(count == 0)
-			count = -1;
-
-		return 0;
+		
+		return count;
 	}
 
 	//switches the values at the positions
