@@ -5,31 +5,44 @@ import helen.shapes.Shape;
 import processing.core.PApplet;	// for Processing
 
 public class IrregularPolygon extends Shape {
-   private ArrayList <Point2D.Double> myPolygon;
-    
-   // constructors
-   public IrregularPolygon() {  
-	   super(0,0);
-   }
-   
-   // public methods
-   public void add(Point2D.Double aPoint) {   }
+	private ArrayList <Point2D.Double> myPolygon;
 
-   public void draw(PApplet marker) {   }
+	// constructors
+	public IrregularPolygon() {  
+		super(0,0);
+	}
 
-   public double calcPerimeter() {  return 0;  }
+	// public methods
+	public void add(Point2D.Double aPoint) {
+		myPolygon.add(aPoint);
+	}
 
-   public double calcArea() {  return 0;  }
+	public void draw(PApplet marker) {  
+		//for(Point2D.Double x: myPolygon)
+	}
 
-@Override
-public boolean isPointInside(double x, double y) {
-	// TODO Auto-generated method stub
-	return false;
-}
+	public double calcPerimeter() { 
+		for(int i = 0; i<myPolygon.size(); i++) {
+			int distance = 
+			
+		}
+		
+		return 0;
+	}
 
-@Override
-public void changeColour(boolean isGrey) {
-	// TODO Auto-generated method stub
-	
-}
+	public double calcArea() {  
+		return 0;  
+	}
+
+	@Override
+	public boolean isPointInside(double x, double y) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void changeColour(boolean isGrey) {
+		// TODO Auto-generated method stub
+
+	}
 }
