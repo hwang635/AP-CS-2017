@@ -23,7 +23,7 @@ public class IrregularPolygon extends Shape {
 
 	public double calcPerimeter() { 
 		for(int i = 0; i<myPolygon.size(); i++) {
-			int distance = 
+			//int distance = 
 			
 		}
 		
