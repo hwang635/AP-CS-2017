@@ -29,7 +29,8 @@ public class DrawingSurface extends PApplet {
 		poly.add(point4);	
 
 		//poly.scale(3.5);
-		poly.setStrokeWeight(10);
+		//poly.setStrokeWeight(10);
+		poly.moveBy(100, 100);
 		
 		runSketch();
 	}

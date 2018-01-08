@@ -98,12 +98,17 @@ public class IrregularPolygon extends Shape {
 	}
 
 	//choice methods
-	@Override
-	public boolean isPointInside(double x, double y) {
+	public void setStrokeWeight(int weight) {
+		this.weight = weight;
+	}
+	
+	public void moveBy(int x, int y) {
 		for(Point2D.Double p: myPolygon) {
-			//if()
+			double newX = p.getX() + x;
+			double newY = p.getY() + y;
+
+			p.setLocation(newX, newY);
 		}
-		return false;
 	}
 
 	//scales the shape according to the factor entered
@@ -119,17 +124,21 @@ public class IrregularPolygon extends Shape {
 			p.setLocation(newX, newY);
 		}
 	}
-
+	
 	public void setEnd(boolean endPolygon) {
 		this.endPolygon = endPolygon;
 	} 
-	
-	public void setStrokeWeight(int weight) {
-		this.weight = weight;
-		System.out.println("weight = " + weight);
-	}
 
 	@Override
 	public void changeColour(boolean isGrey) {
+	}
+	
+	@Override
+	public boolean isPointInside(double x, double y) {
+		/*for(Point2D.Double p: myPolygon) {
+			//if()
+		} */
+		
+		return false;
 	}
 }
