@@ -98,6 +98,7 @@ public class IrregularPolygon extends Shape {
 	}
 
 	//choice methods
+	//setStrokeWeight, moveBy, and scale
 	public void setStrokeWeight(int weight) {
 		this.weight = weight;
 	}
