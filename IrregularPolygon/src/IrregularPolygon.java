@@ -122,7 +122,7 @@ public class IrregularPolygon extends Shape {
 
 	public void setEnd(boolean endPolygon) {
 		this.endPolygon = endPolygon;
-	}
+	} 
 	
 	public void setStrokeWeight(int weight) {
 		this.weight = weight;
