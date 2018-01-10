@@ -75,7 +75,7 @@ public class DrawingSurface extends PApplet {
 		} 
 		else { //if right click, end point of polygon
 			time = ANIMATION_TIME;
-			poly.setEnd(true); //tells it that this is the end point
+			poly.setEnd(!(poly.getEnd())); //makes the shape close or reopen
 		}
 	}
 
