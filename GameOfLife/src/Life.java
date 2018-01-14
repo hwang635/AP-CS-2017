@@ -30,56 +30,73 @@ public class Life {
 	// Runs a single turn of the Game Of Life
 	public void step() {
 		int n = 0;
-		
+
 		int[][] neighbours = new int[grid.length][grid[0].length];
-		
+
 		for(int i = 0; i<grid.length; i++) {
-			for(int j = 0; j<grid[0].length; j++) {
-				n = findNeighbours(i,j); // grid[j,i]
+			for(int j = 0; j<grid[i].length; j++) {
+				n = findNeighbours(i,j); // grid[i,j]
 				neighbours[i][j] = n;
 			}
-			
+
 		} //end of i for
-		
+
 		for(int i = 0; i<grid.length; i++) {
 			for(int j = 0; j<grid[0].length; j++) {
-				if(n<=1)
-					grid[i][j] = false;
-				else if(n<=3) 
+				if(neighbours[i][j] == 3) {
 					grid[i][j] = true;
-				else
+				}
+				else if(neighbours[i][j] != 2)
 					grid[i][j] = false;
 			}
 		}
-		/*if(n<=1) //zero or one neighbours
-			grid[j][i] = false;
-		else if(n<=3) // two or three
-			grid[j][i] = true;
-		else // four or more
-			grid[j][i] = false; */
 	}
 
 	//
 	public int findNeighbours(int x, int y) {
 		int neighbours = 0;
-		
-		if(grid[x][y+1]) //top, down, sides
-			neighbours++;
-		if(grid[x][y-1])
-			neighbours++;
-		if(grid[x-1][y])
-			neighbours++;
-		if(grid[x+1][y])
-			neighbours++;
-		if(grid[x+1][y+1]) //corners
-			neighbours++;
-		if(grid[x+1][y-1])
-			neighbours++;
-		if(grid[x-1][y+1])
-			neighbours++;
-		if(grid[x-1][y-1])
-			neighbours++;
-		
+
+		if(y<grid[0].length-1) { //y+1
+			if(grid[x][y+1])//top
+				neighbours++;
+
+			if(x<grid.length-1) { //x+1
+				if(grid[x+1][y+1]) //corner
+					neighbours++;
+			}
+			if(x>0) { //x-1
+				if(grid[x-1][y+1]) // corner
+					neighbours++;
+			}
+		} //end of y+1 if
+
+		if(y>0) { //y-1
+			if(grid[x][y-1]) //down
+				neighbours++;
+
+			if(x<grid.length-1) { //x+1
+				if(grid[x+1][y-1])
+					neighbours++;
+			}
+			if(x>0) {//x-1
+				if(grid[x-1][y-1])
+					neighbours++;
+			}
+		} //end of y-1 if
+
+
+		if(x>0) {
+			if(grid[x-1][y])
+				neighbours++;
+		}
+		if(x<grid.length-1) {
+			if(grid[x+1][y])
+				neighbours++;
+		}
+
+		/*if(neighbours != 0)
+			System.out.print(neighbours + ""); */
+
 		return neighbours;
 	}
 	// Runs n turns of the Game Of Life
