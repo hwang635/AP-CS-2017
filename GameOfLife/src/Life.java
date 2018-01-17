@@ -32,6 +32,7 @@ public class Life {
 		int n = 0;
 
 		int[][] neighbours = new int[grid.length][grid[0].length];
+		//boolean[] copy = grid[grid.length][grid[0].length]; //change copy instead of grid, set equal to
 
 		for(int i = 0; i<grid.length; i++) {
 			for(int j = 0; j<grid[i].length; j++) {
@@ -50,6 +51,8 @@ public class Life {
 					grid[i][j] = false;
 			}
 		}
+	
+		//grid = copy;
 	}
 
 	//
