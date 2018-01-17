@@ -14,96 +14,47 @@ import processing.core.PApplet;
 
 public class Life {
 
-	private boolean[][] grid;
+	private int[][] grid;
 
 	// Constructs an empty grid
 	public Life() {
-		grid = new boolean[20][20];
+		grid = new int[4][4];
+		
+		int x = (int) (Math.random()*4);
+		int y = (int) (Math.random()*4);
+		int x2 = (int) (Math.random()*4);
+		int y2 = (int) (Math.random()*4);
+		
+		while(x2 == x) {
+			x2 = (int) (Math.random()*4);
+		}
+		while(y2 == y) {
+			y2 = (int) (Math.random()*4);
+		}
+		
+		int n = 2;
+		if(Math.random()*4>3) //random 4 or 2, smaller chance of getting 4
+			n = 4;
+		grid[x][y] = n; //could be 4 or 2
+		grid[x2][y2] = 2; //because there is always at one 2
 	}
 
-	// Constructs the grid defined in the file specified
-	public Life(String filename) {
-		grid = new boolean[20][20];
-		readData(filename, grid);
-	}
-
-	// Runs a single turn of the Game Of Life
+	//Makes one move or squish
 	public void step() {
-		int n = 0;
 
-		int[][] neighbours = new int[grid.length][grid[0].length];
-		//boolean[] copy = grid[grid.length][grid[0].length]; //change copy instead of grid, set equal to
-
-		for(int i = 0; i<grid.length; i++) {
-			for(int j = 0; j<grid[i].length; j++) {
-				n = findNeighbours(i,j); // grid[i,j]
-				neighbours[i][j] = n;
-			}
-
-		} //end of i for
-
-		for(int i = 0; i<grid.length; i++) {
-			for(int j = 0; j<grid[0].length; j++) {
-				if(neighbours[i][j] == 3) {
-					grid[i][j] = true;
-				}
-				else if(neighbours[i][j] != 2)
-					grid[i][j] = false;
-			}
-		}
-	
-		//grid = copy;
 	}
 
-	//
-	public int findNeighbours(int x, int y) {
-		int neighbours = 0;
-
-		if(y<grid[0].length-1) { //y+1
-			if(grid[x][y+1])//top
-				neighbours++;
-
-			if(x<grid.length-1) { //x+1
-				if(grid[x+1][y+1]) //corner
-					neighbours++;
-			}
-			if(x>0) { //x-1
-				if(grid[x-1][y+1]) // corner
-					neighbours++;
-			}
-		} //end of y+1 if
-
-		if(y>0) { //y-1
-			if(grid[x][y-1]) //down
-				neighbours++;
-
-			if(x<grid.length-1) { //x+1
-				if(grid[x+1][y-1])
-					neighbours++;
-			}
-			if(x>0) {//x-1
-				if(grid[x-1][y-1])
-					neighbours++;
-			}
-		} //end of y-1 if
-
-
-		if(x>0) {
-			if(grid[x-1][y])
-				neighbours++;
-		}
-		if(x<grid.length-1) {
-			if(grid[x+1][y])
-				neighbours++;
-		}
-
-		/*if(neighbours != 0)
-			System.out.print(neighbours + ""); */
-
-		return neighbours;
-	}
 	// Runs n turns of the Game Of Life
 	public void step(int n) {
+		int x = (int) (Math.random()*4);
+		int y = (int) (Math.random()*4);
+
+		while(grid[x][y] != 0) {
+			x = (int) (Math.random()*4);
+			y = (int) (Math.random()*4);
+		}
+		
+		//make new blocc
 	}
 
 	// Formats this Life grid as a String to be printed (one call to this method returns the whole multi-line grid)
@@ -112,13 +63,11 @@ public class Life {
 
 		for(int i = 0; i<grid[0].length; i++) {
 			for(int j = 0; j<grid.length; j++) {
-				if(grid[j][i]) // == true
-					response += "*";
-				else
-					response += "-";
+				response += (grid[j][i] + " ");
 			}
 			response += "\n";
 		}
+		
 		return response;
 	}
 
@@ -172,9 +121,9 @@ public class Life {
 		
 		for(int i = 0; i<grid[0].length; i++) {
 			for(int j = 0; j<grid.length; j++) {
-				if(grid[j][i]) // == true
+				if(grid[j][i] == 2) // == true
 					marker.fill(0);
-				else
+				else if(grid[j][i] == 4)
 					marker.fill(255);
 				
 				marker.rect(cellWidth*j+x, cellHeight*i+y, cellWidth, cellHeight);
@@ -208,17 +157,6 @@ public class Life {
 			return null;
 		
 		return new Point(j,i);
-	}
-
-	/**
-	 * Optionally, complete this method to toggle a cell in the game of life grid
-	 * between alive and dead.
-	 * 
-	 * @param i The x coordinate of the cell in the grid.
-	 * @param j The y coordinate of the cell in the grid.
-	 */
-	public void toggleCell(int i, int j) {
-		grid[i][j] = !grid[i][j];
 	}
 
 }
