@@ -14,7 +14,8 @@ public class DrawingSurface extends PApplet {
 	private Life board;
 	private int runCount;
 	private int speed;
-	private Point prevToggle;
+	//private Point prevToggle;
+	private int move;
 
 	private final int MAX_SPEED = 480, MIN_SPEED = 15;
 
@@ -23,7 +24,8 @@ public class DrawingSurface extends PApplet {
 		board = new Life();
 		runCount = -1;
 		speed = 120;
-		prevToggle = null;
+		//prevToggle = null;
+		move = 0;
 	}
 
 	// The statements in the setup() function 
@@ -82,7 +84,7 @@ public class DrawingSurface extends PApplet {
 
 
 	public void keyPressed() {
-		if (keyCode == KeyEvent.VK_SPACE) {
+		/*if (keyCode == KeyEvent.VK_SPACE) {
 			if (runCount >= 0)
 				runCount = -1;
 			else
@@ -94,9 +96,17 @@ public class DrawingSurface extends PApplet {
 			runCount = Math.min(runCount, speed);
 		} else if (keyCode == KeyEvent.VK_ENTER) {
 			board.step();
-		}
+		} */
+				
+		if(keyCode == KeyEvent.VK_UP)
+			board.step(1);
+		else if (keyCode == KeyEvent.VK_DOWN)
+			board.step(1);
+		else if(keyCode == KeyEvent.VK_RIGHT)
+			move = 3;
+		else if(keyCode == KeyEvent.VK_LEFT)
+			move = 4;
 	}
-
 
 }
 

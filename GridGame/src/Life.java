@@ -19,32 +19,30 @@ public class Life {
 	// Constructs an empty grid
 	public Life() {
 		grid = new int[4][4];
-		
-		int x = (int) (Math.random()*4);
-		int y = (int) (Math.random()*4);
-		int x2 = (int) (Math.random()*4);
-		int y2 = (int) (Math.random()*4);
-		
-		while(x2 == x) {
-			x2 = (int) (Math.random()*4);
+
+		for(int i = 0; i<2; i++) {
+			int x = (int) (Math.random()*4);
+			int y = (int) (Math.random()*4);
+
+			int n  = 2;
+			if(grid[x][y] == 0) {
+				if(Math.random()*4>3) //random 4 or 2, smaller chance of getting 4
+					n = 4;
+				grid[x][y] = n; //could be 4 or 2
+			}
+			else
+				i--;
 		}
-		while(y2 == y) {
-			y2 = (int) (Math.random()*4);
-		}
-		
-		int n = 2;
-		if(Math.random()*4>3) //random 4 or 2, smaller chance of getting 4
-			n = 4;
-		grid[x][y] = n; //could be 4 or 2
-		grid[x2][y2] = 2; //because there is always at one 2
 	}
 
 	//Makes one move or squish
 	public void step() {
 
+
 	}
 
-	// Runs n turns of the Game Of Life
+	// Runs n = 1 which key was pressed
+	// 1 = up, 2 = down, 3 = right, 4 = left
 	public void step(int n) {
 		int x = (int) (Math.random()*4);
 		int y = (int) (Math.random()*4);
@@ -53,8 +51,12 @@ public class Life {
 			x = (int) (Math.random()*4);
 			y = (int) (Math.random()*4);
 		}
+
+		grid[x][y] = 2;
 		
-		//make new blocc
+		//diff loops for each direction
+		//move in direction
+		//then squish
 	}
 
 	// Formats this Life grid as a String to be printed (one call to this method returns the whole multi-line grid)
@@ -67,7 +69,7 @@ public class Life {
 			}
 			response += "\n";
 		}
-		
+
 		return response;
 	}
 
@@ -115,21 +117,63 @@ public class Life {
 	 */
 	public void draw(PApplet marker, float x, float y, float width, float height) {
 		marker.pushStyle();
-		
+
 		float cellWidth = width/grid.length;
 		float cellHeight = height/grid[0].length;
-		
+
 		for(int i = 0; i<grid[0].length; i++) {
 			for(int j = 0; j<grid.length; j++) {
-				if(grid[j][i] == 2) // == true
-					marker.fill(0);
-				else if(grid[j][i] == 4)
-					marker.fill(255);
-				
+
+				if(grid[j][i] == 0) 
+					marker.fill(240, 229, 204);
+				else {
+
+					if(grid[j][i] == 2) {// == true
+						marker.fill(238, 228, 218);
+					}
+					else if(grid[j][i] == 4) {
+						marker.fill(240, 224, 200);
+					}
+					else if(grid[j][i] == 8) {
+						marker.fill(242, 177, 121);
+					}
+					else if(grid[i][j] == 16) {
+						marker.fill(245, 149, 99);
+					}
+					else if(grid[i][j] == 32) {
+						marker.fill(246, 124, 95);
+					}
+					else if(grid[i][j] == 64) {
+						marker.fill(246, 94, 59);
+					}
+					else if(grid[i][j] == 128) {
+						marker.fill(237, 207, 114);
+					}
+					else if(grid[i][j] == 256) {
+						marker.fill(237, 204, 97);
+					}
+					else if(grid[i][j] == 512) {
+						marker.fill(237, 200, 80);
+					}
+					else if(grid[i][j] == 1024) {
+						marker.fill(237, 197, 63);
+					}
+					else { //2048 or more
+						marker.fill(252, 221, 119);
+					} 
+				} //end of has a number else
+
 				marker.rect(cellWidth*j+x, cellHeight*i+y, cellWidth, cellHeight);
+				marker.textSize(20);
+				marker.fill(0);
+				if(grid[j][i] != 0) {
+					marker.text(grid[j][i],cellWidth*j+x+20, cellHeight*i+y+50);
+				}
+
 			} //end of j
 		} //end of i
-		
+
+
 		marker.popStyle(); //makes it so the marker setting here don't affect things drawn elsewhere
 	}
 
@@ -147,15 +191,15 @@ public class Life {
 	public Point clickToIndex(Point p, float x, float y, float width, float height) {
 		float cellWidth = width/grid.length;
 		float cellHeight = height/grid[0].length;
-		
+
 		int j = (int) ((p.x-x)/cellWidth);
 		int i = (int) ((p.y-y)/cellHeight);
-		
+
 		if(j<0 || j>= grid.length)
 			return null;
 		if(i<0 || i>= grid[0].length)
 			return null;
-		
+
 		return new Point(j,i);
 	}
 
