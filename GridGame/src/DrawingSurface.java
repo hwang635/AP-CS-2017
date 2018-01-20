@@ -101,11 +101,11 @@ public class DrawingSurface extends PApplet {
 		if(keyCode == KeyEvent.VK_UP)
 			board.step(1);
 		else if (keyCode == KeyEvent.VK_DOWN)
-			board.step(1);
+			board.step(2);
 		else if(keyCode == KeyEvent.VK_RIGHT)
-			move = 3;
+			board.step(3);
 		else if(keyCode == KeyEvent.VK_LEFT)
-			move = 4;
+			board.step(4);
 	}
 
 }

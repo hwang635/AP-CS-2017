@@ -43,7 +43,73 @@ public class Life {
 
 	// Runs n = 1 which key was pressed
 	// 1 = up, 2 = down, 3 = right, 4 = left
-	public void step(int n) {
+	public void step(int n) {		
+		if(n == 1) { //up
+			for(int i = 0; i<grid.length; i++) {
+				for(int j = 0; j<grid[0].length; j++) {
+					for(int count = 1; count<= j; count++) {
+						if(grid[i][j-count] == grid[i][j]) {
+							grid[i][j-count] += grid[i][j];
+							grid[i][j] = 0;
+						}
+						else if(grid[i][j-count] == 0) {
+							grid[i][j-count] = grid[i][j];
+							grid[i][j] = 0;
+						}
+					} //end of count
+				} //end of j
+			} //end of i
+		}
+		else if(n == 2) { //down
+			for(int i = 0; i<grid.length; i++) {
+				for(int j = 0; j<grid[0].length; j++) {
+					for(int count = 1; count<grid.length-j; count++) {
+						if(grid[i][j+count] == grid[i][j]) {
+							grid[i][j+count] += grid[i][j];
+							grid[i][j] = 0;
+						}
+						else if(grid[i][j+count] == 0) {
+							grid[i][j+count] = grid[i][j];
+							grid[i][j] = 0;
+						}
+					} //end of cont
+				} //end of j
+			} //end of i
+		}
+		else if(n == 3) { //right
+			for(int i = 0; i<grid.length; i++) {
+				for(int j = 0; j<grid[0].length; j++) {
+					for(int count = 1; count<grid.length-i; count++) {
+						if(grid[i+count][j] == grid[i][j]) {
+							grid[i+count][j] += grid[i][j];
+							grid[i][j] = 0;
+						}
+						else if(grid[i][j] == 0) {
+							grid[i+count][j] = grid[i][j];
+							grid[i][j] = 0;
+						}
+					} //end of cont
+				} //end of j
+			} //end of i
+		}
+			else if(n == 4) { //left
+				for(int i = 0; i<grid.length; i++) {
+					for(int j = 0; j<grid[0].length; j++) {
+						for(int count = 1; count<= i; count++) {
+							if(grid[i-count][j] == grid[i][j]) {
+								grid[i-count][j] += grid[i][j];
+								grid[i][j] = 0;
+							}
+							else if(grid[i-count][j] == 0) {
+								grid[i-count][j] = grid[i][j];
+								grid[i][j] = 0;
+							}
+						} //end of count
+					} //end of j
+				} //end of i
+			}
+
+		//find indexOf == -1 of 0? make lose, or else make new block appear
 		int x = (int) (Math.random()*4);
 		int y = (int) (Math.random()*4);
 
@@ -53,10 +119,6 @@ public class Life {
 		}
 
 		grid[x][y] = 2;
-		
-		//diff loops for each direction
-		//move in direction
-		//then squish
 	}
 
 	// Formats this Life grid as a String to be printed (one call to this method returns the whole multi-line grid)
@@ -123,7 +185,6 @@ public class Life {
 
 		for(int i = 0; i<grid[0].length; i++) {
 			for(int j = 0; j<grid.length; j++) {
-
 				if(grid[j][i] == 0) 
 					marker.fill(240, 229, 204);
 				else {
@@ -164,7 +225,7 @@ public class Life {
 				} //end of has a number else
 
 				marker.rect(cellWidth*j+x, cellHeight*i+y, cellWidth, cellHeight);
-				marker.textSize(20);
+				marker.textSize(15);
 				marker.fill(0);
 				if(grid[j][i] != 0) {
 					marker.text(grid[j][i],cellWidth*j+x+20, cellHeight*i+y+50);
