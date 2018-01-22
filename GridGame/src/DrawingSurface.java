@@ -11,7 +11,7 @@ import processing.core.PApplet;
 
 public class DrawingSurface extends PApplet {
 
-	private Life board;
+	private Life2 board;
 	private int runCount;
 	private int speed;
 	//private Point prevToggle;
@@ -21,7 +21,7 @@ public class DrawingSurface extends PApplet {
 
 
 	public DrawingSurface() {
-		board = new Life();
+		board = new Life2();
 		runCount = -1;
 		speed = 120;
 		//prevToggle = null;
@@ -44,8 +44,14 @@ public class DrawingSurface extends PApplet {
 		textAlign(LEFT);
 		textSize(12);
 
-		text("Enter: Run 1 step\nSpace: Start/Stop\nUp arrow: Increase speed\nDown arrow: Decrease speed\n\nSpeed: " + (60.0/speed) + " per sec", height+20, 30);
-
+		//text("Enter: Run 1 step\nSpace: Start/Stop\nUp arrow: Increase speed\nDown arrow: Decrease speed\n\nSpeed: " + (60.0/speed) + " per sec", height+20, 30);
+		text("Score: " + board.getScore(), height + 20, 30);
+		
+		if(board.get2048())
+			text("You have won!", height + 20, 50);
+		if(board.getLost())
+			text("Restart to retry", height + 20, 70);
+		
 		if (runCount == 0) {
 			board.step();
 			runCount = speed;
@@ -109,13 +115,3 @@ public class DrawingSurface extends PApplet {
 	}
 
 }
-
-
-
-
-
-
-
-
-
-

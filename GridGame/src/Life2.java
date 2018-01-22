@@ -12,14 +12,17 @@ import processing.core.PApplet;
 	Modified on:
  */
 
-public class Life {
+public class Life2 {
 
 	private int[][] grid;
-	boolean hasLost;
+	boolean hasLost, has2048;
+	int score;
 
 	// Constructs an empty grid
-	public Life() {
+	public Life2() {
+		score = 0;
 		hasLost = false;
+		has2048 = false;
 		grid = new int[4][4];
 
 		for(int i = 0; i<2; i++) {
@@ -39,9 +42,77 @@ public class Life {
 
 	//Makes one move or squish
 	public void step() {
-
-
 	}
+
+	//direction = 1 up, 2 down, 3 right, 4 left
+	public int getSlide(int i, int j, int direction) {
+		int count = 1;
+
+		if(direction == 1) {
+			while((j-count)>-1 && this.isEmpty(i, j-count) == true)
+				count++;
+		}
+		else if(direction == 2) {
+			while((j+count)<grid.length && this.isEmpty(i, j+count) == true)
+				count++;
+		}
+		else if(direction == 3) {
+			while((i+count)<grid.length && this.isEmpty(i+count, j) == true)
+				count++;
+		} 
+		else if(direction == 4) {
+			while((i-count)>-1 && this.isEmpty(i-count, j) == true)
+				count++;
+		}
+
+		return count-1;
+	}
+
+	//moves the tiles when there are empty spots
+	public void move(int i, int j, int xDistance, int yDistance) { 
+		grid[i+xDistance][j+yDistance] = grid[i][j];
+		System.out.println(i + xDistance + ", " + (j+yDistance));
+		grid[i][j] = 0;
+
+		/*else {
+			grid[i+xDistance][j+yDistance] = 2*grid[i][j];
+			score += grid[i+xDistance][j+yDistance];
+		}
+		grid[i][j] = 0; */
+	}
+
+	/* //finds the distance to the matching tile
+	//if the tile isn't matching, returns -1
+	public int calcMerge(int i, int j, int direction) {
+		int count = getSlide(i, j, direction);
+
+		if(direction == 1) {
+			if(grid[i][j-count] == grid[i][j])
+				return count;
+			else 
+				return -1;
+		}
+		else if(direction == 2) {
+			if(grid[i][j+count] == grid[i][j])
+				return count;
+			else 
+				return -1;
+		}
+		else if(direction == 3) {
+			if(grid[i+count][j] == grid[i][j])
+				return count;
+			else 
+				return -1;
+		} 
+		else if(direction == 4) {
+			if(grid[i-count][j] == grid[i][j])
+				return count;
+			else 
+				return -1;
+		}
+		else
+			return -1;
+	} */
 
 	// Runs n = 1 which key was pressed
 	// 1 = up, 2 = down, 3 = right, 4 = left
@@ -49,87 +120,111 @@ public class Life {
 		if(hasLost == false) {
 			if(n == 1) { //up
 				for(int i = 0; i<grid.length; i++) {
-					for(int j = 0; j<grid[0].length; j++) {
-						for(int count = 1; count<= j; count++) {
-							if(grid[i][j-count] == grid[i][j]) {
-								grid[i][j-count] += grid[i][j];
-								grid[i][j] = 0;
-							}
-							else if(grid[i][j-count] == 0) {
-								grid[i][j-count] = grid[i][j];
-								grid[i][j] = 0;
-							}
-						} //end of count
+					for(int j = 1; j<grid.length; j++) {
+						if(isEmpty(i, j-1)) {
+							this.move(i,j, 0, -this.getSlide(i, j, 1));
+						}
+					} //end of j
+					for(int j = 1; j<grid[0].length; j++) {
+						if(grid[i][j-1] == grid[i][j]) {
+							grid[i][j-1] += grid[i][j];
+							score += grid[i][j-1];
+
+							grid[i][j] = 0;
+						}
+					}
+					for(int j = 1; j<grid.length; j++) {
+						if(isEmpty(i, j-1)) {
+							this.move(i,j, 0, -this.getSlide(i, j, 1));
+						}
 					} //end of j
 				} //end of i
 			}
 			else if(n == 2) { //down
 				for(int i = 0; i<grid.length; i++) {
-					for(int j = 0; j<grid[0].length; j++) {
-						for(int count = 1; count<grid.length-j; count++) {
-							if(grid[i][j+count] == grid[i][j]) {
-								grid[i][j+count] += grid[i][j];
-								grid[i][j] = 0;
-							}
-							else if(grid[i][j+count] == 0) {
-								grid[i][j+count] = grid[i][j];
-								grid[i][j] = 0;
-							}
-						} //end of cont
+					for(int j = grid[0].length-2; j>=0;j--) {
+						if(isEmpty(i, j+1))
+							this.move(i, j, 0, this.getSlide(i, j, 2));
+					} //end of j
+					for(int j = grid[0].length-2; j>=0;j--) {
+						if(grid[i][j+1] == grid[i][j]) {
+							grid[i][j+1] += grid[i][j]; 
+							score += grid[i][j+1];
+							grid[i][j] = 0;
+						}
+					}
+					for(int j = grid[0].length-2; j>=0;j--) {
+						if(isEmpty(i, j+1))
+							this.move(i, j, 0, this.getSlide(i, j, 2));
 					} //end of j
 				} //end of i
 			}
-			else if(n == 3) { //right
-				for(int i = 0; i<grid.length; i++) {
+			else if(n == 3) { //right -->
+				for(int i = grid.length-2; i>=0; i--) {
 					for(int j = 0; j<grid[0].length; j++) {
-						for(int count = 1; count<grid.length-i; count++) {
-							if(grid[i+count][j] == grid[i][j]) {
-								grid[i+count][j] += grid[i][j];
-								grid[i][j] = 0;
-							}
-							else if(grid[i+count][j] == 0) {
-								grid[i+count][j] = grid[i][j];
-								grid[i][j] = 0;
-							}
-						} //end of cont
+						if(isEmpty(i+1, j))
+							this.move(i, j, this.getSlide(i, j, 3), 0);
+					} //end of j
+				} //end of i
+				for(int i = grid.length-2; i>=0; i--) {
+					for(int j = 0; j<grid[0].length; j++) {
+						if(grid[i+1][j] == grid[i][j]) {
+							grid[i+1][j] += grid[i][j];
+							score += grid[i+1][j];
+							grid[i][j] = 0;
+						}
+					}
+				}
+				for(int i = grid.length-2; i>=0; i--) {
+					for(int j = 0; j<grid[0].length; j++) {
+						if(isEmpty(i+1, j))
+							this.move(i, j, this.getSlide(i, j, 3), 0);
 					} //end of j
 				} //end of i
 			}
-			else if(n == 4) { //left
-				for(int i = 0; i<grid.length; i++) {
+			else if(n == 4) { //left <--w
+				for(int i = 1; i<grid.length; i++) {
 					for(int j = 0; j<grid[0].length; j++) {
-						for(int count = 1; count<= i; count++) {
-							if(grid[i-count][j] == grid[i][j]) {
-								grid[i-count][j] += grid[i][j];
-								grid[i][j] = 0;
-							}
-							else if(grid[i-count][j] == 0) {
-								grid[i-count][j] = grid[i][j];
-								grid[i][j] = 0;
-							}
-						} //end of count
+						if(isEmpty(i-1,j))
+							this.move(i, j, -this.getSlide(i, j, 4), 0);
+					} //end of j
+				} //end of i
+				for(int i = 1; i<grid.length; i++) {
+					for(int j = 0; j<grid[0].length;j++) {
+						if(grid[i-1][j] == grid[i][j]) {
+							grid[i-1][j] += grid[i][j];
+							score += grid[i-1][j];
+							grid[i][j] = 0;
+						}
+					}
+				}
+				for(int i = 1; i<grid.length; i++) {
+					for(int j = 0; j<grid[0].length; j++) {
+						if(isEmpty(i-1,j))
+							this.move(i, j, -this.getSlide(i, j, 4), 0);
 					} //end of j
 				} //end of i
 			}
 
-			//find indexOf == -1 of 0? make lose, or else make new block appear
 			int x = (int) (Math.random()*4);
 			int y = (int) (Math.random()*4);
 
-			while(grid[x][y] != 0) {
+			while(!isFull() && grid[x][y] != 0) {
 				x = (int) (Math.random()*4);
 				y = (int) (Math.random()*4);
 			}
-			
+
 			hasLost = true;
 			for(int i = 0; i<grid.length;i++) {
 				for(int j = 0; j<grid.length;j++) {
-					if(grid[i][j] == 0)
+					if(!isFull()) 
+						hasLost = false;
+					else if(canMerge(i,j) == true)
 						hasLost = false;
 				}
 			} //checks that not filled
 
-			if(!hasLost) {
+			if(!hasLost && !isFull() ) {
 				int newInt = 2;
 				if(Math.random()*4>3) //random 4 or 2, smaller chance of getting 4
 					newInt = 4;
@@ -137,6 +232,56 @@ public class Life {
 			}
 		}
 	}
+	
+	public boolean canMerge(int x, int y) {		
+		if(y<grid[0].length-1) { //y+1
+			if(grid[x][y+1] == grid[x][y])//top
+				return true;
+		} //end of y+1 if
+
+		if(y>0) { //y-1
+			if(grid[x][y-1] == grid[x][y]) //down
+				return true;
+		} //end of y-1 if
+		if(x>0) {
+			if(grid[x-1][y]== grid[x][y])
+				return true;
+		}
+		if(x<grid.length-1) {
+			if(grid[x+1][y]== grid[x][y])
+				return true;
+		}
+		
+		return false;
+	}
+	
+	public boolean isFull() {
+		for(int i = 0; i<grid.length; i++) {
+			for(int j = 0; j<grid.length; j++) {
+				if(grid[i][j] == 0) 
+					return false;
+			}
+		}
+		return true;
+	}
+
+	public int getScore() {
+		return score;
+	}
+	
+	public boolean get2048() {
+		return has2048;
+	}
+
+	public boolean getLost() {
+		return hasLost;
+	}
+	public boolean isEmpty (int i, int j) {
+		if(grid[i][j] == 0)
+			return true;
+		else
+			return false;
+	} 
 
 	// Formats this Life grid as a String to be printed (one call to this method returns the whole multi-line grid)
 	public String toString() {
@@ -205,7 +350,6 @@ public class Life {
 				if(grid[j][i] == 0) 
 					marker.fill(240, 229, 204);
 				else {
-
 					if(grid[j][i] == 2) {// == true
 						marker.fill(238, 228, 218);
 					}
@@ -238,6 +382,7 @@ public class Life {
 					}
 					else { //2048 or more
 						marker.fill(252, 221, 119);
+						has2048 = true;
 					} 
 				} //end of has a number else
 
