@@ -71,48 +71,8 @@ public class Life {
 	//moves the tiles when there are empty spots
 	public void move(int i, int j, int xDistance, int yDistance) { 
 		grid[i+xDistance][j+yDistance] = grid[i][j];
-		System.out.println(i + xDistance + ", " + (j+yDistance));
 		grid[i][j] = 0;
-
-		/*else {
-			grid[i+xDistance][j+yDistance] = 2*grid[i][j];
-			score += grid[i+xDistance][j+yDistance];
-		}
-		grid[i][j] = 0; */
 	}
-
-	/* //finds the distance to the matching tile
-	//if the tile isn't matching, returns -1
-	public int calcMerge(int i, int j, int direction) {
-		int count = getSlide(i, j, direction);
-
-		if(direction == 1) {
-			if(grid[i][j-count] == grid[i][j])
-				return count;
-			else 
-				return -1;
-		}
-		else if(direction == 2) {
-			if(grid[i][j+count] == grid[i][j])
-				return count;
-			else 
-				return -1;
-		}
-		else if(direction == 3) {
-			if(grid[i+count][j] == grid[i][j])
-				return count;
-			else 
-				return -1;
-		} 
-		else if(direction == 4) {
-			if(grid[i-count][j] == grid[i][j])
-				return count;
-			else 
-				return -1;
-		}
-		else
-			return -1;
-	} */
 
 	// Runs n = 1 which key was pressed
 	// 1 = up, 2 = down, 3 = right, 4 = left
@@ -405,7 +365,7 @@ public class Life {
 	 * particular pixel coordinate.
 	 * 
 	 * @param p A Point object representing a graphical pixel coordinate.
-	 * @param x The x pixel coordinate of the upper left corner of the grid drawing. 
+	 * @param x The x pixel coordinate of the upper left corner of the grid draswing. 
 	 * @param y The y pixel coordinate of the upper left corner of the grid drawing.
 	 * @param width The pixel width of the grid drawing.
 	 * @param height The pixel height of the grid drawing.
