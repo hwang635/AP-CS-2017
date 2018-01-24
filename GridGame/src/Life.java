@@ -18,7 +18,7 @@ public class Life {
 	boolean hasLost, has2048;
 	int score;
 
-	// Constructs an empty grid
+	// Constructs a grid with two random tiles either 2 or 4
 	public Life() {
 		score = 0;
 		hasLost = false;
@@ -45,6 +45,7 @@ public class Life {
 	}
 
 	//direction = 1 up, 2 down, 3 right, 4 left
+	//gets the distance to slide
 	public int getSlide(int i, int j, int direction) {
 		int count = 1;
 
@@ -76,6 +77,7 @@ public class Life {
 
 	// Runs n = 1 which key was pressed
 	// 1 = up, 2 = down, 3 = right, 4 = left
+	//performs one step of sliding + squishing
 	public void step(int n) {
 		if(hasLost == false) {
 			if(n == 1) { //up
@@ -193,6 +195,7 @@ public class Life {
 		}
 	}
 	
+	//checks if there is a possible merge
 	public boolean canMerge(int x, int y) {		
 		if(y<grid[0].length-1) { //y+1
 			if(grid[x][y+1] == grid[x][y])//top
@@ -215,6 +218,7 @@ public class Life {
 		return false;
 	}
 	
+	//checks that the game scree is full
 	public boolean isFull() {
 		for(int i = 0; i<grid.length; i++) {
 			for(int j = 0; j<grid.length; j++) {
@@ -365,7 +369,7 @@ public class Life {
 	 * particular pixel coordinate.
 	 * 
 	 * @param p A Point object representing a graphical pixel coordinate.
-	 * @param x The x pixel coordinate of the upper left corner of the grid draswing. 
+	 * @param x The x pixel coordinate of the upper left corner of the grid drawing. 
 	 * @param y The y pixel coordinate of the upper left corner of the grid drawing.
 	 * @param width The pixel width of the grid drawing.
 	 * @param height The pixel height of the grid drawing.
