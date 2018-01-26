@@ -40,15 +40,18 @@ public class RecursionPractice {
 		if(n == 1)
 			return 1;
 		else {
-			return n*2 + n-2 + 1 + pentagonalNumber(n-1);
+			return n*2 + n-2 + pentagonalNumber(n-1);
 		}
 	}
 
 	public static void main(String[] args) {
-		int n = 2;
+		int n = 5;
 		int test = triangleNumber(n);
 		System.out.println("The " + n + "th triangular number is " + test);
+		
+		/*int n = 4;
+		int test = pentagonalNumber(n);
+		System.out.println("The " + n + "th pentagonal number is " + test); */
 	}
-
 
 }
