@@ -1,6 +1,8 @@
 
 
 public class RecursionPractice {
+	
+	private static int iterations = 0;
 
 	public static int triangleNumber(int n)
 	{
@@ -45,6 +47,8 @@ public class RecursionPractice {
 	}
 
 	public static int Fibonacci(int n) {
+		iterations++;
+		
 		if(n == 0 || n == 1)
 			return n;
 		else {
@@ -80,9 +84,9 @@ public class RecursionPractice {
 		System.out.println("The " + n + "th pentagonal number is " + test); */
 
 		for(int i = 0; i<12; i++) {
-			System.out.print(Fibonacci(i) + " ");
+			System.out.println(Fibonacci(i) + " " + ", num of iterations: " + iterations);
+			iterations = 0;
 		}
-		//System.out.print(FibonacciLoop(5) + " ");
 	}
 
 }
