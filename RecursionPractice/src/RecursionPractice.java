@@ -74,6 +74,18 @@ public class RecursionPractice {
 		return numN;
 	}
 	
+	public static void printHanoiSolution(int numberofDisks) {
+		printHanoiSolution(numberofDisks, 1, 3);
+	}
+	
+	private static void printHanoiSolution(int n, int fromPeg, int toPeg) {
+		iterations++;
+		
+		if(n == 1) 
+			System.out.println("move from");
+		
+	}
+	
 	public static void main(String[] args) {
 		int n = 5;
 		int test = triangleNumber(n);
