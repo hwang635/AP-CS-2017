@@ -78,27 +78,43 @@ public class RecursionPractice {
 		printHanoiSolution(numberofDisks, 1, 3);
 	}
 	
+	//Num Disks: 1	2	3	4	5	6	7	8	9	10
+	//Iterations:1	3	7	15	31	63	127	255	511	1023
+	//Equations: Iteration = 2^(numDisks) - 1
 	private static void printHanoiSolution(int n, int fromPeg, int toPeg) {
 		iterations++;
 		
-		if(n == 1) 
-			System.out.println("move from");
+		if(n == 1)
+			System.out.println("move disk " + n + " from " + fromPeg + " to " + toPeg);
+		else {
+			int otherPeg = 6 - (fromPeg + toPeg);
+			printHanoiSolution(n - 1, fromPeg, otherPeg);
+			System.out.println("move disk " + n + " from " + fromPeg + " to " + toPeg);
+			printHanoiSolution(n-1, otherPeg, toPeg);
+		}
 		
 	}
 	
 	public static void main(String[] args) {
 		int n = 5;
 		int test = triangleNumber(n);
-		System.out.println("The " + n + "th triangular number is " + test);
+		//System.out.println("The " + n + "th triangular number is " + test);
 
 		/*int n = 4;
 		int test = pentagonalNumber(n);
 		System.out.println("The " + n + "th pentagonal number is " + test); */
 
-		for(int i = 0; i<12; i++) {
+		/*for(int i = 0; i<12; i++) {
 			System.out.println(Fibonacci(i) + " " + ", num of iterations: " + iterations);
 			iterations = 0;
+		} */
+		
+		for(int i = 1; i<11; i++) {
+			printHanoiSolution(i);
+			System.out.println("Hanoi iterations " + i + " = " + iterations);
+			iterations = 0;
 		}
+	
 	}
 
 }
