@@ -23,10 +23,6 @@ public class DrawingSurface extends PApplet {
 		Point2D.Double point3 = new Point2D.Double(150,50);
 		Point2D.Double point4 = new Point2D.Double(60,40);
 				
-		poly.add(point1);
-		poly.add(point2);
-		poly.add(point3);
-		poly.add(point4);	
 
 		//poly.scale(3.5);
 		//poly.setStrokeWeight(10);

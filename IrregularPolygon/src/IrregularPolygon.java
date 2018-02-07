@@ -56,7 +56,7 @@ public class IrregularPolygon extends Shape {
 				x2 = myPolygon.get(myPolygon.size()-1).getX();
 				y2 = myPolygon.get(myPolygon.size()-1).getY();
 
-				marker.line((float)x1, (float)y1, (float)x1, (float)y2);
+				marker.line((float)x1, (float)y1, (float)x2, (float)y2);
 			}
 		}
 

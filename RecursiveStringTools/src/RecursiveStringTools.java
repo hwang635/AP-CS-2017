@@ -41,43 +41,52 @@ public class RecursiveStringTools {
 			boolean matches = (in1.charAt(0) == in2.charAt(0)) || (in1.charAt(0) == '?') || (in2.charAt(0) == '?');
 			String in1New = in1.substring(1);
 			String in2New = in2.substring(1);
-			
+
 			return matches && matches(in1New, in2New);
 		}
 	}
 
 	// Exercise #2
 	public static boolean isPalindrome(String in) {
+		in = in.replace(" ",  "");
+		in = in.replaceAll("[^a-zA-Z]", "");
+		in = in.toLowerCase();
+
 		if(in.length() <= 1)
 			return true;
 		else {
-			String inNew;
-			if(!(Character.isLetter(in.charAt(0)) || Character.isDigit(in.charAt(0)) ))
-				 inNew = in.substring(1);
-				
 			boolean isPalindrome = (in.charAt(0) == in.charAt(in.length() - 1));
-				inNew = in.substring(1, in.length()-1);
-			
+			String inNew = in.substring(1, in.length()-1);
+
 			return isPalindrome && isPalindrome(inNew);
 		}
 	}
 
-
-	public static String removePunctuation() {
-		return "";
-	}
-
 	// Exercise #3
+	// java / j ava / a jva / v jaa
 	public static void printPermutations(String in) {
+		printPermutations(in, " ");
+		//if 1 char
+		//print the 1 char (w/ all removed chars at beginning)
+		//else, for each character inside in
+		//remove this char
+		//print all permutations of remaining char w/ removed chars @begin
 
 	}
 
-
-
+	private static void printPermutations(String in, String removedChar) {
+		if(in.length()<= 1)
+			System.out.println(removedChar + " " + in);
+		else {
+			removedChar += in.charAt(0);
+			String inNew = in.substring(1);
+			System.out.println(removedChar + " " + inNew);			
+		}
+	}
+	
 	public static String piglatinate(String in) {
 		return "";
 	}
-
 
 
 	public static void main(String[] args) {
@@ -87,9 +96,11 @@ public class RecursiveStringTools {
 		//System.out.println("Please enter a string:");
 		//String s2 = kboard.nextLine();
 
-		boolean out = RecursiveStringTools.isPalindrome(s1);
-		System.out.print("\n\nThe result is --> " + out + "\n\n");
+		//boolean out = RecursiveStringTools.isPalindrome(s1);
+		//System.out.print("\n\nThe result is --> " + out + "\n\n");
 		
-		
+		printPermutations(s1);
+
+
 	}
 }
