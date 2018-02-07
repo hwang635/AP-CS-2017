@@ -12,8 +12,6 @@ public class RecursiveStringTools {
 		}
 	}
 
-
-
 	// Example
 	public static boolean equals(String in1, String in2) {
 		if(in1.length() != in2.length())
@@ -28,8 +26,6 @@ public class RecursiveStringTools {
 			return equals && equals(in1New, in2New);
 		}
 	}
-
-
 
 	// Exercise #1
 	public static boolean matches(String in1, String in2) {
@@ -71,7 +67,6 @@ public class RecursiveStringTools {
 		//else, for each character inside in
 		//remove this char
 		//print all permutations of remaining char w/ removed chars @begin
-
 	}
 
 	private static void printPermutations(String in, String removedChar) {
@@ -80,7 +75,9 @@ public class RecursiveStringTools {
 		else {
 			removedChar += in.charAt(0);
 			String inNew = in.substring(1);
-			System.out.println(removedChar + " " + inNew);			
+			System.out.println(removedChar + " " + in);
+
+			printPermutations(inNew, removedChar);
 		}
 	}
 	
