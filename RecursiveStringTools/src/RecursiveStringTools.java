@@ -80,6 +80,7 @@ public class RecursiveStringTools {
 			loop(removedChar, in, 0);
 		}
 	}
+	
 	private static void loop(String removedChar, String in, int i)
 	{
 		int n = in.length();
