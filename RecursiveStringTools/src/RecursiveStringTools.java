@@ -61,26 +61,51 @@ public class RecursiveStringTools {
 	// Exercise #3
 	// java / j ava / a jva / v jaa
 	public static void printPermutations(String in) {
-		printPermutations(in, " ");
+		printPermutations("", in);
 		//if 1 char
 		//print the 1 char (w/ all removed chars at beginning)
 		//else, for each character inside in
 		//remove this char
 		//print all permutations of remaining char w/ removed chars @begin
-	}
-
-	private static void printPermutations(String in, String removedChar) {
-		if(in.length()<= 1)
-			System.out.println(removedChar + " " + in);
-		else {
-			removedChar += in.charAt(0);
-			String inNew = in.substring(1);
-			System.out.println(removedChar + " " + in);
-
-			printPermutations(inNew, removedChar);
-		}
+		System.out.println();
 	}
 	
+	
+	private static void printPermutations(String removedChar, String in)
+	{
+		int n = in.length();
+		if(n==0) {
+			System.out.print(removedChar + " ");
+		} else {
+			loop(removedChar, in, 0);
+		}
+	}
+	private static void loop(String removedChar, String in, int i)
+	{
+		int n = in.length();
+		if(n==0) {
+			return;
+		} else {
+			String removedChar1 = removedChar + in.charAt(i);
+			String in1 = in.substring(0, i) + in.substring(i+1);
+			printPermutations(removedChar1, in1);
+			if(++i<n)
+				loop(removedChar, in, i);
+		}
+	}
+
+	//w/ loop
+	/* private static void printPermutations(String in, String removedChar) {
+		int n = in.length();
+		if(n==0)
+			System.out.println(removedChar);
+		else {			
+			for(int i = 0; i<n; i++) {
+				printPermutations(in.substring(0, i) + in.substring(i+1), removedChar + in.charAt(i));
+			}
+		}
+	} */
+
 	public static String piglatinate(String in) {
 		return "";
 	}
@@ -88,7 +113,7 @@ public class RecursiveStringTools {
 
 	public static void main(String[] args) {
 		Scanner kboard = new Scanner(System.in);
-		System.out.println("Please enter a string:");
+		System.out.print("Please enter a string: ");
 		String s1 = kboard.nextLine();
 		//System.out.println("Please enter a string:");
 		//String s2 = kboard.nextLine();
