@@ -71,26 +71,23 @@ public class RecursiveStringTools {
 	}
 	
 	
-	private static void printPermutations(String removedChar, String in)
-	{
-		int n = in.length();
-		if(n==0) {
+	private static void printPermutations(String removedChar, String in) {
+		if(in.length() == 0)
 			System.out.print(removedChar + " ");
-		} else {
+		else {
 			loop(removedChar, in, 0);
 		}
 	}
 	
-	private static void loop(String removedChar, String in, int i)
-	{
-		int n = in.length();
-		if(n==0) {
+	private static void loop(String removedChar, String in, int i) {
+		if(in.length() == 0)
 			return;
-		} else {
+		else {
 			String removedChar1 = removedChar + in.charAt(i);
 			String in1 = in.substring(0, i) + in.substring(i+1);
 			printPermutations(removedChar1, in1);
-			if(++i<n)
+			
+			if(++i<in.length())
 				loop(removedChar, in, i);
 		}
 	}
