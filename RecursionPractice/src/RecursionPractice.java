@@ -51,6 +51,8 @@ public class RecursionPractice {
 		
 		if(n == 0 || n == 1)
 			return n;
+		else if(n == 2)
+			return 1;
 		else {
 			return Fibonacci(n-1) + Fibonacci(n-2);
 		}
@@ -96,8 +98,8 @@ public class RecursionPractice {
 	}
 	
 	public static void main(String[] args) {
-		int n = 5;
-		int test = triangleNumber(n);
+		//int n = 5;
+		//int test = triangleNumber(n);
 		//System.out.println("The " + n + "th triangular number is " + test);
 
 		/*int n = 4;
@@ -109,11 +111,12 @@ public class RecursionPractice {
 			iterations = 0;
 		} */
 		
-		for(int i = 1; i<11; i++) {
-			printHanoiSolution(i);
+		//for(int i = 1; i<11; i++) {
+		iterations = 0;
+		int i = Fibonacci(7);
 			System.out.println("Hanoi iterations " + i + " = " + iterations);
-			iterations = 0;
-		}
+			
+		//}
 	
 	}
 

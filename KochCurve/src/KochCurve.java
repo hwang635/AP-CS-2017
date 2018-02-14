@@ -21,18 +21,15 @@ public class KochCurve {
 	}
 
 	public void draw(PApplet marker) {
-		//drawKochCurve(marker, level, 0, length);
+		drawKochCurve(marker, this.level, 0, 50, 50, this.length);
 	}
 
-	private void drawKochCurve(PApplet marker, int levelC, int x, int y, int angle) {
+	private void drawKochCurve(PApplet marker, int level, int angle, float x, float y, float length) {
 		if(level < 1) {
-			marker.line(x, y, x, y + length);
+			marker.line(x, y, x+length, y + (float) (Math.sin(angle)*y));
 		}
 		else {
-			//drawKochCurve(marker, x, y, levelC-1, 0, length/3);
-			//drawKochCurve(marker, levelC-1, 60, length/3);
-			//drawKochCurve(marker, levelC-1, -60, length/3);
-			//drawKochCurve(marker, levelC-1, angle, length/3);
+			drawKochCurve(marker, level-1, angle, x, y, length/3);
 
 		}
 		

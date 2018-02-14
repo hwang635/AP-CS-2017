@@ -10,7 +10,7 @@ public class DrawingSurface extends PApplet {
 	private int level, length;
 	
 	public DrawingSurface() {
-		level = 3;
+		level = 0;
 		length = 100;
 		curve = new KochCurve (level,length);
 	}
