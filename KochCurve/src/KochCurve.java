@@ -24,13 +24,23 @@ public class KochCurve {
 		drawKochCurve(marker, this.level, 0, 50, 50, this.length);
 	}
 
-	private void drawKochCurve(PApplet marker, int level, int angle, float x, float y, float length) {
+	private void drawKochCurve(PApplet marker, int level, float angle, float x, float y, float length) {
 		if(level < 1) {
-			marker.line(x, y, x+length, y + (float) (Math.sin(angle)*y));
+			marker.line(x, y, (float) (x+length*Math.cos(angle)), y - (float) (Math.sin(angle)*length));
+			System.out.println("x = " + x + " x2 = "  + (x+length*Math.cos(angle))); 
+			System.out.println("y = " + y + " y2 = "  + (y - (Math.sin(angle)*length))); 
+
 		}
 		else {
-			drawKochCurve(marker, level-1, angle, x, y, length/3);
+			float rad60 = (float) (Math.PI/3);
+			float sin60 = (float) Math.sin(rad60);
+			float cos60 = (float) Math.cos(rad60);
 
+			drawKochCurve(marker, level-1, angle, x, y, length/3);
+			
+			drawKochCurve(marker, level-1, angle+rad60, x+length/3, y, length/3);
+			drawKochCurve(marker, level-1, angle-rad60, x+length/3+length/3*cos60, y-length/3*sin60, length/3);
+			drawKochCurve(marker, level-1, angle, x+length/3+2*length/3*cos60, y, length/3);
 		}
 		
 		/*

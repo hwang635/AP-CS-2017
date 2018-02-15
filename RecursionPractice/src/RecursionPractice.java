@@ -46,19 +46,17 @@ public class RecursionPractice {
 		}
 	}
 
-	public static int Fibonacci(int n) {
+	public static int fibonacci(int n) {
 		iterations++;
 		
 		if(n == 0 || n == 1)
 			return n;
-		else if(n == 2)
-			return 1;
 		else {
-			return Fibonacci(n-1) + Fibonacci(n-2);
+			return fibonacci(n-1) + fibonacci(n-2);
 		}
 	}
 
-	public static int FibonacciLoop(int n) {
+	public static int fibonacciLoop(int n) {
 		int num0 = 0;
 		int num1 = 1;
 		int numN = 0;
@@ -113,8 +111,8 @@ public class RecursionPractice {
 		
 		//for(int i = 1; i<11; i++) {
 		iterations = 0;
-		int i = Fibonacci(7);
-			System.out.println("Hanoi iterations " + i + " = " + iterations);
+		printHanoiSolution(7);
+		System.out.println("Hanoi iterations " + iterations + " = " + iterations);
 			
 		//}
 	
