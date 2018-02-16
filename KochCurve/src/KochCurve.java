@@ -26,24 +26,39 @@ public class KochCurve {
 
 	private void drawKochCurve(PApplet marker, int level, float angle, float x, float y, float length) {
 		if(level < 1) {
-			marker.line(x, y, (float) (x+length*Math.cos(angle)), y - (float) (Math.sin(angle)*length));
-			System.out.println("x = " + x + " x2 = "  + (x+length*Math.cos(angle))); 
-			System.out.println("y = " + y + " y2 = "  + (y - (Math.sin(angle)*length))); 
+			float x2 = (float) (x + length*Math.cos(angle));
+			float y2 = (float) (y - Math.sin(angle)*length);
+			marker.line(x, y, x2, y2);
+			//System.out.println("x = " + x + " x2 = "  + (x+length*Math.cos(angle))); 
+			//System.out.println("y = " + y + " y2 = "  + (y - (Math.sin(angle)*length))); 
 
 		}
 		else {
 			float rad60 = (float) (Math.PI/3);
-			float sin60 = (float) Math.sin(rad60);
-			float cos60 = (float) Math.cos(rad60);
-
+			
+			//draw line 1/3 of length
 			drawKochCurve(marker, level-1, angle, x, y, length/3);
 			
-			drawKochCurve(marker, level-1, angle+rad60, x+length/3, y, length/3);
-			drawKochCurve(marker, level-1, angle-rad60, x+length/3+length/3*cos60, y-length/3*sin60, length/3);
-			drawKochCurve(marker, level-1, angle, x+length/3+2*length/3*cos60, y, length/3);
+			x = (float) (x + length/3*Math.cos(angle));
+			y = (float) (y - length/3*Math.sin(angle));
+			
+			//draw k-1 level curve, 60 degrees from where left off
+			drawKochCurve(marker, level-1, angle+rad60, x, y, length/3);
+			
+			x = (float) (x + length/3*Math.cos(angle+rad60));
+			y = (float) (y - length/3*Math.sin(angle+rad60));
+			
+			//draw k-1 curve, -60 degrees from where left off
+			drawKochCurve(marker, level-1, angle-rad60, x, y, length/3);
+			
+			x = (float) (x + length/3*(Math.cos(angle-rad60)));
+			y = (float) (y - length/3*Math.sin(angle-rad60));
+			
+			//draw k-1 curve, where previous left off
+			drawKochCurve(marker, level-1, angle, x, y, length/3);
 		}
 		
-		/*
+		/*s
 	if level < 1 then
   	Draw a straight line of the current length
 	else
