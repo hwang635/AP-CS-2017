@@ -33,9 +33,6 @@ public class KochSnowflake {
 			float x2 = (float) (x + length*Math.cos(angle));
 			float y2 = (float) (y - Math.sin(angle)*length);
 			marker.line(x, y, x2, y2);
-			//System.out.println("x = " + x + " x2 = "  + (x+length*Math.cos(angle))); 
-			//System.out.println("y = " + y + " y2 = "  + (y - (Math.sin(angle)*length))); 
-
 		}
 		else {
 			float rad60 = (float) (Math.PI/3);
