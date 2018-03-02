@@ -20,7 +20,7 @@ public class DrawingSurface extends PApplet {
 	
 	
 	public DrawingSurface() {
-		board = new EraseObject("griddata\\life tester.txt");
+		board = new EraseObject("griddata\\digital.txt");
 		runCount = -1;
 		speed = 120;
 		prevToggle = null;
