@@ -20,7 +20,7 @@ public class DrawingSurface extends PApplet {
 	
 	
 	public DrawingSurface() {
-		board = new EraseObject("griddata\\digital.txt");
+		board = new EraseObject("griddata\\digital2.txt");
 		runCount = -1;
 		speed = 120;
 		prevToggle = null;
@@ -42,7 +42,8 @@ public class DrawingSurface extends PApplet {
 		textAlign(LEFT);
 		textSize(12);
 		
-		text("Enter: Run 1 step\nSpace: Start/Stop\nUp arrow: Increase speed\nDown arrow: Decrease speed\n\nSpeed: " + (60.0/speed) + " per sec", height+20, 30);
+		//text("Enter: Run 1 step\nSpace: Start/Stop\nUp arrow: Increase speed\nDown arrow: Decrease speed\n\nSpeed: " + (60.0/speed) + " per sec", height+20, 30);
+		text("Click on the black boxes to erase", height + 15, 30);
 		
 		if (runCount == 0) {
 			//board.step();

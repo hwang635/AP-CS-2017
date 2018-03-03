@@ -11,22 +11,22 @@ import processing.core.PApplet;
 	Coded by:
 	Modified on:
  */
-public class EraseObject {
+public class Maze {
 
 	private char[][] grid;
 
 	// Constructs an empty grid
-	public EraseObject() {
+	public Maze() {
 		grid = new char[20][20];
 	}
 
 	// Constructs the grid defined in the file specified
-	public EraseObject(String filename) {
+	public Maze(String filename) {
 		grid = new char[20][20];
 		readData(filename, grid);
 	}
 
-	public void erase(int x, int y) {		
+	public void erase(int x, int y) {
 		if(x<0 || x>grid.length-1 || y<0 || y>grid[0].length-1)
 			return;
 		else if(grid[x][y] != '*') 
@@ -39,14 +39,6 @@ public class EraseObject {
 			erase(x, y+1);
 		}
 	}
-
-	/*public void toggle(int i, int j) { //changes from # to - + vice versa
-		//if(grid[i][j] == '*')
-		grid[i][j] = '#';
-		System.out.println("called at " + i + ", " + j);
-		//else
-		//grid[i][j] = '*';
-	} */
 
 	// Formats this Life grid as a String to be printed (one call to this method returns the whole multi-line grid)
 	public String toString() {
