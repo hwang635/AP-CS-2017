@@ -4,14 +4,20 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
 
-import processing.core.PApplet;
+
 /*
-	Represents a Game Of Life grid.
+
+	Represents a 2D maze.
 
 	Coded by:
 	Modified on:
+
  */
+
 public class Maze {
+
+	private static final int rows = 20;
+	private static final int cols = 20;
 
 	private char[][] grid;
 
@@ -26,34 +32,92 @@ public class Maze {
 		readData(filename, grid);
 	}
 
-	public void erase(int x, int y) {
-		if(x<0 || x>grid.length-1 || y<0 || y>grid[0].length-1)
-			return;
-		else if(grid[x][y] != '*') 
-			return;
+	// Attempts to find a path through the maze and returns whether a path was found or not
+	public boolean solve() {
+		int[] coordinates = new int[2];
+		findC(coordinates, 0, 0);
+		//System.out.println("x = " + coordinates[0] + " y = " + coordinates[1]);
+		return solve(coordinates[0], coordinates[1]);
+	}
+
+	// Private recursive version of solve()
+	private boolean solve(int x, int y) {
+		if(x<0 || x>grid.length-1 || y<0 || y>grid[0].length-1) // if out of bounds
+			return false;
+		else if(grid[x][y] == 'X') //reached goal
+			return true;
+		else if(grid[x][y] == '#' || grid[x][y] == 'n') //blocked
+			return false;
 		else {
-			grid[x][y] = 'o';
-			erase(x-1, y);
-			erase(x+1,y);
-			erase(x, y-1);
-			erase(x, y+1);
+			grid[x][y] = 'y';
+			
+			if(solve(x+1, y)) //right
+				return true;
+			if(solve(x, y+1)) //up
+				return true;
+			if(solve(x-1, y)) //left
+				return true;
+			if(solve(x, y-1)) //down
+				return true;
+			
+			grid[x][y] = 'n';
+			return false;
 		}
 	}
 
-	// Formats this Life grid as a String to be printed (one call to this method returns the whole multi-line grid)
+	//recursive version
+	//finds the starting location(where C is)
+	public void findC(int[] c, int x, int y) {
+		if(x<0 || x>grid.length-1 || y<0 || y>grid[0].length-1) { //out of bounds
+			if(y<0 || y>grid[0].length-1) { //y out of bounds, next x + reset y
+				y = 0;
+				x++;
+				findC(c, x, y);
+			}
+		}
+		else {
+			if(grid[x][y] == 'C') { //base case
+				c[0] = x;
+				c[1] = y;
+			}
+			else {
+				y++;
+				findC(c, x, y);
+			}
+		}
+	}
+
+	//loop version
+	public void findC(int[] coordinates) {
+
+		for(int i = 0; i<grid.length; i++) {
+			for (int j = 0; j<grid[0].length; j++) {
+				if(grid[i][j] == 'C') {
+					coordinates[0] = i;
+					coordinates[1] = j;
+				}
+			}
+		}
+	}
+
+	// Formats this grid as a String to be printed (one call to this method returns the whole multi-line grid)
 	public String toString() {
 		String response = "";
 
 		for(int i = 0; i<grid[0].length; i++) {
 			for(int j = 0; j<grid.length; j++) {
-				response += grid[j][i];
+				if(grid[j][i] == '#' || grid[j][i] == '.' || grid[j][i] == 'X')
+					response += grid[j][i];
+				else if(grid[j][i] == 'n')
+					response += '.';
+				else if(grid[j][i] == 'y' || grid[j][i] == 'C')
+					response += '!';
 			}
 			response += "\n";
 		}
 		return response;
 	}
 
-	// Reads in array data from a simple text file containing asterisks (*)
 	public void readData (String filename, char[][] gameData) {
 		File dataFile = new File(filename);
 
@@ -86,58 +150,4 @@ public class Maze {
 		}
 	}
 
-	/**
-	 * Optionally, complete this method to draw the grid on a PApplet.
-	 * 
-	 * @param marker The PApplet used for drawing.
-	 * @param x The x pixel coordinate of the upper left corner of the grid drawing. 
-	 * @param y The y pixel coordinate of the upper left corner of the grid drawing.
-	 * @param width The pixel width of the grid drawing.
-	 * @param height The pixel height of the grid drawing.
-	 */
-	public void draw(PApplet marker, float x, float y, float width, float height) {
-		marker.pushStyle();
-
-		float cellWidth = width/grid.length;
-		float cellHeight = height/grid[0].length;
-
-		for(int i = 0; i<grid[0].length; i++) {
-			for(int j = 0; j<grid.length; j++) {
-				if(grid[j][i] == '*')
-					marker.fill(0);
-				else
-					marker.fill(255);
-
-				marker.rect(cellWidth*j+x, cellHeight*i+y, cellWidth, cellHeight);
-			} //end of j
-		} //end of i
-
-		marker.popStyle(); //makes it so the marker setting here don't affect things drawn elsewhere
-	}
-
-	/**
-	 * Optionally, complete this method to determine which element of the grid matches with a
-	 * particular pixel coordinate.
-	 * 
-	 * @param p A Point object representing a graphical pixel coordinate.
-	 * @param x The x pixel coordinate of the upper left corner of the grid drawing. 
-	 * @param y The y pixel coordinate of the upper left corner of the grid drawing.
-	 * @param width The pixel width of the grid drawing.
-	 * @param height The pixel height of the grid drawing.
-	 * @return A Point object representing a coordinate within the game of life grid.
-	 */
-	public Point clickToIndex(Point p, float x, float y, float width, float height) {
-		float cellWidth = width/grid.length;
-		float cellHeight = height/grid[0].length;
-
-		int j = (int) ((p.x-x)/cellWidth);
-		int i = (int) ((p.y-y)/cellHeight);
-
-		if(j<0 || j>= grid.length)
-			return null;
-		if(i<0 || i>= grid[0].length)
-			return null;
-
-		return new Point(j,i);
-	}
 }

@@ -2,8 +2,8 @@
 public class Tester {
 	
 	public static void main(String[] args) {
-		EraseObject grid = new EraseObject("griddata\\digital.txt");
-		grid.erase(2, 5);
+		Maze grid = new Maze("griddata\\test1.txt");
+		grid.solve();
 		System.out.println(grid);
 	}
 
