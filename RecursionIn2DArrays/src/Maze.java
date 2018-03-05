@@ -46,10 +46,10 @@ public class Maze {
 			return false;
 		else if(grid[x][y] == 'X') //reached goal
 			return true;
-		else if(grid[x][y] == '#' || grid[x][y] == 'n') //blocked
+		else if(grid[x][y] == '#' || grid[x][y] == '!') //blocked or visited
 			return false;
 		else {
-			grid[x][y] = 'y';
+			grid[x][y] = '!';
 			
 			if(solve(x+1, y)) //right
 				return true;
@@ -60,7 +60,8 @@ public class Maze {
 			if(solve(x, y-1)) //down
 				return true;
 			
-			grid[x][y] = 'n';
+			grid[x][y] = '.';
+			
 			return false;
 		}
 	}
@@ -106,12 +107,7 @@ public class Maze {
 
 		for(int i = 0; i<grid[0].length; i++) {
 			for(int j = 0; j<grid.length; j++) {
-				if(grid[j][i] == '#' || grid[j][i] == '.' || grid[j][i] == 'X')
 					response += grid[j][i];
-				else if(grid[j][i] == 'n')
-					response += '.';
-				else if(grid[j][i] == 'y' || grid[j][i] == 'C')
-					response += '!';
 			}
 			response += "\n";
 		}
