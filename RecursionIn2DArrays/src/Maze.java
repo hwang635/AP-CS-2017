@@ -46,16 +46,16 @@ public class Maze {
 			return false;
 		else if(grid[x][y] == 'X') //reached goal
 			return true;
-		else if(grid[x][y] == '#' || grid[x][y] == '!') //blocked or visited
+		else if(grid[x][y] == '#' || grid[x][y] == '!' || grid[x][y] == '\u0000') //blocked or visited
 			return false;
 		else {
 			grid[x][y] = '!';
 			
 			if(solve(x+1, y)) //right
 				return true;
-			if(solve(x, y+1)) //up
-				return true;
 			if(solve(x-1, y)) //left
+				return true;
+			if(solve(x, y+1)) //up
 				return true;
 			if(solve(x, y-1)) //down
 				return true;
