@@ -25,19 +25,23 @@ public class Fibonacci {
 
 	public static void main (String[] args) {		
 		try {
-			Scanner kboard = new Scanner (System.in);
-			System.out.print("Which fibonacci number would you like to find? --> ");
-			int x = kboard.nextInt();
-			long answer = computeFibonacci(x);
-			System.out.println ("The " + x + " fibonacci number is " + answer + ".");
+			input();
 		}
 		catch(InputMismatchException exception) {
-			System.out.println("Input must be an integer");
-			main(args);
+			System.out.println("Input must be an integer, retry");
+			input();
 		}
 		catch(StackOverflowError exception) {
-			System.out.println("Input is too large");
+			System.out.println("Input is too large, retry");
 		}
+	}
+	
+	public static void input() {
+		Scanner kboard = new Scanner (System.in);
+		System.out.print("Which fibonacci number would you like to find? --> ");
+		int x = kboard.nextInt();
+		long answer = computeFibonacci(x);
+		System.out.println ("The " + x + " fibonacci number is " + answer + ".");
 	}
 
 }
