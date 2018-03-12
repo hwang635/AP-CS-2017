@@ -13,7 +13,7 @@ public class Fibonacci {
 	public static long computeFibonacci(int x) {
 
 		if(x<0) 
-			throw new IllegalArgumentException("Input must be greater than 0");
+			throw new IllegalArgumentException("Input must be greater than non-negative");
 		if (x <= 1) {
 			return x;
 		} else {
@@ -33,6 +33,7 @@ public class Fibonacci {
 		}
 		catch(StackOverflowError exception) {
 			System.out.println("Input is too large, retry");
+			input();
 		}
 	}
 	
@@ -45,6 +46,3 @@ public class Fibonacci {
 	}
 
 }
-
-
-
