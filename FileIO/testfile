@@ -16,7 +16,7 @@ public class Tester {
 			System.out.println("You chose to open this file: " +
 					chooser.getSelectedFile().getName());
 
-			ArrayList<String> fileData = FileIO.readFile("src//" + chooser.getSelectedFile().getName());
+			ArrayList<String> fileData = FileIO.readFile(chooser.getSelectedFile().getAbsolutePath());
 			System.out.println(fileData);
 
 			FileIO.writeFile("testfile", fileData);
