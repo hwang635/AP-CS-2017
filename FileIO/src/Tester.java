@@ -16,8 +16,10 @@ public class Tester {
 			System.out.println("You chose to open this file: " +
 					chooser.getSelectedFile().getName());
 
-			ArrayList<String> fileData = FileIO.readFile(chooser.getSelectedFile().getAbsolutePath());
-			System.out.println(fileData);
+			ArrayList<String> fileData = FileIO.readFile(chooser.getSelectedFile().getAbsolutePath());			
+			for(String s : fileData) {
+				System.out.println(s);
+			}
 
 			FileIO.writeFile("testfile", fileData);
 		}

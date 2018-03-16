@@ -1,26 +1,6 @@
-import java.util.ArrayList;
-
-import javax.swing.JFileChooser;
-
-public class Tester {
-
-	public static void main(String[] args) {
-
-		String workingDir = System.getProperty("user.dir");
-		JFileChooser chooser = new JFileChooser(workingDir);
-		//FileNameExtensionFilter filter = new FileNameExtensionFilter(
-		//"JPG & GIF Images", "jpg", "gif");
-		//chooser.setFileFilter(filter);
-		int returnVal = chooser.showOpenDialog(null);
-		if(returnVal == JFileChooser.APPROVE_OPTION) {
-			System.out.println("You chose to open this file: " +
-					chooser.getSelectedFile().getName());
-
-			ArrayList<String> fileData = FileIO.readFile(chooser.getSelectedFile().getAbsolutePath());
-			System.out.println(fileData);
-
-			FileIO.writeFile("testfile", fileData);
-		}
-	}
-
-}
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
