@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Tester {
 
 	public static void main(String[] args) {
-		
+
 		ArrayList<String> movieStrings =  FileIO.readFile("data" + FileIO.fileSeparator + "movies.csv");
 		ArrayList<Movie> movieData = new ArrayList<Movie>();
 		MovieLensCSVTranslator translator = new MovieLensCSVTranslator();
@@ -11,25 +11,24 @@ public class Tester {
 			Movie m = translator.parseMovie(movieStrings.get(i));
 			movieData.add(m);
 		} //parse movie obh
-		
+
 		ArrayList<String> movieLinks =  FileIO.readFile("data" + FileIO.fileSeparator + "links.csv");
-		
+
 		/*Movie m = movieData.get(i);
 		String[] links = translator.parseLinks(movieLinks.get(i+1));
 		m.addLinks(links);
 		System.out.println(m); */
-		
+
 		for(int i = 0; i<movieData.size(); i++) {
-			Movie m = movieData.get(911);
-			String[] links = translator.parseLinks(movieLinks.get(911));
+			Movie m = movieData.get(i);
+			String[] links = translator.parseLinks(movieLinks.get(i+1));
 			m.addLinks(links);
-			System.out.println(m);
 
 		} //add links
-		
-//		for(Movie m : movieData) {
-//			System.out.println(m);
-//		}
+
+		for(Movie m : movieData) {
+			System.out.println(m);
+		}
 	}
 
 
