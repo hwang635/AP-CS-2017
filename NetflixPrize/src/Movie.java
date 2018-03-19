@@ -34,7 +34,7 @@ public class Movie {
 		}
 		output += genre[genre.length-1];
 		
-		output += (" imdbID = " + imdbID + " tmdbID = " + tmdbID);
+		//output += (" imdbID = " + imdbID + " tmdbID = " + tmdbID);
 		
 		return output;
 	}
