@@ -7,6 +7,7 @@ public class Tag {
 	
 	private String tag;
 	private int timeStamp;
+	//private int movieID, userID;
 	
 	public Tag(String tag, int time) {
 		this.tag = tag;
@@ -20,4 +21,12 @@ public class Tag {
 	public int getTime(int index) {
 		return timeStamp;
 	}
+	
+	/*public int getMovieID() {
+		return movieID;
+	}
+	
+	public int getUserID() {
+		return userID;
+	} */
 }

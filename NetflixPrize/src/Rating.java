@@ -1,10 +1,12 @@
 
 public class Rating {
 	
-	double rating;
-	int timeStamp;
+	private double rating;
+	private int timeStamp;
+	private int movieID;
 	
-	public Rating(double r, int t) {
+	public Rating(int movieID, double r, int t) {
+		this.movieID = movieID;
 		rating = r;
 		timeStamp = t;
 	}
@@ -15,5 +17,9 @@ public class Rating {
 	
 	public int getTime() {
 		return timeStamp;
+	}
+	
+	public int getMovieID() {
+		return movieID;
 	}
 }

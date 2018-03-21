@@ -67,12 +67,12 @@ public class MovieLensCSVTranslator {
 		return m;
 	}
 
+	//912, missing piece
 	public String[] parseLinks(String line) {
 		String[] links = new String[2]; //String to keep leading zeroes
 
 		int c = line.indexOf(",");
 		line = line.substring(c+1); //remove movie id
-		System.out.println("line = " + line);
 
 		c = line.indexOf(",");
 		String imdbID = line.substring(0, c); //make imdbid
@@ -99,7 +99,7 @@ public class MovieLensCSVTranslator {
 			return userID;
 	}
 
-	private Rating parseRating(String line, Movie m) {
+	public Rating parseRating(String line) {
 		int comma = line.indexOf(",");
 		int userID = Integer.parseInt(line.substring(0, comma)); //get user id
 		line = line.substring(comma+1);
@@ -112,13 +112,14 @@ public class MovieLensCSVTranslator {
 		double rating = Double.parseDouble(line.substring(0, comma)); //get rating
 		line = line.substring(comma+1);
 
-		int rTime = Integer.parseInt(line);
+		int time = Integer.parseInt(line);
 
-		Rating r = new Rating(rating, rTime);
+		Rating r = new Rating(movieID, rating, time);
 
 		return r;
 	}
 
+	//line 337, quotes in data
 	public Tag parseTag(String line, Movie m) {
 		int comma = line.indexOf(",");
 		int userID = Integer.parseInt(line.substring(0, comma)); //get user id

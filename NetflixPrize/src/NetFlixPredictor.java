@@ -17,7 +17,9 @@ public class NetFlixPredictor {
 	 * @param linkFilePath The full path to the links database.
 	 */
 	public NetFlixPredictor(String movieFilePath, String ratingFilePath, String tagFilePath, String linkFilePath) {
-		
+		//copy paste code from tester
+		//change arraylists to fields so can access
+		//fill fields w/ info using translator
 	}
 		
 	/**

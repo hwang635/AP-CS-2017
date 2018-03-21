@@ -7,7 +7,6 @@ public class User {
 	private int userID;
 	private ArrayList<Movie> watchedMovies;
 	private ArrayList<Rating> ratings;
-	//private ArrayList<Tag> tags;
 	
 	public User(int id) {
 		userID = id;

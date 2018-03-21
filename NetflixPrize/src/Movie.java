@@ -41,7 +41,11 @@ public class Movie {
 		return output;
 	}
 		
-	public int getMovieID() {
+	public int getID() {
 		return movieID;
+	}
+	
+	public void addTag(Tag t) {
+		tags.add(t);
 	}
 }

@@ -22,16 +22,21 @@ public class Tester {
 
 		}
 		
-		ArrayList<String> ratings = FileIO.readFile("data" + FileIO.fileSeparator + "ratings.csv");
+		ArrayList<String> movieRatings = FileIO.readFile("data" + FileIO.fileSeparator + "ratings.csv");
 		ArrayList<User> userData = new ArrayList<User>();
-		
 		int current = 0, next = 0;
-		for(int i = 0; i<ratings.size(); i++) {
-			next  = translator.parseUser(ratings.get(i), current);
+		for(int i = 1; i<movieRatings.size(); i++) { //skip label line
+			next  = translator.parseUser(movieRatings.get(i), current); //new userid or -1 if same user
+			Rating r = translator.parseRating(movieRatings.get(i));
 			if(next != -1) {
 				User s = new User(next);
 				userData.add(s);
+				s.addRating(r);
 			}
+			else {
+				userData.get(i-1).addRating(r);
+			}
+			
 			current = next;
 		}
 
