@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 public class Movie {
 	
@@ -5,6 +6,7 @@ public class Movie {
 	private String title;
 	private int year;
 	private String[] genre;
+	private ArrayList<Tag> tags;
 	
 	private String imdbID,tmdbID; //Strings to keep leading zeroes
 	
@@ -39,4 +41,7 @@ public class Movie {
 		return output;
 	}
 		
+	public int getMovieID() {
+		return movieID;
+	}
 }

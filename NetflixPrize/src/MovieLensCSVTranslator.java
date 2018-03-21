@@ -25,7 +25,7 @@ public class MovieLensCSVTranslator {
 			if(p1 != -1) {
 				title = line.substring(0, p1-1) + "\"";
 				//System.out.println("title = " + title);
-				
+
 				if(line.indexOf("-", p1) < p2) //if range, start year
 					year = Integer.parseInt(line.substring(p1 + 1, p1+5));
 				else
@@ -42,7 +42,7 @@ public class MovieLensCSVTranslator {
 			if(p1 != -1) {//year + () exist
 				title = line.substring(0, p1-1);
 				//System.out.println("title = " + title);
-				
+
 				if(line.indexOf("-", p1) < p2) //if range of years, start year
 					year = Integer.parseInt(line.substring(p1 + 1, p1+5));
 				else
@@ -66,10 +66,10 @@ public class MovieLensCSVTranslator {
 
 		return m;
 	}
-	
+
 	public String[] parseLinks(String line) {
 		String[] links = new String[2]; //String to keep leading zeroes
-		
+
 		int c = line.indexOf(",");
 		line = line.substring(c+1); //remove movie id
 		System.out.println("line = " + line);
@@ -81,16 +81,64 @@ public class MovieLensCSVTranslator {
 
 		String tmdbID = line;
 		//System.out.println("tmdb " + tmdbID);
-	
+
 		links[0] = imdbID;
 		links[1] = tmdbID;
-		
+
 		return links;
 	}
 
-	public User parseUser(String line) {
-		return new User(0, null);
+	//returns -1 if same user, id is diff(construct new user)
+	public int parseUser(String line, int prevID) {
+		int comma = line.indexOf(",");
+		int userID = Integer.parseInt(line.substring(0, comma)); //get user id
+		
+		if(userID == prevID)
+			return -1;
+		else
+			return userID;
 	}
+
+	private Rating parseRating(String line, Movie m) {
+		int comma = line.indexOf(",");
+		int userID = Integer.parseInt(line.substring(0, comma)); //get user id
+		line = line.substring(comma+1);
+
+		comma = line.indexOf(",");
+		int movieID = Integer.parseInt(line.substring(0, comma)); //get movie id
+		line = line.substring(comma+1);
+
+		comma = line.indexOf(",");
+		double rating = Double.parseDouble(line.substring(0, comma)); //get rating
+		line = line.substring(comma+1);
+
+		int rTime = Integer.parseInt(line);
+
+		Rating r = new Rating(rating, rTime);
+
+		return r;
+	}
+
+	public Tag parseTag(String line, Movie m) {
+		int comma = line.indexOf(",");
+		int userID = Integer.parseInt(line.substring(0, comma)); //get user id
+		line = line.substring(comma+1);
+
+		comma = line.indexOf(",");
+		int movieID = Integer.parseInt(line.substring(0, comma)); //get movie id
+		line = line.substring(comma+1);
+
+		comma = line.indexOf(",");
+		String tag = line.substring(0, comma); //get tag
+		line = line.substring(comma);
+		
+		comma = line.indexOf(",");
+		int timeStamp = Integer.parseInt(line); //get time
+
+		Tag t = new Tag(tag, timeStamp);
+		return t;
+	}
+
 	private String[] numGenres(String line) {
 		int i = line.indexOf("|");
 		int count = 1;
