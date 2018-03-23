@@ -5,15 +5,10 @@ public class NetFlixPredictor {
 
 
 	// Add fields to represent your database.
-	ArrayList<String> movieStrings;
-	ArrayList<String> movieLinks;
-	ArrayList<String> movieRatings;
-	ArrayList<String> movieTags;
-
-	ArrayList<Movie> movieData;
-	ArrayList<User> userData;
-	ArrayList<Rating> ratingData;
-	ArrayList<Tag> tagData;
+	private ArrayList<Movie> movieData;
+	private ArrayList<User> userData;
+	private ArrayList<Rating> ratingData;
+	private ArrayList<Tag> tagData;
 
 	/**
 	 * 
@@ -30,7 +25,7 @@ public class NetFlixPredictor {
 		//fill fields w/ info using translator
 
 		//parse initial movie obj, movies.csv
-		movieStrings =  FileIO.readFile(movieFilePath);
+		ArrayList<String> movieStrings =  FileIO.readFile(movieFilePath);
 		movieData = new ArrayList<Movie>();
 		MovieLensCSVTranslator translator = new MovieLensCSVTranslator();
 		for(int i = 1; i<movieStrings.size(); i++) {
@@ -39,7 +34,7 @@ public class NetFlixPredictor {
 		} //parse movie obh
 
 		//add links to movie
-		movieLinks =  FileIO.readFile(linkFilePath);
+		ArrayList<String> movieLinks =  FileIO.readFile(linkFilePath);
 		for(int i = 0; i<movieData.size(); i++) {
 			Movie m = movieData.get(i);
 			String[] links = translator.parseLinks(movieLinks.get(i+1));
@@ -48,7 +43,7 @@ public class NetFlixPredictor {
 		}
 
 		//create user + rating from ratings.csv
-		movieRatings = FileIO.readFile(ratingFilePath);
+		ArrayList<String> movieRatings = FileIO.readFile(ratingFilePath);
 		userData = new ArrayList<User>();
 		ratingData = new ArrayList<Rating>();
 		for(int i = 1; i<movieRatings.size(); i++) { //skip label line
@@ -57,7 +52,7 @@ public class NetFlixPredictor {
 		}
 
 		//for r in rating data, if rating w/ 
-		
+
 		for(Rating r: ratingData) {
 			int userID = r.getUserID();
 			int index = findUser(userID);
@@ -73,86 +68,86 @@ public class NetFlixPredictor {
 			s.addRating(r);
 		}
 
-			//put in all the tags
-			movieTags = FileIO.readFile(tagFilePath);
-			tagData = new ArrayList<Tag>();
-			for(int i = 1; i<movieTags.size(); i++) {
-				Tag t = translator.parseTag(movieTags.get(i));
-				tagData.add(t);
+		//put in all the tags
+		ArrayList<String> movieTags = FileIO.readFile(tagFilePath);
+		tagData = new ArrayList<Tag>();
+		for(int i = 1; i<movieTags.size(); i++) {
+			Tag t = translator.parseTag(movieTags.get(i));
+			tagData.add(t);
+		}
+
+		//assign tags to movies by matching movieID
+		for(Movie m : movieData) {
+			for(Tag t : tagData) {
+				if(m.getID() == t.getMovieID())
+					m.addTag(t);
 			}
-
-			//assign tags to movies by matching movieID
-			for(Movie m : movieData) {
-				for(Tag t : tagData) {
-					if(m.getID() == t.getMovieID())
-						m.addTag(t);
-				}
-			}
 		}
-
-		/**
-		 * If userNumber has rated movieNumber, return the rating. Otherwise, return -1.
-		 * 
-		 * @param userNumber The ID of the user.
-		 * @param movieNumber The ID of the movie.
-		 * @return The rating that userNumber gave movieNumber, or -1 if the user does not exist in the database, the movie does not exist, or the movie has not been rated by this user.
-		 */
-		public double getRating(int userID, int movieID) {
-			int user = findUser(userID);
-			if(user != -1) {
-				if(userData.get(user).watched(movieID))
-					return userData.get(user).getRating(movieID);
-			}
-
-			return -1;
-		}
-
-		//returns index of user w/ userID in userData, if not found -1
-		private int findUser(int userID) {
-			int index = -1;
-			for(User s : userData) {
-				index++;
-				if(s.getID() == userID) {
-					return index;
-				}
-			}
-			return -1; 
-		}
-
-		//returns index of movie w/ movieID in movieData, if not found = -1
-		private int findMovie(int movieID) {
-			int index = -1;
-			for(Movie m : movieData) {
-				index++;
-				if(m.getID() == movieID) {
-					return index;
-				}
-			}
-			return index; 
-		}
-		/**
-		 * If userNumber has rated movieNumber, return the rating. Otherwise, use other available data to guess what this user would rate the movie.
-		 * 
-		 * @param userNumber The ID of the user.
-		 * @param movieNumber The ID of the movie.
-		 * @return The rating that userNumber gave movieNumber, or the best guess if the movie has not been rated by this user.
-		 * @pre A user with id userID and a movie with id movieID exist in the database.
-		 */
-		public double guessRating(int userID, int movieID) {
-
-			return 0;
-		}
-
-		/**
-		 * Recommend a movie that you think this user would enjoy (but they have not currently rated it). 
-		 * 
-		 * @param userNumber The ID of the user.
-		 * @return The ID of a movie that data suggests this user would rate highly (but they haven't rated it currently).
-		 * @pre A user with id userID exists in the database.
-		 */
-		public int recommendMovie(int userID) {
-
-			return 0;
-		}
-
 	}
+
+	/**
+	 * If userNumber has rated movieNumber, return the rating. Otherwise, return -1.
+	 * 
+	 * @param userNumber The ID of the user.
+	 * @param movieNumber The ID of the movie.
+	 * @return The rating that userNumber gave movieNumber, or -1 if the user does not exist in the database, the movie does not exist, or the movie has not been rated by this user.
+	 */
+	public double getRating(int userID, int movieID) {
+		int user = findUser(userID);
+		if(user != -1) {
+			if(userData.get(user).watched(movieID))
+				return userData.get(user).getRating(movieID);
+		}
+
+		return -1;
+	}
+
+	//returns index of user w/ userID in userData, if not found -1
+	private int findUser(int userID) {
+		int index = -1;
+		for(User s : userData) {
+			index++;
+			if(s.getID() == userID) {
+				return index;
+			}
+		}
+		return -1; 
+	}
+
+	//returns index of movie w/ movieID in movieData, if not found = -1
+	private int findMovie(int movieID) {
+		int index = -1;
+		for(Movie m : movieData) {
+			index++;
+			if(m.getID() == movieID) {
+				return index;
+			}
+		}
+		return index; 
+	}
+	/**
+	 * If userNumber has rated movieNumber, return the rating. Otherwise, use other available data to guess what this user would rate the movie.
+	 * 
+	 * @param userNumber The ID of the user.
+	 * @param movieNumber The ID of the movie.
+	 * @return The rating that userNumber gave movieNumber, or the best guess if the movie has not been rated by this user.
+	 * @pre A user with id userID and a movie with id movieID exist in the database.
+	 */
+	public double guessRating(int userID, int movieID) {
+
+		return 0;
+	}
+
+	/**
+	 * Recommend a movie that you think this user would enjoy (but they have not currently rated it). 
+	 * 
+	 * @param userNumber The ID of the user.
+	 * @return The ID of a movie that data suggests this user would rate highly (but they haven't rated it currently).
+	 * @pre A user with id userID exists in the database.
+	 */
+	public int recommendMovie(int userID) {
+
+		return 0;
+	}
+
+}
