@@ -26,4 +26,24 @@ public class User {
 		ratings.add(r);
 	}
 	
+	public double getRating(int movieID) {
+		for(Rating r: ratings) {
+			if(r.getMovieID() == movieID) {
+				return r.getRating();
+			}
+		}
+		
+		return -1.0;
+	}
+		
+	public boolean watched(int m) {
+		for(Integer id : watchedMovies) {
+			if(id == m) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
+		
 }
