@@ -98,6 +98,15 @@ public class MovieLensCSVTranslator {
 		else
 			return userID;
 	}
+	
+	//returns user from line (rating file)
+	public User parseUser(String line) {
+		int c = line.indexOf(",");
+		int userID = Integer.parseInt(line.substring(0, c));
+		
+		User s = new User(userID);
+		return s;
+	}
 
 	public Rating parseRating(String line) {
 		int comma = line.indexOf(",");
@@ -114,13 +123,13 @@ public class MovieLensCSVTranslator {
 
 		int time = Integer.parseInt(line);
 
-		Rating r = new Rating(movieID, rating, time);
+		Rating r = new Rating(rating, time, userID, movieID);
 
 		return r;
 	}
 
 	//line 337, quotes in data
-	public Tag parseTag(String line, Movie m) {
+	public Tag parseTag(String line) {
 		int comma = line.indexOf(",");
 		int userID = Integer.parseInt(line.substring(0, comma)); //get user id
 		line = line.substring(comma+1);
@@ -129,14 +138,13 @@ public class MovieLensCSVTranslator {
 		int movieID = Integer.parseInt(line.substring(0, comma)); //get movie id
 		line = line.substring(comma+1);
 
-		comma = line.indexOf(",");
+		comma = line.lastIndexOf(",");
 		String tag = line.substring(0, comma); //get tag
-		line = line.substring(comma);
+		line = line.substring(comma+1);
 		
-		comma = line.indexOf(",");
 		int timeStamp = Integer.parseInt(line); //get time
 
-		Tag t = new Tag(tag, timeStamp);
+		Tag t = new Tag(tag, timeStamp, userID, movieID);
 		return t;
 	}
 

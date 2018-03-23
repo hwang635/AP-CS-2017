@@ -15,6 +15,7 @@ public class Movie {
 		this.title = title;
 		this.year = year;
 		this.genre = genre;
+		tags = new ArrayList<Tag>();
 	}
 	
 	public void addLinks(String[] ids) {

@@ -22,28 +22,73 @@ public class Tester {
 
 		}
 		
+		/*
+		for(int i = 1; i<movieRatings.size(); i++) {
+			Rating r = translator.parseRating(movieRatings.get(i));
+			User s = translator.parseUser(movieRatings.get(i));
+			ratingData.add(r);
+			userData.add(s);
+		}
+		
+		for(User s : userData) {
+			for(Rating r : ratingData) {
+				if(s.getID() == r.getUserID())
+					s.addRating(r);
+					s.addMovie(r.getMovieID());
+			}
+		} */
+		
 		ArrayList<String> movieRatings = FileIO.readFile("data" + FileIO.fileSeparator + "ratings.csv");
 		ArrayList<User> userData = new ArrayList<User>();
-		int current = 0, next = 0;
+		ArrayList<Rating> ratingData = new ArrayList<Rating>();
+		int current = 0, next = -10;
+		int userCount = 0;
 		for(int i = 1; i<movieRatings.size(); i++) { //skip label line
 			next  = translator.parseUser(movieRatings.get(i), current); //new userid or -1 if same user
 			Rating r = translator.parseRating(movieRatings.get(i));
+			ratingData.add(r);
 			if(next != -1) {
 				User s = new User(next);
 				userData.add(s);
 				s.addRating(r);
+				s.addMovie(r.getMovieID());
+				userCount++;
 			}
 			else {
-				userData.get(i-1).addRating(r);
+				userData.get(userCount-1).addRating(r);
+				userData.get(userCount-1).addMovie(r.getMovieID());
 			}
 			
 			current = next;
 		}
-
-		//print out
+		
+		ArrayList<String> movieTags = FileIO.readFile("data" + FileIO.fileSeparator + "tags.csv");
+		ArrayList<Tag> tagData = new ArrayList<Tag>();
+		for(int i = 1; i<movieTags.size(); i++) {
+			Tag t = translator.parseTag(movieTags.get(i));
+			tagData.add(t);
+		} //put in all the tags
+		
 		for(Movie m : movieData) {
-			System.out.println(m);
+			for(Tag t : tagData) {
+				if(m.getID() == t.getMovieID())
+					m.addTag(t);
+			}
 		}
+		
+		for (Tag t : tagData) {
+			System.out.println(t);
+		}
+		System.out.println(tagData.size());
+		/*for (Rating r : ratingData) {
+			System.out.println(r);
+		}
+		System.out.println(ratingData.size()); */
+		
+		//print out
+		/*for(Movie m : movieData) {
+			System.out.println(m);
+		} */
 	}
 
 
