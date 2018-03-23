@@ -31,7 +31,7 @@ public class NetFlixPredictor {
 		for(int i = 1; i<movieStrings.size(); i++) {
 			Movie m = translator.parseMovie(movieStrings.get(i));
 			movieData.add(m);
-		} //parse movie obh
+		} //parse movie obj
 
 		//add links to movie
 		ArrayList<String> movieLinks =  FileIO.readFile(linkFilePath);
@@ -49,6 +49,9 @@ public class NetFlixPredictor {
 		for(int i = 1; i<movieRatings.size(); i++) { //skip label line
 			Rating r = translator.parseRating(movieRatings.get(i));
 			ratingData.add(r);
+
+			int movieIndex = findMovie(r.getMovieID());
+			movieData.get(movieIndex).addRating(r);
 		}
 
 		//for r in rating data, if rating w/ 
@@ -134,8 +137,14 @@ public class NetFlixPredictor {
 	 * @pre A user with id userID and a movie with id movieID exist in the database.
 	 */
 	public double guessRating(int userID, int movieID) {
+		int user = findUser(userID);
 
-		return 0;
+		if(userData.get(user).watched(movieID))
+			return userData.get(user).getRating(movieID);
+		else {
+			//int movie = findMovie(movieID);
+			return 3;
+		}
 	}
 
 	/**

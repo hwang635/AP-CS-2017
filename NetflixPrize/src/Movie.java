@@ -7,6 +7,8 @@ public class Movie {
 	private int year;
 	private String[] genre;
 	private ArrayList<Tag> tags;
+	private ArrayList<Rating> ratings;
+	private double avgRating;
 	
 	private String imdbID,tmdbID; //Strings to keep leading zeroes
 	
@@ -16,6 +18,9 @@ public class Movie {
 		this.year = year;
 		this.genre = genre;
 		tags = new ArrayList<Tag>();
+		ratings = new ArrayList<Rating>();
+		
+		avgRating = calcAvgRating();
 	}
 	
 	public void addLinks(String[] ids) {
@@ -49,4 +54,26 @@ public class Movie {
 	public void addTag(Tag t) {
 		tags.add(t);
 	}
+	
+	public void addRating(Rating r) {
+		ratings.add(r);
+	}
+	
+	public double calcAvgRating() {
+		double average = 0;
+		for(Rating r : ratings) {
+			average += r.getRating();
+		}
+				
+		if(ratings.size() > 0)
+			return average/ratings.size();
+		
+		return -1;
+	}
+	
+	public double getAvgRating() {
+		return avgRating;
+	}
+	
+	
 }
