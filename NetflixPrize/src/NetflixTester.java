@@ -22,6 +22,7 @@ public class NetflixTester {
 		System.out.println("\n***Initializing Predictor***");
 		
 		NetFlixPredictor tester = new NetFlixPredictor(moviesFile, baseFile, tagsFile, linksFile);
+		System.out.println(tester.calcAvgRating());
 		
 		System.out.println("\n***Testing getRating Method***");
 		
@@ -137,6 +138,8 @@ public class NetflixTester {
 		System.out.println("Total difference between guessed and actual ratings: " + totalDifference);
 		System.out.println("Average difference between guessed and actual ratings: " + totalDifference/numberTested);
 		System.out.println("Root square mean difference between guessed and actual ratings: " + Math.sqrt(totalSquareDifference/numberTested));
+		
+		
 		
 		
 	}

@@ -9,6 +9,8 @@ public class NetFlixPredictor {
 	private ArrayList<User> userData;
 	private ArrayList<Rating> ratingData;
 	private ArrayList<Tag> tagData;
+	
+	private double averageRating;
 
 	/**
 	 * 
@@ -23,7 +25,7 @@ public class NetFlixPredictor {
 		//copy paste code from tester
 		//change arraylists to fields so can access
 		//fill fields w/ info using translator
-
+		
 		//parse initial movie obj, movies.csv
 		ArrayList<String> movieStrings =  FileIO.readFile(movieFilePath);
 		movieData = new ArrayList<Movie>();
@@ -86,6 +88,8 @@ public class NetFlixPredictor {
 					m.addTag(t);
 			}
 		}
+		
+		averageRating = calcAvgRating();
 	}
 
 	/**
@@ -142,8 +146,7 @@ public class NetFlixPredictor {
 		if(userData.get(user).watched(movieID))
 			return userData.get(user).getRating(movieID);
 		else {
-			//int movie = findMovie(movieID);
-			return 3;
+			return averageRating;
 		}
 	}
 
@@ -157,6 +160,20 @@ public class NetFlixPredictor {
 	public int recommendMovie(int userID) {
 
 		return 0;
+	}
+
+	public double calcAvgRating() {
+		double r = 0;
+		int count = 0;
+
+		for(Movie m: movieData) {
+			if(m.getAvgRating() != -1) {
+				r += m.getAvgRating();
+				count++;
+			}
+
+		}
+		return r/count;
 	}
 
 }

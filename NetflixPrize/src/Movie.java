@@ -59,7 +59,7 @@ public class Movie {
 		ratings.add(r);
 	}
 	
-	public double calcAvgRating() {
+	private double calcAvgRating() {
 		double average = 0;
 		for(Rating r : ratings) {
 			average += r.getRating();

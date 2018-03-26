@@ -40,16 +40,17 @@ public class User {
 	}
 	
 	
-	public double calcAvgRating() {
+	private double calcAvgRating() {
 		double average = 0;
-		for(Rating r : ratings) {
-			average += r.getRating();
-		}
-				
-		if(ratings.size() > 0)
-			return average/ratings.size();
 		
-		return -1;
+		if(ratings.size()>0) {
+			for(Rating r : ratings) {
+				average += r.getRating();
+			}
+			return average/ratings.size();
+		}
+		
+		return -1.0;
 	}
 		
 	public double getAvgRating() {
