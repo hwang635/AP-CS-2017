@@ -3,8 +3,8 @@ import java.util.ArrayList;
 
 public class NetflixTester {
 	
-	public static final String baseFile = "testingDatasets" + FileIO.fileSeparator + "5Ratings.csv";
-	public static final String testFile = "testingDatasets" + FileIO.fileSeparator + "5Tests.csv";
+	public static final String baseFile = "testingDatasets" + FileIO.fileSeparator + "3Ratings.csv";
+	public static final String testFile = "testingDatasets" + FileIO.fileSeparator + "3Tests.csv";
 
 	public static final String moviesFile = "data" + FileIO.fileSeparator + "movies.csv";
 	public static final String linksFile = "data" + FileIO.fileSeparator + "links.csv";
@@ -15,14 +15,15 @@ public class NetflixTester {
 	public static void main(String[] args) {
 		
 		FileIO reader = new FileIO();
+		NetFlixPredictor tester = new NetFlixPredictor(moviesFile, baseFile, tagsFile, linksFile);
+		System.out.println(tester.calcAvgRating());
 		
 		System.out.println("\n***Starting the clock***");
 		long startTime = System.currentTimeMillis();
 		
 		System.out.println("\n***Initializing Predictor***");
 		
-		NetFlixPredictor tester = new NetFlixPredictor(moviesFile, baseFile, tagsFile, linksFile);
-		System.out.println(tester.calcAvgRating());
+		//NetFlixPredictor tester = new NetFlixPredictor(moviesFile, baseFile, tagsFile, linksFile);
 		
 		System.out.println("\n***Testing getRating Method***");
 		
@@ -138,8 +139,6 @@ public class NetflixTester {
 		System.out.println("Total difference between guessed and actual ratings: " + totalDifference);
 		System.out.println("Average difference between guessed and actual ratings: " + totalDifference/numberTested);
 		System.out.println("Root square mean difference between guessed and actual ratings: " + Math.sqrt(totalSquareDifference/numberTested));
-		
-		
 		
 		
 	}

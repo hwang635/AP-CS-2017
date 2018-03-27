@@ -7,14 +7,14 @@ public class User {
 	private int userID;
 	private ArrayList<Integer> watchedMovies;
 	private ArrayList<Rating> ratings;
-	private double avgRating;
+	private double sumRating;
 	
 	public User(int id) {
 		userID = id;
 		watchedMovies = new ArrayList<Integer>();
 		ratings = new ArrayList<Rating>();
 		
-		avgRating = calcAvgRating();
+		sumRating = 0;
 	}
 
 	public int getID() {
@@ -27,6 +27,7 @@ public class User {
 	
 	public void addRating(Rating r) {
 		ratings.add(r);
+		sumRating += r.getRating();
 	}
 	
 	public double getRating(int movieID) {
@@ -39,24 +40,19 @@ public class User {
 		return -1.0;
 	}
 	
-	
-	private double calcAvgRating() {
-		double average = 0;
-		
-		if(ratings.size()>0) {
-			for(Rating r : ratings) {
-				average += r.getRating();
-			}
-			return average/ratings.size();
-		}
-		
-		return -1.0;
-	}
-		
 	public double getAvgRating() {
-		return avgRating;
+		int size = ratings.size();
+		
+		if(size>0)
+			return sumRating/size;
+		else
+			return -1.0;
 	}
 	
+	public int getNumRating() {
+		return ratings.size();
+	}
+
 	public boolean watched(int m) {
 		for(Integer id : watchedMovies) {
 			if(id == m) {

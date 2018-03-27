@@ -146,7 +146,8 @@ public class NetFlixPredictor {
 		if(userData.get(user).watched(movieID))
 			return userData.get(user).getRating(movieID);
 		else {
-			return averageRating;
+			return 3.7;
+			//return averageRating;
 		}
 	}
 
@@ -165,14 +166,12 @@ public class NetFlixPredictor {
 	public double calcAvgRating() {
 		double r = 0;
 		int count = 0;
-
-		for(Movie m: movieData) {
-			if(m.getAvgRating() != -1) {
-				r += m.getAvgRating();
-				count++;
-			}
-
+		
+		for(Movie m : movieData) {
+			r += m.getRatingSum();
+			count += m.getNumRatings();
 		}
+		
 		return r/count;
 	}
 
