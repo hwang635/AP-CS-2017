@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 
 
 public class NetFlixPredictor {
@@ -34,6 +35,8 @@ public class NetFlixPredictor {
 			Movie m = translator.parseMovie(movieStrings.get(i));
 			movieData.add(m);
 		} //parse movie obj
+		
+		Collections.sort(movieData);
 
 		//add links to movie
 		ArrayList<String> movieLinks =  FileIO.readFile(linkFilePath);
@@ -62,7 +65,7 @@ public class NetFlixPredictor {
 			int userID = r.getUserID();
 			int index = findUser(userID);
 			User s;
-			if(index == -1) {
+			if(index <0) {
 				s = new User(userID);
 				userData.add(s);
 			}
@@ -72,6 +75,8 @@ public class NetFlixPredictor {
 			s.addMovie(r.getMovieID());
 			s.addRating(r);
 		}
+		
+		Collections.sort(userData);
 
 		//put in all the tags
 		ArrayList<String> movieTags = FileIO.readFile(tagFilePath);
@@ -101,9 +106,10 @@ public class NetFlixPredictor {
 	 */
 	public double getRating(int userID, int movieID) {
 		int user = findUser(userID);
-		if(user != -1) {
-			if(userData.get(user).watched(movieID))
-				return userData.get(user).getRating(movieID);
+		if(user >= 0) {
+			User s = userData.get(user);
+			if(s.watched(movieID))
+				return s.getRating(movieID);
 		}
 
 		return -1;
@@ -111,25 +117,27 @@ public class NetFlixPredictor {
 
 	//returns index of user w/ userID in userData, if not found -1
 	private int findUser(int userID) {
-		int index = -1;
-		for(User s : userData) {
+		/*for(User s : userData) {
 			index++;
 			if(s.getID() == userID) {
 				return index;
 			}
-		}
-		return -1; 
+		} */
+		
+		int index = Collections.binarySearch(userData, new User(userID));
+		return index; 
 	}
 
-	//returns index of movie w/ movieID in movieData, if not found = -1
+	//returns index of movie w/ movieID in movieData, if not found returns -number
 	private int findMovie(int movieID) {
-		int index = -1;
-		for(Movie m : movieData) {
+		/*for(Movie m : movieData) {
 			index++;
 			if(m.getID() == movieID) {
 				return index;
 			}
-		}
+		} */
+		
+		int index = Collections.binarySearch(movieData, new Movie(movieID));
 		return index; 
 	}
 	/**
@@ -158,6 +166,18 @@ public class NetFlixPredictor {
 			return baselineRating;
 	}
 
+	/*private void setGenres(User s) {
+		ArrayList<Integer> watched = s.getWatchedMovies();
+		for(int i : watched) {
+			Movie m = movieData.get(findMovie(i));
+			
+			String[] genre = m.getGenres();
+			for(String str : genre) {
+				s.addGenre(str);
+			}
+		}
+	} */ 
+	
 	/**
 	 * Recommend a movie that you think this user would enjoy (but they have not currently rated it). 
 	 * 

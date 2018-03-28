@@ -1,11 +1,11 @@
 import java.util.ArrayList;
 
-public class Movie {
+public class Movie implements Comparable<Movie>{
 	
-	public int movieID;
+	private int movieID;
 	private String title;
 	private int year;
-	private String[] genre;
+	private String[] genres;
 	private ArrayList<Tag> tags;
 	private ArrayList<Rating> ratings;
 	private double sumRating;
@@ -14,11 +14,11 @@ public class Movie {
 	
 	private String imdbID,tmdbID; //Strings to keep leading zeroes
 	
-	public Movie(int movieID, String title, int year, String[] genre) {
+	public Movie(int movieID, String title, int year, String[] genres) {
 		this.movieID = movieID;
 		this.title = title;
 		this.year = year;
-		this.genre = genre;
+		this.genres = genres;
 		tags = new ArrayList<Tag>();
 		ratings = new ArrayList<Rating>();
 		
@@ -26,6 +26,9 @@ public class Movie {
 		inceptionEffect = 0.0;
 	}
 	
+	public Movie (int movieID) {
+		this.movieID = movieID;
+	}
 	public void addLinks(String[] ids) {
 		imdbID = ids[0];
 		tmdbID = ids[1];
@@ -40,10 +43,10 @@ public class Movie {
 	public String toString() {
 		String output = movieID + ", " + title + " (" + year + "), ";
 		
-		for(int i = 0; i<genre.length-1; i++) {
-			output += (genre [i] + "|");
+		for(int i = 0; i<genres.length-1; i++) {
+			output += (genres [i] + "|");
 		}
-		output += genre[genre.length-1];
+		output += genres[genres.length-1];
 		
 		//output += (" imdbID = " + imdbID + " tmdbID = " + tmdbID);
 		
@@ -85,6 +88,16 @@ public class Movie {
 	
 	public double getNumRatings() {
 		return ratings.size();
+	}
+
+	public String[] getGenres() {
+		return genres;
+	}
+	
+	@Override
+	public int compareTo(Movie arg0) {
+		// TODO Auto-generated method stub
+		return movieID - arg0.getID();
 	}
 	
 }

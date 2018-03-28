@@ -4,7 +4,7 @@ public class Rating {
 	private double rating;
 	private int timeStamp;
 	private int movieID, userID;
-	
+		
 	public Rating(double r, int t, int userID, int movieID) {
 		rating = r;
 		timeStamp = t;
