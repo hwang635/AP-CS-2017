@@ -10,6 +10,8 @@ public class Movie {
 	private ArrayList<Rating> ratings;
 	private double sumRating;
 	
+	private double inceptionEffect;
+	
 	private String imdbID,tmdbID; //Strings to keep leading zeroes
 	
 	public Movie(int movieID, String title, int year, String[] genre) {
@@ -21,6 +23,7 @@ public class Movie {
 		ratings = new ArrayList<Rating>();
 		
 		sumRating = 0.0;
+		inceptionEffect = 0.0;
 	}
 	
 	public void addLinks(String[] ids) {
@@ -69,6 +72,12 @@ public class Movie {
 			return -1.0;
 	}
 	
+	public double getInceptionEffect(double baseline) {
+		double i = this.getAvgRating();
+		i = i - baseline;
+		
+		return i;
+	}
 	
 	public double getRatingSum() {
 		return sumRating;

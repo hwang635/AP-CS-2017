@@ -3,8 +3,8 @@ import java.util.ArrayList;
 
 public class NetflixTester {
 	
-	public static final String baseFile = "testingDatasets" + FileIO.fileSeparator + "3Ratings.csv";
-	public static final String testFile = "testingDatasets" + FileIO.fileSeparator + "3Tests.csv";
+	public static final String baseFile = "testingDatasets" + FileIO.fileSeparator + "2Ratings.csv";
+	public static final String testFile = "testingDatasets" + FileIO.fileSeparator + "2Tests.csv";
 
 	public static final String moviesFile = "data" + FileIO.fileSeparator + "movies.csv";
 	public static final String linksFile = "data" + FileIO.fileSeparator + "links.csv";
@@ -16,7 +16,6 @@ public class NetflixTester {
 		
 		FileIO reader = new FileIO();
 		NetFlixPredictor tester = new NetFlixPredictor(moviesFile, baseFile, tagsFile, linksFile);
-		System.out.println(tester.calcAvgRating());
 		
 		System.out.println("\n***Starting the clock***");
 		long startTime = System.currentTimeMillis();

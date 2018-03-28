@@ -9,8 +9,8 @@ public class NetFlixPredictor {
 	private ArrayList<User> userData;
 	private ArrayList<Rating> ratingData;
 	private ArrayList<Tag> tagData;
-	
-	private double averageRating;
+
+	private double baselineRating;
 
 	/**
 	 * 
@@ -25,7 +25,7 @@ public class NetFlixPredictor {
 		//copy paste code from tester
 		//change arraylists to fields so can access
 		//fill fields w/ info using translator
-		
+
 		//parse initial movie obj, movies.csv
 		ArrayList<String> movieStrings =  FileIO.readFile(movieFilePath);
 		movieData = new ArrayList<Movie>();
@@ -88,8 +88,8 @@ public class NetFlixPredictor {
 					m.addTag(t);
 			}
 		}
-		
-		averageRating = calcAvgRating();
+
+		baselineRating = calcBaselineRating();
 	}
 
 	/**
@@ -141,14 +141,21 @@ public class NetFlixPredictor {
 	 * @pre A user with id userID and a movie with id movieID exist in the database.
 	 */
 	public double guessRating(int userID, int movieID) {
-		int user = findUser(userID);
+		User s = userData.get(findUser(userID));
 
-		if(userData.get(user).watched(movieID))
-			return userData.get(user).getRating(movieID);
-		else {
-			return 3.7;
-			//return averageRating;
+		if(s.watched(movieID))
+			return s.getRating(movieID);
+		else if(s.getAvgRating() != -1) { //user avg more accurate than movie avg
+			Movie m = movieData.get(findMovie(movieID));
+			if(m.getAvgRating() != -1) { //user and movie have been rated
+				return baselineRating + s.getAliceEffect(baselineRating) + m.getInceptionEffect(baselineRating);
+				//add effect by genre?
+			}
+			else //only user has ratings
+				return s.getAvgRating();
 		}
+		else
+			return baselineRating;
 	}
 
 	/**
@@ -163,15 +170,15 @@ public class NetFlixPredictor {
 		return 0;
 	}
 
-	public double calcAvgRating() {
+	public double calcBaselineRating() {
 		double r = 0;
 		int count = 0;
-		
+
 		for(Movie m : movieData) {
 			r += m.getRatingSum();
 			count += m.getNumRatings();
 		}
-		
+
 		return r/count;
 	}
 

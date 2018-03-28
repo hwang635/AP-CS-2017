@@ -8,13 +8,15 @@ public class User {
 	private ArrayList<Integer> watchedMovies;
 	private ArrayList<Rating> ratings;
 	private double sumRating;
+	private double aliceEffect;
 	
 	public User(int id) {
 		userID = id;
 		watchedMovies = new ArrayList<Integer>();
 		ratings = new ArrayList<Rating>();
 		
-		sumRating = 0;
+		sumRating = 0.0;
+		aliceEffect = 0.0;
 	}
 
 	public int getID() {
@@ -52,6 +54,13 @@ public class User {
 	public int getNumRating() {
 		return ratings.size();
 	}
+	
+	public double getAliceEffect(double baseline) {
+		double a = this.getAvgRating();
+		a = a-baseline;
+		
+		return a;
+	}
 
 	public boolean watched(int m) {
 		for(Integer id : watchedMovies) {
@@ -62,6 +71,5 @@ public class User {
 		
 		return false;
 	}
-	
-		
+			
 }
