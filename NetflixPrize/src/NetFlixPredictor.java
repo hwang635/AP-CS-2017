@@ -169,14 +169,14 @@ public class NetFlixPredictor {
 				ArrayList<String> genre = new ArrayList<String>();
 				m.setGenre(genre);
 				
-				double rating = baselineRating + 0.45*s.getAliceEffect(baselineRating) + 
-						0.634*m.getInceptionEffect(baselineRating) + 0.419*s.getGenreEffect(genre, baselineRating);
+				double rating = baselineRating + 0.432*s.getAliceEffect(baselineRating) + 
+						0.635*m.getInceptionEffect(baselineRating) + 0.421*s.getGenreEffect(genre, baselineRating);
 
-				//9093570891881914, 0.45, 9,634, 9,419
-				if(rating > 5)
+				//9093223492730705, 0.432, 0.635, 0.419
+				if(rating >= 5)
 					return 5.0;
-				else if(rating < 0)
-					return 0;
+				else if(rating <= 0.5)
+					return 0.5;
 				else 
 					return rating;
 				//add effect by genre?
@@ -204,8 +204,15 @@ public class NetFlixPredictor {
 	 * @pre A user with id userID exists in the database.
 	 */
 	public int recommendMovie(int userID) {
+		int index = findUser(userID);
+		User s = userData.get(index);
 		
-
+		Genre g = s.getFavGenre();
+		String genreName = g.getGenre();
+		if(genreName.equals("no info"));
+		else;
+		
+		
 		return 0;
 	}
 

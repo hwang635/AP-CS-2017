@@ -10,8 +10,6 @@ public class NetflixTester {
 	public static final String linksFile = "data" + FileIO.fileSeparator + "links.csv";
 	public static final String tagsFile = "data" + FileIO.fileSeparator + "tags.csv";
 	
-
-	
 	public static void main(String[] args) {
 		
 		FileIO reader = new FileIO();

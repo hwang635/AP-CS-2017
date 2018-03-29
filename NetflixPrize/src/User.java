@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 
 import javax.swing.text.html.HTML.Tag;
 
@@ -122,6 +123,14 @@ public class User implements Comparable<User> {
 		}
 	}
 
+	public Genre getFavGenre() {
+		Collections.sort(genres);
+
+		if(!genres.isEmpty())
+			return genres.get(0);
+		else
+			return new Genre("no info");
+	}
 	@Override
 	public int compareTo(User o) {
 		// TODO Auto-generated method stub
