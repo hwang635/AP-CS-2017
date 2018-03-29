@@ -93,6 +93,15 @@ public class NetFlixPredictor {
 					m.addTag(t);
 			}
 		}
+		
+		for(User s: userData) {
+			ArrayList<Integer> watchedMovies = s.getWatchedMovies();
+			for(int id : watchedMovies) {
+				int index = findMovie(id);
+				Movie m = movieData.get(index);
+				setUserGenres(s, m);
+			}
+		} //sets genres for user
 
 		baselineRating = calcBaselineRating();
 	}
@@ -156,7 +165,20 @@ public class NetFlixPredictor {
 		else if(s.getAvgRating() != -1) { //user avg more accurate than movie avg
 			Movie m = movieData.get(findMovie(movieID));
 			if(m.getAvgRating() != -1) { //user and movie have been rated
-				return baselineRating + s.getAliceEffect(baselineRating) + m.getInceptionEffect(baselineRating);
+				//double rating = baselineRating + s.getAliceEffect(baselineRating) + m.getInceptionEffect(baselineRating);
+				ArrayList<String> genre = new ArrayList<String>();
+				m.setGenre(genre);
+				
+				double rating = baselineRating + 0.45*s.getAliceEffect(baselineRating) + 
+						0.634*m.getInceptionEffect(baselineRating) + 0.419*s.getGenreEffect(genre, baselineRating);
+
+				//9093570891881914, 0.45, 9,634, 9,419
+				if(rating > 5)
+					return 5.0;
+				else if(rating < 0)
+					return 0;
+				else 
+					return rating;
 				//add effect by genre?
 			}
 			else //only user has ratings
@@ -165,18 +187,14 @@ public class NetFlixPredictor {
 		else
 			return baselineRating;
 	}
-
-	/*private void setGenres(User s) {
-		ArrayList<Integer> watched = s.getWatchedMovies();
-		for(int i : watched) {
-			Movie m = movieData.get(findMovie(i));
-			
-			String[] genre = m.getGenres();
-			for(String str : genre) {
-				s.addGenre(str);
-			}
+	
+	private void setUserGenres(User s, Movie m) {
+		ArrayList<String> genre = new ArrayList<String>();
+		m.setGenre(genre);
+		for(String g : genre) {
+			s.addGenre(g, m.getID());
 		}
-	} */ 
+	}
 	
 	/**
 	 * Recommend a movie that you think this user would enjoy (but they have not currently rated it). 
@@ -186,6 +204,7 @@ public class NetFlixPredictor {
 	 * @pre A user with id userID exists in the database.
 	 */
 	public int recommendMovie(int userID) {
+		
 
 		return 0;
 	}
