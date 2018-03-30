@@ -103,6 +103,16 @@ public class Movie implements Comparable<Movie>{
 		}
 	}
 
+	public boolean hasGenre(Genre other) {
+		String s = other.getGenre();
+		for(String g : genres) {
+			if(g.equals(s))
+				return true;
+		}
+		
+		return false;
+	}
+	
 	@Override
 	public int compareTo(Movie arg0) {
 		// TODO Auto-generated method stub

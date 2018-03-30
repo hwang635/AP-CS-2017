@@ -69,7 +69,7 @@ public class Tester {
 			tagData.add(t);
 		} //put in all the tags
 		
-		for(Movie m : movieData) {
+		/*for(Movie m : movieData) {
 			for(Tag t : tagData) {
 				if(m.getID() == t.getMovieID())
 					m.addTag(t);
@@ -78,12 +78,12 @@ public class Tester {
 		
 		for (Tag t : tagData) {
 			System.out.println(t);
-		}
-		System.out.println(tagData.size());
-		/*for (Rating r : ratingData) {
+		} */
+		//System.out.println(tagData.size());
+		for (Rating r : ratingData) {
 			System.out.println(r);
 		}
-		System.out.println(ratingData.size()); */
+		System.out.println(ratingData.size());
 		
 		//print out
 		/*for(Movie m : movieData) {

@@ -11,7 +11,7 @@ public class User implements Comparable<User> {
 	private double sumRating;
 
 	private ArrayList<Genre> genres;
-	//private ArrayList<String> genres;
+	private boolean genreSorted;
 
 	public User(int id) {
 		userID = id;
@@ -21,6 +21,7 @@ public class User implements Comparable<User> {
 		sumRating = 0.0;
 
 		genres = new ArrayList<Genre>();
+		genreSorted = true;
 	}
 
 	public int getID() {
@@ -44,6 +45,16 @@ public class User implements Comparable<User> {
 		}
 
 		return -1.0;
+	}
+	
+	public int getRatingTimestamp(int movieID) {
+		for(Rating r: ratings) {
+			if(r.getMovieID() == movieID) {
+				return r.getTime();
+			}
+		}
+		
+		return -1;
 	}
 
 	public double getAvgRating() {
@@ -75,7 +86,7 @@ public class User implements Comparable<User> {
 
 		return false;
 	}
-	
+
 	public ArrayList<Integer> getWatchedMovies() {
 		return watchedMovies;
 	}
@@ -90,21 +101,21 @@ public class User implements Comparable<User> {
 				genreAvg += a-baseline;
 			}
 		}
-		
+
 		return genreAvg/genres.size();
 	}
 
 	public void addGenre(String str, int movieID) {
 		Genre g = new Genre(str, movieID);
 		double newR = 0;
-		
+
 		for(Rating r: ratings) {
 			if(r.getMovieID() == movieID) {
 				newR = r.getRating();
 				break;
 			}
 		} //find rating for this movie
-		
+
 		if(genres.size() == 0 ) {
 			genres.add(g);
 			g.addRating(newR);
@@ -121,15 +132,25 @@ public class User implements Comparable<User> {
 				genres.get(index).incrementCount();
 			}
 		}
+
+		genreSorted = false;
 	}
 
-	public Genre getFavGenre() {
-		Collections.sort(genres);
+	//should be sorted in order of favourite-ness
+	public Genre getGenre(int index) {
+		if(genreSorted == false) {
+			Collections.sort(genres);
+			genreSorted = true;
+		}
 
 		if(!genres.isEmpty())
 			return genres.get(0);
 		else
 			return new Genre("no info");
+	}
+	
+	public int getNumGenre() {
+		return genres.size();
 	}
 	@Override
 	public int compareTo(User o) {

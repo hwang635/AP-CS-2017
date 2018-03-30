@@ -171,7 +171,7 @@ public class NetFlixPredictor {
 				
 				double rating = baselineRating + 0.432*s.getAliceEffect(baselineRating) + 
 						0.635*m.getInceptionEffect(baselineRating) + 0.421*s.getGenreEffect(genre, baselineRating);
-
+				
 				//9093223492730705, 0.432, 0.635, 0.419
 				if(rating >= 5)
 					return 5.0;
@@ -196,6 +196,22 @@ public class NetFlixPredictor {
 		}
 	}
 	
+	//finds time since first rating
+	//user, movie rating now
+	//not possible since dk the time for the current movie
+	/*private double timeSince(User s, Movie current) {
+		ArrayList<Integer> watchedMovies = s.getWatchedMovies();
+		//double currentTime = s.getRatingTimestamp(current.getID()); this line is wrong since hasn't rated no time
+		double firstRating = currentTime;
+		for(int id : watchedMovies) {
+			int t = s.getRatingTimestamp(id);
+			if(t<firstRating) 
+				firstRating = t;
+		}
+		
+		return currentTime - firstRating;
+	} */
+	
 	/**
 	 * Recommend a movie that you think this user would enjoy (but they have not currently rated it). 
 	 * 
@@ -207,11 +223,27 @@ public class NetFlixPredictor {
 		int index = findUser(userID);
 		User s = userData.get(index);
 		
-		Genre g = s.getFavGenre();
-		String genreName = g.getGenre();
-		if(genreName.equals("no info"));
-		else;
-		
+		for(int i = 0; i<s.getNumGenre(); i++) {
+			Genre g = s.getGenre(i);
+			String genreName = g.getGenre();
+			if(genreName.equals("no info")) {
+				for(Movie m: movieData) {
+					int id = m.getID();
+					if(s.watched(id) == false && m.getAvgRating() >= 4.5)
+						return id;
+				} //end of for
+			} //end of no info if
+			else {
+				for(Movie m: movieData) {
+					if(m.hasGenre(g)) {
+						int id = m.getID();
+						if(s.watched(id) == false && m.getAvgRating() >= 3.5)
+							return id;
+					}
+				} //end of m for
+			} //end of else
+			
+		} //end of big for
 		
 		return 0;
 	}
