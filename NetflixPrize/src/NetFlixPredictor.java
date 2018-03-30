@@ -117,7 +117,7 @@ public class NetFlixPredictor {
 		int user = findUser(userID);
 		if(user >= 0) {
 			User s = userData.get(user);
-			if(s.watched(movieID))
+			if(s.hasWatched(movieID))
 				return s.getRating(movieID);
 		}
 
@@ -160,7 +160,7 @@ public class NetFlixPredictor {
 	public double guessRating(int userID, int movieID) {
 		User s = userData.get(findUser(userID));
 
-		if(s.watched(movieID))
+		if(s.hasWatched(movieID))
 			return s.getRating(movieID);
 		else if(s.getAvgRating() != -1) { //user avg more accurate than movie avg
 			Movie m = movieData.get(findMovie(movieID));
@@ -223,13 +223,20 @@ public class NetFlixPredictor {
 		int index = findUser(userID);
 		User s = userData.get(index);
 		
+//		for(Movie m : movieData) {
+//			int movieID = m.getID();
+//			if(!s.hasWatched(movieID) && m.getAvgRating() >= 4.5) {
+//				return movieID;
+//			}
+//		}
+		
 		for(int i = 0; i<s.getNumGenre(); i++) {
 			Genre g = s.getGenre(i);
 			String genreName = g.getGenre();
 			if(genreName.equals("no info")) {
 				for(Movie m: movieData) {
 					int id = m.getID();
-					if(s.watched(id) == false && m.getAvgRating() >= 4.5)
+					if(s.hasWatched(id) == false && m.getAvgRating() >= 4.5)
 						return id;
 				} //end of for
 			} //end of no info if
@@ -237,7 +244,7 @@ public class NetFlixPredictor {
 				for(Movie m: movieData) {
 					if(m.hasGenre(g)) {
 						int id = m.getID();
-						if(s.watched(id) == false && m.getAvgRating() >= 3.5)
+						if(s.hasWatched(id) == false && m.getAvgRating() >= 3.5)
 							return id;
 					}
 				} //end of m for

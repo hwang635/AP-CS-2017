@@ -43,7 +43,6 @@ public class Genre implements Comparable<Genre> {
 		}
 		else
 			return -1.0;
-
 	}
 
 	@Override
@@ -57,12 +56,7 @@ public class Genre implements Comparable<Genre> {
 		if(diffCount != 0)
 			return diffCount;
 		else { //same count
-			double diffAvg = this.getAvgRating() - otherAvg;
-			if(diffAvg < 0) 
-				return -1;
-			else
-				return 1;
-
+			return (int) (this.getAvgRating() - otherAvg);
 		} //end of else
 	} //end of compareTo
 	

@@ -77,7 +77,7 @@ public class User implements Comparable<User> {
 		return alice;
 	}
 
-	public boolean watched(int m) {
+	public boolean hasWatched(int m) {
 		for(Integer id : watchedMovies) {
 			if(id == m) {
 				return true;
