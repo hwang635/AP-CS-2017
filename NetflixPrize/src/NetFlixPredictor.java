@@ -35,7 +35,7 @@ public class NetFlixPredictor {
 			Movie m = translator.parseMovie(movieStrings.get(i));
 			movieData.add(m);
 		} //parse movie obj
-		
+
 		Collections.sort(movieData);
 
 		//add links to movie
@@ -75,7 +75,7 @@ public class NetFlixPredictor {
 			s.addMovie(r.getMovieID());
 			s.addRating(r);
 		}
-		
+
 		Collections.sort(userData);
 
 		//put in all the tags
@@ -93,7 +93,7 @@ public class NetFlixPredictor {
 					m.addTag(t);
 			}
 		}
-		
+
 		for(User s: userData) {
 			ArrayList<Integer> watchedMovies = s.getWatchedMovies();
 			for(int id : watchedMovies) {
@@ -132,7 +132,7 @@ public class NetFlixPredictor {
 				return index;
 			}
 		} */
-		
+
 		int index = Collections.binarySearch(userData, new User(userID));
 		return index; 
 	}
@@ -145,7 +145,7 @@ public class NetFlixPredictor {
 				return index;
 			}
 		} */
-		
+
 		int index = Collections.binarySearch(movieData, new Movie(movieID));
 		return index; 
 	}
@@ -168,10 +168,10 @@ public class NetFlixPredictor {
 				//double rating = baselineRating + s.getAliceEffect(baselineRating) + m.getInceptionEffect(baselineRating);
 				ArrayList<String> genre = new ArrayList<String>();
 				m.setGenre(genre);
-				
+
 				double rating = baselineRating + 0.432*s.getAliceEffect(baselineRating) + 
 						0.635*m.getInceptionEffect(baselineRating) + 0.421*s.getGenreEffect(genre, baselineRating);
-				
+
 				//9093223492730705, 0.432, 0.635, 0.419
 				if(rating >= 5)
 					return 5.0;
@@ -187,7 +187,7 @@ public class NetFlixPredictor {
 		else
 			return baselineRating;
 	}
-	
+
 	private void setUserGenres(User s, Movie m) {
 		ArrayList<String> genre = new ArrayList<String>();
 		m.setGenre(genre);
@@ -195,7 +195,7 @@ public class NetFlixPredictor {
 			s.addGenre(g, m.getID());
 		}
 	}
-	
+
 	//finds time since first rating
 	//user, movie rating now
 	//not possible since dk the time for the current movie
@@ -208,10 +208,10 @@ public class NetFlixPredictor {
 			if(t<firstRating) 
 				firstRating = t;
 		}
-		
+
 		return currentTime - firstRating;
 	} */
-	
+
 	/**
 	 * Recommend a movie that you think this user would enjoy (but they have not currently rated it). 
 	 * 
@@ -222,14 +222,14 @@ public class NetFlixPredictor {
 	public int recommendMovie(int userID) {
 		int index = findUser(userID);
 		User s = userData.get(index);
-		
-//		for(Movie m : movieData) {
-//			int movieID = m.getID();
-//			if(!s.hasWatched(movieID) && m.getAvgRating() >= 4.5) {
-//				return movieID;
-//			}
-//		}
-		
+
+		//		for(Movie m : movieData) {
+		//			int movieID = m.getID();
+		//			if(!s.hasWatched(movieID) && m.getAvgRating() >= 4.5) {
+		//				return movieID;
+		//			}
+		//		}
+
 		for(int i = 0; i<s.getNumGenre(); i++) {
 			Genre g = s.getGenre(i);
 			String genreName = g.getGenre();
@@ -249,10 +249,22 @@ public class NetFlixPredictor {
 					}
 				} //end of m for
 			} //end of else
-			
+
 		} //end of big for
-		
+
 		return 0;
+	}
+
+	public Movie getMovie(int movieID) {
+		int index = findMovie(movieID);
+		if(index >= 0)
+			return movieData.get(index);
+		else
+			return null;
+	}
+	
+	public ArrayList<Movie> getMovies() {
+		return movieData;
 	}
 
 	public double calcBaselineRating() {

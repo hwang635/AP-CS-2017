@@ -119,4 +119,19 @@ public class Movie implements Comparable<Movie>{
 		return movieID - arg0.getID();
 	}
 
+	public String getTitle() {
+		return title;
+	}
+	
+	public int getYear() {
+		return year;
+	}
+	
+	public String getIMDB() {
+		return imdbID;
+	}
+	
+	public String getTMDB() {
+		return tmdbID;
+	}
 }
