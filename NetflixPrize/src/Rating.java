@@ -1,5 +1,5 @@
 
-public class Rating {
+public class Rating implements Comparable<Rating> {
 	
 	private double rating;
 	private int timeStamp;
@@ -12,6 +12,10 @@ public class Rating {
 		this.movieID = movieID;
 	}
 
+	public Rating(int movieID) {
+		this.movieID = movieID;
+	}
+	
 	public double getRating() {
 		return rating;
 	}
@@ -30,5 +34,11 @@ public class Rating {
 	
 	public String toString() {
 		return "userID = " + userID + "movieID = " + movieID + " rating = " + rating + "timestamp = " + timeStamp;
+	}
+
+	@Override
+	public int compareTo(Rating other) {
+		// TODO Auto-generated method stub
+		return movieID - other.getMovieID();
 	}
 }

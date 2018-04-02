@@ -11,7 +11,7 @@ public class User implements Comparable<User> {
 	private double sumRating;
 
 	private ArrayList<Genre> genres;
-	private boolean genreSorted;
+	private boolean ratingSorted, genreSorted;
 
 	public User(int id) {
 		userID = id;
@@ -21,6 +21,7 @@ public class User implements Comparable<User> {
 		sumRating = 0.0;
 
 		genres = new ArrayList<Genre>();
+		ratingSorted = true;
 		genreSorted = true;
 	}
 
@@ -35,16 +36,27 @@ public class User implements Comparable<User> {
 	public void addRating(Rating r) {
 		ratings.add(r);
 		sumRating += r.getRating();
+		
+		ratingSorted = false;
 	}
 
 	public double getRating(int movieID) {
-		for(Rating r: ratings) {
+		if(ratingSorted == false) {
+			Collections.sort(ratings);
+			ratingSorted = true;
+		}
+		
+		int index = Collections.binarySearch(ratings, new Rating(movieID));
+		if(index >= 0)
+			return ratings.get(index).getRating();
+		else 
+			return -1.0;
+		
+		/*for(Rating r: ratings) {
 			if(r.getMovieID() == movieID) {
 				return r.getRating();
 			}
-		}
-
-		return -1.0;
+		} */
 	}
 	
 	public int getRatingTimestamp(int movieID) {
@@ -77,7 +89,7 @@ public class User implements Comparable<User> {
 		return alice;
 	}
 
-	public boolean hasWatched(int m) {
+	public boolean hasWatched(int m) { //didn't know how this could be change to a binary search
 		for(Integer id : watchedMovies) {
 			if(id == m) {
 				return true;
@@ -139,14 +151,14 @@ public class User implements Comparable<User> {
 	//should be sorted in order of favourite-ness
 	public Genre getGenre(int index) {
 		if(genreSorted == false) {
-			System.out.println("user = " + userID);
-			System.out.println("genre size = " + genres.size());
+//			System.out.println("user = " + userID);
+//			System.out.println("genre size = " + genres.size());
 			Collections.sort(genres);
 			genreSorted = true;
 		}
 
 		if(!genres.isEmpty())
-			return genres.get(0);
+			return genres.get(index);
 		else
 			return new Genre("no info");
 	}

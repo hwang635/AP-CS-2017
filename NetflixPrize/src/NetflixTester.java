@@ -3,8 +3,8 @@ import java.util.ArrayList;
 
 public class NetflixTester {
 	
-	public static final String baseFile = "testingDatasets" + FileIO.fileSeparator + "5Ratings.csv";
-	public static final String testFile = "testingDatasets" + FileIO.fileSeparator + "5Tests.csv";
+	public static final String baseFile = "testingDatasets" + FileIO.fileSeparator + "2Ratings.csv";
+	public static final String testFile = "testingDatasets" + FileIO.fileSeparator + "2Tests.csv";
 
 	public static final String moviesFile = "data" + FileIO.fileSeparator + "movies.csv";
 	public static final String linksFile = "data" + FileIO.fileSeparator + "links.csv";
