@@ -169,10 +169,11 @@ public class NetFlixPredictor {
 				ArrayList<String> genre = new ArrayList<String>();
 				m.setGenre(genre);
 
-				double rating = baselineRating + 0.432*s.getAliceEffect(baselineRating) + 
-						0.635*m.getInceptionEffect(baselineRating) + 0.421*s.getGenreEffect(genre, baselineRating);
+				double rating = baselineRating + 0.464*s.getAliceEffect(baselineRating) + 
+						0.638*m.getInceptionEffect(baselineRating) + 0.392*s.getGenreEffect(genre, baselineRating);
 				//9093223492730705, 0.432, 0.635, 0.421
-				
+
+				//9096660338281868
 				if(rating >= 5)
 					return 5.0;
 				else if(rating <= 0.5)
