@@ -121,7 +121,7 @@ public class User implements Comparable<User> {
 			g.addRating(newR);
 		}
 		else {
-			int index = genres.indexOf(g);
+			int index = findGenre(g.getGenre());
 
 			if(index == -1) {
 				genres.add(g);
@@ -139,6 +139,8 @@ public class User implements Comparable<User> {
 	//should be sorted in order of favourite-ness
 	public Genre getGenre(int index) {
 		if(genreSorted == false) {
+			System.out.println("user = " + userID);
+			System.out.println("genre size = " + genres.size());
 			Collections.sort(genres);
 			genreSorted = true;
 		}
@@ -147,6 +149,15 @@ public class User implements Comparable<User> {
 			return genres.get(0);
 		else
 			return new Genre("no info");
+	}
+	
+	private int findGenre(String g) {
+		for(int i = 0; i<genres.size(); i++) {
+			Genre gn = genres.get(i);
+			if(gn.getGenre().equals(g))
+				return i;
+		}
+		return -1;
 	}
 	
 	public int getNumGenre() {

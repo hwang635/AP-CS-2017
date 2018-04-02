@@ -51,6 +51,7 @@ public class DrawingMovie {
 					String pageURLString = "https://www.imdb.com/title/tt" + imdb + "/";
 
 					URL pageURL = new URL(pageURLString);
+					System.out.println(pageURL);
 					InputStream is = pageURL.openStream();
 					scan = new Scanner(is);
 
@@ -59,11 +60,8 @@ public class DrawingMovie {
 						String line = scan.nextLine();
 						fileData += line + FileIO.lineSeparator;
 					}
-					System.out.println(fileData);
-					//look for poster ==> look for src="
-					//look for end "
-
-					
+					//System.out.println(fileData);
+					//String test = "<img alt=\"Mr. Robot Poster\" title=\"Mr. Robot Poster\" src=\"https://ia.media-imdb.com/images/M/MV5BMTYzMDE2MzI4MF5BMl5BanBnXkFtZTgwNTkxODgxOTE@._V1_UX182_CR0,0,182,268_AL_.jpg\" itemprop=\"image\">";
 					String imageURL = findImageURL(fileData);
 					coverArt = drawer.loadImage(imageURL);
 				} catch (IOException e) {
@@ -83,12 +81,21 @@ public class DrawingMovie {
 	
 	private String findImageURL(String fileData) {
 
-		String start = "Poster src=\"";
-		String url = "";
+		String marker = "Poster\"\r\nsrc=\""; //length = 12;
+		int start, end;
+		String url = null;
 		
-		boolean found = false;
+		start = fileData.indexOf(marker);
+		if(start == -1) {
+			//System.out.println("No URL is available in " + fileData);
+			return url;
+		}
+		start += marker.length();
+		end = fileData.indexOf("\"", start);
+		url = fileData.substring(start, end);
+		
+		/*boolean found = false;
 		int count = 0;
-		
 		for(int i = 0; i<fileData.length(); i++) {
 			if(fileData.charAt(i) == start.charAt(count)) {
 				count++;
@@ -101,9 +108,10 @@ public class DrawingMovie {
 			if(count == start.length() && found == true) {
 				int endQuote = fileData.indexOf("\"", i);
 				url = fileData.substring(i, endQuote);
-				
+				break;
 			}
-		}
+		} */
+		
 		return url;
 	}
 

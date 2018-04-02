@@ -137,8 +137,7 @@ public class NetflixTester {
 		System.out.println("Average difference between guessed and actual ratings: " + totalDifference/numberTested);
 		System.out.println("Root square mean difference between guessed and actual ratings: " + Math.sqrt(totalSquareDifference/numberTested));
 		
-		System.out.println(tester.recommendMovie(567));
-		
+		//System.out.println(tester.recommendMovie(567));		
 	}
 
 }

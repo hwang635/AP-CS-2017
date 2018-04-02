@@ -2,7 +2,7 @@
 public class Genre implements Comparable<Genre> {
 
 	private String genre;
-	private double rating;
+	private double rating, ratingGE;
 	private int movieID;
 	private int count, countGE;
 
@@ -10,6 +10,7 @@ public class Genre implements Comparable<Genre> {
 		genre = g;
 		this.movieID = movieID;
 		rating = 0;
+		ratingGE = 0;
 		count = 1;
 		
 		countGE = 1;
@@ -28,6 +29,10 @@ public class Genre implements Comparable<Genre> {
 		count++;
 	}
 
+	public void addRatingGE(double r) {
+		ratingGE += r;
+	}
+	
 	public double getRating() {
 		return rating;
 	}
@@ -38,6 +43,10 @@ public class Genre implements Comparable<Genre> {
 
 	public int getCount() {
 		return count;
+	}
+	
+	public int getCountGE() {
+		return countGE;
 	}
 
 	public double getAvgRating() {
@@ -63,7 +72,10 @@ public class Genre implements Comparable<Genre> {
 		double otherAvg = other.getAvgRating();
 
 		int diffCount = count - otherCount;
-
+		double diffAvg = this.getAvgRating() - otherAvg;
+		
+//		System.out.println("genre=" + this.genre + ", other=" + other.getGenre()
+//				+ ", diffCount=" + diffCount + ", diffAvg=" + diffAvg);
 		if(diffCount != 0)
 			return diffCount;
 		else { //same count
