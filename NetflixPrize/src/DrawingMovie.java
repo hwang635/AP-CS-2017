@@ -60,7 +60,7 @@ public class DrawingMovie {
 						String line = scan.nextLine();
 						fileData += line + FileIO.lineSeparator;
 					}
-					//System.out.println(fileData);
+					System.out.println(fileData);
 					//String test = "<img alt=\"Mr. Robot Poster\" title=\"Mr. Robot Poster\" src=\"https://ia.media-imdb.com/images/M/MV5BMTYzMDE2MzI4MF5BMl5BanBnXkFtZTgwNTkxODgxOTE@._V1_UX182_CR0,0,182,268_AL_.jpg\" itemprop=\"image\">";
 					String imageURL = findImageURL(fileData);
 					coverArt = drawer.loadImage(imageURL);
