@@ -230,16 +230,20 @@ public class NetFlixPredictor {
 			if(genreName.equals("no info")) {
 				for(Movie m: movieData) {
 					int id = m.getID();
-					if(s.hasWatched(id) == false && m.getAvgRating() >= 4.5)
+					if(s.hasWatched(id) == false && m.getAvgRating() >= 4.5) {
+						//System.out.println("userId = " + userID + "genre = " +genreName + "avgrating = "  +m.getAvgRating());
 						return id;
+					}
 				} //end of for
 			} //end of no info if
 			else {
 				for(Movie m: movieData) {
 					if(m.hasGenre(g)) {
 						int id = m.getID();
-						if(s.hasWatched(id) == false && m.getAvgRating() >= 4)
+						if(s.hasWatched(id) == false && m.getAvgRating() >= 4.1) {
+							//System.out.println("userId = " + userID + "genre = " +genreName + "avgrating = "  +m.getAvgRating());
 							return id;
+						}
 					}
 				} //end of m for
 			} //end of else

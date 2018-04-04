@@ -157,8 +157,10 @@ public class User implements Comparable<User> {
 			genreSorted = true;
 		}
 
-		if(!genres.isEmpty())
+		if(!genres.isEmpty()) {
+			//System.out.println(genres);
 			return genres.get(index);
+		}
 		else
 			return new Genre("no info");
 	}
