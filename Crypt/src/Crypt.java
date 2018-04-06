@@ -83,6 +83,22 @@ public class Crypt {
 		}
 	}
 
+	private StringBuffer removeDuplicateLetters(StringBuffer keyword) {
+		return "":
+	}
+	private String encrypt(String inputFilename, String keyword) {
+		char[][] key = new char[5][5];
+		
+		int count = 0; 
+		while(count < keyword.length())  {
+			
+			count++;
+		}
+		
+		//have [][] array, i count and j count
+		//put char @i count, if i too big, go to next j
+		return "";
+	}
 
 	/**
 	 * Reads from the (previously encrypted) file specified, and writes out a decrypted version of the file. 
@@ -95,7 +111,7 @@ public class Crypt {
 	 */
 	public void decrypt(String inputFilename, String outputFilename, String keyword) 
 	{
-
+		//StringBuffer inputFile = new StringBuffer(inputFilename);
 	}
 
 

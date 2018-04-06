@@ -3,6 +3,6 @@ public class Tester {
 	
 	public static void main(String[] args) {
 		Crypt c = new Crypt();
-		c.encrypt("test1.txt", "encrypted1.txt", "crypt");
+		c.encrypt("test1.txt", "encryptedFile.txt", "crypt");
 	}
 }
