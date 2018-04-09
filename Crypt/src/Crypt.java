@@ -59,8 +59,11 @@ public class Crypt {
 
 			while(scan.hasNextLine()) {
 				String line = scan.nextLine();
+				//StringBuffer line = new StringBuffer(scan.nextLine());
 
 				//encrypt the line
+				StringBuffer newKey = removeDuplicateLetters(keyword);
+				line = encrypt(inputFilename, newKey);
 
 				writer.write(line);
 				writer.write(lineSeparator);
@@ -83,20 +86,24 @@ public class Crypt {
 		}
 	}
 
-	private StringBuffer removeDuplicateLetters(StringBuffer keyword) {
-		return "":
-	}
-	private String encrypt(String inputFilename, String keyword) {
-		char[][] key = new char[5][5];
+	private StringBuffer removeDuplicateLetters(String keyword) {
+		StringBuffer newKey = new StringBuffer();
 		
-		int count = 0; 
-		while(count < keyword.length())  {
-			
-			count++;
+		//go through keyword, add letters to StringBuffer keyword
+		//if the letter isn't there, add, if it is there, go to the next letter
+		for(int i = 0; i<keyword.length(); i++) {
+			String c = keyword.substring(i, i+1);
+			if(newKey.indexOf(c) == -1)
+				newKey.append(c);
 		}
 		
-		//have [][] array, i count and j count
-		//put char @i count, if i too big, go to next j
+		return newKey;
+	}
+	private String encrypt(String inputFilename, StringBuffer keyword) {
+		int offset;
+		//offset alphabet, unless in the string
+		//int index of the letters in the string
+		
 		return "";
 	}
 
