@@ -160,7 +160,78 @@ public class Crypt {
 	 */
 	public void decrypt(String inputFilename, String outputFilename, String keyword) 
 	{
-		//StringBuffer inputFile = new StringBuffer(inputFilename);
+		Scanner scan = null; 
+		FileWriter writer = null;
+		BufferedWriter bWriter = null;
+
+		try {
+			FileReader reader = new FileReader(inputFilename);
+			BufferedReader bReader = new BufferedReader(reader);
+			scan = new Scanner(bReader);
+
+			writer = new FileWriter(outputFilename);
+			bWriter = new BufferedWriter(writer);
+
+			while(scan.hasNextLine()) {
+				String line = scan.nextLine();
+				//StringBuffer line = new StringBuffer(scan.nextLine());
+
+				//decrypt the line
+				StringBuffer newKeyword = removeDuplicateLetters(keyword);
+				StringBuffer newAlphabet = createAlphabet(newKeyword);
+				StringBuffer decryptedLine = decrypt(line, newAlphabet);
+				line = decryptedLine.toString();
+
+				writer.write(line);
+				writer.write(lineSeparator);
+			}
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if(scan != null) 
+				scan.close();
+
+			try {
+				if(bWriter != null)
+					bWriter.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	private StringBuffer decrypt(String inputFile, StringBuffer reverseAlphabet) {
+		StringBuffer output = new StringBuffer();
+
+		String alphabet = "abcdefghijklmnopqrstuvwxyz";
+
+		for(int i = 0; i<inputFile.length(); i++) {
+			char c = inputFile.charAt(i);
+			if(!Character.isLetter(c))
+				output.append(c);
+			else {
+				boolean isUpperCase = false;
+				if(Character.isUpperCase(c))
+					isUpperCase = true;
+				
+				c = Character.toLowerCase(c);
+				int index = reverseAlphabet.indexOf(new String("" + c)); 
+				//System.out.println("index = " + index + "char = " + c);
+				char ch = alphabet.charAt(index);
+				
+				if(isUpperCase)
+					output.append(Character.toUpperCase(ch));
+				else
+					output.append(ch);
+			}
+		}
+		//offset alphabet, unless in the string
+		//int index of the letters in the string
+
+		return output;
 	}
 
 
