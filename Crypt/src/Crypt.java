@@ -62,8 +62,10 @@ public class Crypt {
 				//StringBuffer line = new StringBuffer(scan.nextLine());
 
 				//encrypt the line
-				StringBuffer newKey = removeDuplicateLetters(keyword);
-				line = encrypt(inputFilename, newKey);
+				StringBuffer newKeyword = removeDuplicateLetters(keyword);
+				StringBuffer newAlphabet = createAlphabet(newKeyword);
+				StringBuffer encryptedLine = encrypt(line, newAlphabet);
+				line = encryptedLine.toString();
 
 				writer.write(line);
 				writer.write(lineSeparator);
@@ -88,7 +90,7 @@ public class Crypt {
 
 	private StringBuffer removeDuplicateLetters(String keyword) {
 		StringBuffer newKey = new StringBuffer();
-		
+
 		//go through keyword, add letters to StringBuffer keyword
 		//if the letter isn't there, add, if it is there, go to the next letter
 		for(int i = 0; i<keyword.length(); i++) {
@@ -96,15 +98,55 @@ public class Crypt {
 			if(newKey.indexOf(c) == -1)
 				newKey.append(c);
 		}
-		
+
 		return newKey;
 	}
-	private String encrypt(String inputFilename, StringBuffer keyword) {
-		int offset;
+
+	private StringBuffer encrypt(String inputFile, StringBuffer reverseAlphabet) {
+		StringBuffer output = new StringBuffer();
+
+		String alphabet = "abcdefghijklmnopqrstuvwxyz";
+
+		for(int i = 0; i<inputFile.length(); i++) {
+			//String c = inputFile.substring(i, i+1);
+			char c = inputFile.charAt(i);
+			if(!Character.isLetter(c))
+				output.append(c);
+			else {
+				boolean isUpperCase = false;
+				if(Character.isUpperCase(c))
+					isUpperCase = true;
+				
+				c = Character.toLowerCase(c);
+				int index = alphabet.indexOf(c); 
+				//System.out.println("index = " + index + "char = " + c);
+				char ch = reverseAlphabet.charAt(index);
+				
+				if(isUpperCase)
+					output.append(Character.toUpperCase(ch));
+				else
+					output.append(ch);
+			}
+		}
 		//offset alphabet, unless in the string
 		//int index of the letters in the string
-		
-		return "";
+
+		return output;
+	}
+
+	private StringBuffer createAlphabet(StringBuffer keyword) {
+		StringBuffer newAlphabet = new StringBuffer(26);
+		String alphabet = "zyxwvutsrqponmlkjihgfedcba";
+
+		newAlphabet.append(keyword);
+		for(int i = 0; i<newAlphabet.capacity(); i++) {
+			String c = alphabet.substring(i, i+1);
+			int index = newAlphabet.indexOf(c);
+			if(index == -1) 
+				newAlphabet.append(c); //if the letter isn't in the keyword, append it
+		}
+
+		return newAlphabet;
 	}
 
 	/**
