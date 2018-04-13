@@ -106,7 +106,7 @@ public class Crypt {
 		StringBuffer output = new StringBuffer();
 
 		String alphabet = "abcdefghijklmnopqrstuvwxyz";
-
+		
 		for(int i = 0; i<inputFile.length(); i++) {
 			//String c = inputFile.substring(i, i+1);
 			char c = inputFile.charAt(i);
@@ -137,11 +137,13 @@ public class Crypt {
 	private StringBuffer createAlphabet(StringBuffer keyword) {
 		StringBuffer newAlphabet = new StringBuffer(26);
 		String alphabet = "zyxwvutsrqponmlkjihgfedcba";
+		char[] alph = alphabet.toCharArray();
 
 		newAlphabet.append(keyword);
 		for(int i = 0; i<newAlphabet.capacity(); i++) {
 			String c = alphabet.substring(i, i+1);
 			int index = newAlphabet.indexOf(c);
+			
 			if(index == -1) 
 				newAlphabet.append(c); //if the letter isn't in the keyword, append it
 		}
@@ -179,8 +181,7 @@ public class Crypt {
 				//decrypt the line
 				StringBuffer newKeyword = removeDuplicateLetters(keyword);
 				StringBuffer newAlphabet = createAlphabet(newKeyword);
-				StringBuffer decryptedLine = decrypt(line, newAlphabet);
-				line = decryptedLine;
+				line = decrypt(line, newAlphabet);
 
 				bWriter.write(line.toString());
 				bWriter.write(lineSeparator);

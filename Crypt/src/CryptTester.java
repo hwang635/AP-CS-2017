@@ -7,7 +7,7 @@ public class CryptTester {
 
 	public static final String FILE_NAME = "ShakespeareWhole.txt";
 
-	public static final String keyword = "crypt";
+	public static final String keyword = "hippopotamus";
 
 
     public static boolean compareFiles (String file1, String file2) {
