@@ -5,7 +5,7 @@ import java.io.*;
 
 public class CryptTester {
 
-	public static final String FILE_NAME = "Romeo.txt";
+	public static final String FILE_NAME = "ShakespeareWhole.txt";
 
 	public static final String keyword = "crypt";
 

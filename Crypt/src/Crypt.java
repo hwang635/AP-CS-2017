@@ -29,7 +29,7 @@ public class Crypt {
 	 * 3 for Playfair
 	 * 
 	 */
-	public static final int algorithm = 0;
+	public static final int algorithm = 1;
 	public static final String fileSeparator = System.getProperty("file.separator");
 	public static final String lineSeparator = System.getProperty("line.separator");
 
@@ -173,17 +173,17 @@ public class Crypt {
 			bWriter = new BufferedWriter(writer);
 
 			while(scan.hasNextLine()) {
-				String line = scan.nextLine();
+				StringBuffer line = new StringBuffer(scan.nextLine());
 				//StringBuffer line = new StringBuffer(scan.nextLine());
 
 				//decrypt the line
 				StringBuffer newKeyword = removeDuplicateLetters(keyword);
 				StringBuffer newAlphabet = createAlphabet(newKeyword);
 				StringBuffer decryptedLine = decrypt(line, newAlphabet);
-				line = decryptedLine.toString();
+				line = decryptedLine;
 
-				writer.write(line);
-				writer.write(lineSeparator);
+				bWriter.write(line.toString());
+				bWriter.write(lineSeparator);
 			}
 
 		} catch (IOException e) {
@@ -203,7 +203,7 @@ public class Crypt {
 		}
 	}
 	
-	private StringBuffer decrypt(String inputFile, StringBuffer reverseAlphabet) {
+	private StringBuffer decrypt(StringBuffer inputFile, StringBuffer reverseAlphabet) {
 		StringBuffer output = new StringBuffer();
 
 		String alphabet = "abcdefghijklmnopqrstuvwxyz";
