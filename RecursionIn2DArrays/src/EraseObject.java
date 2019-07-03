@@ -124,7 +124,7 @@ public class EraseObject {
 	}
 
 	/**
-	 * Optionally, complete this method to determine which element of the grid matches with a
+	 * method to determine which element of the grid matches with a
 	 * particular pixel coordinate.
 	 * 
 	 * @param p A Point object representing a graphical pixel coordinate.
