@@ -8,7 +8,6 @@ import java.awt.geom.Point2D;
 import processing.core.PApplet;
 
 
-
 public class DrawingSurface extends PApplet {
 
 	private Life board;
