@@ -43,8 +43,6 @@ public class DrawingSurface extends PApplet{
 			lines.setPoint2(x, y);
 			lines.draw(this);
 		}
-	
-		
 		
 		//vertical == the six rectangles at the front of the illusion
 		vertical = new Rectangle(76, 70, 6, 350);
