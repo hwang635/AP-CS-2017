@@ -73,7 +73,6 @@ public class DrawingSurface extends PApplet {
 	} 
 
 
-
 	public void mouseDragged() {
 		/*if (mouseButton == LEFT) {
 			Point click = new Point(mouseX,mouseY);
