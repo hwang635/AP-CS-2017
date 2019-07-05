@@ -49,10 +49,10 @@ public class DrawingSurface extends PApplet {
 		if(board.get2048())
 			text("You have won!", height + 20, 50);
 		if(board.getLost())
-			text("Restart to retry", height + 20, 70);
+			text("You have lost :( Restart to retry", height + 20, 70);
 		
 		if (runCount == 0) {
-			board.step();
+			//board.step(); step is an empty method
 			runCount = speed;
 		} else if (runCount > 0) {
 			runCount--;

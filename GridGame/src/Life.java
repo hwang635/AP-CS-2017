@@ -41,6 +41,7 @@ public class Life {
 	}
 
 	//Makes one move or squish
+	//unused method, but called in tester
 	public void step() {
 	}
 
