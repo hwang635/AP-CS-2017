@@ -18,7 +18,6 @@ public class DrawingSurface extends PApplet {
 
 	private final int MAX_SPEED = 480, MIN_SPEED = 15;
 
-
 	public DrawingSurface() {
 		board = new Life();
 		runCount = -1;
