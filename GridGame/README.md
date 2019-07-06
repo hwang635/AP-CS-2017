@@ -8,4 +8,3 @@ Features:\
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Merge same-number tiles after they collide\
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Control of tiles through up, down, left, right arrow keys\
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Win/loss detection - win when a 2048 tile is created, loss when the grid is full and no tiles can be combined
-
