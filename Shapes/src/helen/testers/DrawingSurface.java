@@ -16,10 +16,10 @@ public class DrawingSurface extends PApplet{
 		rect2 = new Rectangle(0, 80, 400, 160);
 		rect3 = new Rectangle(100, -100, 20, -300);
 		
-		rectTest = new Rectangle(200, 100, 100, 100);
+		rectTest = new Rectangle(200, 100, 100, 100); */
 
-		circle1 = new Circle();
-		circle2 = new Circle(50, 50, 50); */
+		//circle1 = new Circle();
+		//circle2 = new Circle(50, 50, 50);
 		
 		p0 = new RegularPolygon();
 		p1 = new RegularPolygon(4, 100);
@@ -33,10 +33,10 @@ public class DrawingSurface extends PApplet{
 		/*rect1.draw(this);
 		//rect2.draw(this);
 		rect3.draw(this);
-		rectTest.draw(this);
+		rectTest.draw(this); */
 
-		circle1.draw(this);
-		circle2.draw(this); */
+		//circle1.draw(this);
+		//circle2.draw(this);
 
 		p1.drawBoundingCircles(this);
 		p1.draw(this);
