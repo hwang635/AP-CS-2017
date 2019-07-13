@@ -73,11 +73,11 @@ public class RegularPolygon extends Shape {
 		super.draw(drawer);
 		
 		outCircle.changeColour(false);
-		outCircle.setColour(100,  70,  210); //blue to differentiate outside circle
+		outCircle.setColour(191, 217, 218); //blue to differentiate outside circle  191, 217, 218
 		outCircle.draw(drawer);
 		
 		inCircle.changeColour(false);
-		inCircle.setColour(210, 70, 100); //red to differentiate inside circle
+		inCircle.setColour(205, 70, 118); //magenta to differentiate inside circle
 		inCircle.draw(drawer);
 	}
 	

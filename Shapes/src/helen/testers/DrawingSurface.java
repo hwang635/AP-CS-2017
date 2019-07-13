@@ -15,17 +15,16 @@ public class DrawingSurface extends PApplet{
 		/*rect1 = new Rectangle();
 		rect2 = new Rectangle(0, 80, 400, 160);
 		rect3 = new Rectangle(100, -100, 20, -300);
-		
+	
 		rectTest = new Rectangle(200, 100, 100, 100); */
 
 		//circle1 = new Circle();
 		//circle2 = new Circle(50, 50, 50);
 		
 		p0 = new RegularPolygon();
-		p1 = new RegularPolygon(4, 100);
+
 		p2 = new RegularPolygon(8, 5.75);
 		p3 = new RegularPolygon(19, 2);
-		p4 = new RegularPolygon(91, 0.5);
 		
 	}
 
@@ -37,21 +36,31 @@ public class DrawingSurface extends PApplet{
 
 		//circle1.draw(this);
 		//circle2.draw(this);
-
-		p1.drawBoundingCircles(this);
-		p1.draw(this);
+		
+		int length = 350;
+		int sides = 8;
+		
+		for(int n = 0; n < 6; n++) {
+			p1 = new RegularPolygon(sides, length);
+			p1.drawBoundingCircles(this);
+			p1.draw(this);
+			length -= 60;
+			if (sides>3)
+				sides--;
+			
+		}
+		
 		//p1.drawBoundingCircles(this);
 		//p1.draw(this);
 		//p2.draw(this);
 		//p3.draw(this);
-		//p4.draw(this);
 		
 		if(keyPressed == true) { //for testing purposes
 			
-			System.out.println(p4.calcPerimeter());
-			System.out.println(p4.calcArea());
-			System.out.println(p4.getR());
-			System.out.println(p4.getr());
+			System.out.println(p3.calcPerimeter());
+			System.out.println(p3.calcArea());
+			System.out.println(p3.getR());
+			System.out.println(p3.getr());
 			
 			/*rect3.calcPerimeter();
 			rect3.calcArea();
