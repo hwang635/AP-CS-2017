@@ -13,7 +13,7 @@ public class EraseObject {
 
 	private char[][] grid;
 
-	// Constructs an empty grid
+	// Constructs empty grid
 	public EraseObject() {
 		grid = new char[20][20];
 	}
@@ -46,7 +46,7 @@ public class EraseObject {
 		//grid[i][j] = '*';
 	} */
 
-	// Formats this Life grid as a String to be printed (one call to this method returns the whole multi-line grid)
+	// Formats this Life grid as a String to be printed (one call to this method returns whole multi-line grid)
 	public String toString() {
 		String response = "";
 
@@ -93,9 +93,9 @@ public class EraseObject {
 	}
 
 	/**
-	 * Optionally, complete this method to draw the grid on a PApplet.
+	 * Method to draw the grid on a PApplet.
 	 * 
-	 * @param marker The PApplet used for drawing.
+	 * @param marker  PApplet used for drawing.
 	 * @param x The x pixel coordinate of the upper left corner of the grid drawing. 
 	 * @param y The y pixel coordinate of the upper left corner of the grid drawing.
 	 * @param width The pixel width of the grid drawing.

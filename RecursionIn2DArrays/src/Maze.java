@@ -17,7 +17,7 @@ public class Maze {
 
 	private char[][] grid;
 
-	// Constructs an empty grid
+	// Constructs empty grid
 	public Maze() {
 		grid = new char[20][20];
 	}
@@ -62,8 +62,7 @@ public class Maze {
 		}
 	}
 
-	//recursive version
-	//finds the starting location(where C is)
+	//Recursive version, finds the starting location (where C is)
 	public void findC(int[] c, int x, int y) {
 		if(x<0 || x>grid.length-1 || y<0 || y>grid[0].length-1) { //out of bounds
 			if(y<0 || y>grid[0].length-1) { //y out of bounds, next x + reset y
