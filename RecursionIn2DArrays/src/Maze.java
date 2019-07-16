@@ -8,10 +8,6 @@ import java.util.Scanner;
 /*
 
 	Represents a 2D maze.
-
-	Coded by:
-	Modified on:
-
  */
 
 public class Maze {

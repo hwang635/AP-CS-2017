@@ -8,8 +8,6 @@ import processing.core.PApplet;
 /*
 	Represents a Game Of Life grid.
 
-	Coded by:
-	Modified on:
  */
 public class EraseObject {
 
