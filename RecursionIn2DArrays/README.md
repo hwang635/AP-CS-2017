@@ -15,3 +15,6 @@ Maze \
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Finds path through a “maze” in an inputted textfile of characters \
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; One character type represents the maze, one the free spaces, one the start and end points \
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Prints out the maze and marks the solution with exclamation marks
+
+![test3orig](https://github.com/hwang635/HS/blob/master/RecursionIn2DArrays/test3maze.PNG)
+![test3solved](https://github.com/hwang635/HS/blob/master/RecursionIn2DArrays/test3solved.PNG)
