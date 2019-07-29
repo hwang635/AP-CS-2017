@@ -1,6 +1,6 @@
 # GridGame - 2048 copy
 
-This project is a copy of 2048 coded with Java. The game is a sliding tile game where a player slides and adds tiles in a grid. The goal is to combine tiles of the same number until a 2048 tile is created.
+This project is a copy of 2048 coded with Java, using various nested loops and if-else statements and extending PApplet. The game is a sliding tile game where a player slides and adds tiles in a grid. The goal is to combine tiles of the same number until a 2048 tile is created.
 
 Features:\
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 4x4 grid playing surface\
