@@ -10,7 +10,10 @@ Functions:\
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Use ratings predictions to recommend an unwatched movie to a selected user\
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Access online IMDB page to display poster of recommended movie in pop-up window\
 
+Test Results
 
+![5testresults](https://github.com/hwang635/HS/blob/master/NetflixPrize/NetflixPrize%20Results.PNG)
 
-
-
+Pop-up Display\
+![pop-up](https://github.com/hwang635/HS/blob/master/NetflixPrize/NetflixPrizePopup.PNG)
+![movie display](https://github.com/hwang635/HS/blob/master/NetflixPrize/NetflixPrizeDisplay.PNG)
