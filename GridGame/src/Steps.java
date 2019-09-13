@@ -12,14 +12,14 @@ import processing.core.PApplet;
 	Modified on:
  */
 
-public class Life {
+public class Steps {
 
 	private int[][] grid;
 	boolean hasLost, has2048;
 	int score;
 
 	// Constructs a grid with two random tiles either 2 or 4
-	public Life() {
+	public Steps() {
 		score = 0;
 		hasLost = false;
 		has2048 = false;
@@ -31,23 +31,23 @@ public class Life {
 
 			int n  = 2;
 			if(grid[x][y] == 0) {
-				if(Math.random()*4>3) //random 4 or 2, smaller chance of getting 4
+				if(Math.random()*4>3) //random 2 or 4
 					n = 4;
-				grid[x][y] = n; //could be 4 or 2
+				grid[x][y] = n;
 			}
 			else
 				i--;
 		}
 	}
 
-	//Makes one move or squish
+	//Makes one move or merge
 	//unused method, but called in tester
 	public void step() {
 	}
 
 	//direction = 1 up, 2 down, 3 right, 4 left
 	//gets the distance to slide
-	public int getSlide(int i, int j, int direction) {
+	public int getDistance(int i, int j, int direction) {
 		int count = 1;
 
 		if(direction == 1) {
@@ -76,16 +76,15 @@ public class Life {
 		grid[i][j] = 0;
 	}
 
-	// Runs n = 1 which key was pressed
 	// 1 = up, 2 = down, 3 = right, 4 = left
-	//performs one step of sliding + squishing
+	//performs one step of sliding + merging
 	public void step(int n) {
 		if(hasLost == false) {
 			if(n == 1) { //up
 				for(int i = 0; i<grid.length; i++) {
 					for(int j = 1; j<grid.length; j++) {
 						if(isEmpty(i, j-1)) {
-							this.move(i,j, 0, -this.getSlide(i, j, 1));
+							this.move(i,j, 0, -this.getDistance(i, j, 1));
 						}
 					} //end of j
 					for(int j = 1; j<grid[0].length; j++) {
@@ -98,7 +97,7 @@ public class Life {
 					}
 					for(int j = 1; j<grid.length; j++) {
 						if(isEmpty(i, j-1)) {
-							this.move(i,j, 0, -this.getSlide(i, j, 1));
+							this.move(i,j, 0, -this.getDistance(i, j, 1));
 						}
 					} //end of j
 				} //end of i
@@ -107,7 +106,7 @@ public class Life {
 				for(int i = 0; i<grid.length; i++) {
 					for(int j = grid[0].length-2; j>=0;j--) {
 						if(isEmpty(i, j+1))
-							this.move(i, j, 0, this.getSlide(i, j, 2));
+							this.move(i, j, 0, this.getDistance(i, j, 2));
 					} //end of j
 					for(int j = grid[0].length-2; j>=0;j--) {
 						if(grid[i][j+1] == grid[i][j]) {
@@ -118,7 +117,7 @@ public class Life {
 					}
 					for(int j = grid[0].length-2; j>=0;j--) {
 						if(isEmpty(i, j+1))
-							this.move(i, j, 0, this.getSlide(i, j, 2));
+							this.move(i, j, 0, this.getDistance(i, j, 2));
 					} //end of j
 				} //end of i
 			}
@@ -126,7 +125,7 @@ public class Life {
 				for(int i = grid.length-2; i>=0; i--) {
 					for(int j = 0; j<grid[0].length; j++) {
 						if(isEmpty(i+1, j))
-							this.move(i, j, this.getSlide(i, j, 3), 0);
+							this.move(i, j, this.getDistance(i, j, 3), 0);
 					} //end of j
 				} //end of i
 				for(int i = grid.length-2; i>=0; i--) {
@@ -141,7 +140,7 @@ public class Life {
 				for(int i = grid.length-2; i>=0; i--) {
 					for(int j = 0; j<grid[0].length; j++) {
 						if(isEmpty(i+1, j))
-							this.move(i, j, this.getSlide(i, j, 3), 0);
+							this.move(i, j, this.getDistance(i, j, 3), 0);
 					} //end of j
 				} //end of i
 			}
@@ -149,7 +148,7 @@ public class Life {
 				for(int i = 1; i<grid.length; i++) {
 					for(int j = 0; j<grid[0].length; j++) {
 						if(isEmpty(i-1,j))
-							this.move(i, j, -this.getSlide(i, j, 4), 0);
+							this.move(i, j, -this.getDistance(i, j, 4), 0);
 					} //end of j
 				} //end of i
 				for(int i = 1; i<grid.length; i++) {
@@ -164,7 +163,7 @@ public class Life {
 				for(int i = 1; i<grid.length; i++) {
 					for(int j = 0; j<grid[0].length; j++) {
 						if(isEmpty(i-1,j))
-							this.move(i, j, -this.getSlide(i, j, 4), 0);
+							this.move(i, j, -this.getDistance(i, j, 4), 0);
 					} //end of j
 				} //end of i
 			}
@@ -219,7 +218,7 @@ public class Life {
 		return false;
 	}
 	
-	//checks that the game scree is full
+	//checks that the game screen is full
 	public boolean isFull() {
 		for(int i = 0; i<grid.length; i++) {
 			for(int j = 0; j<grid.length; j++) {
@@ -248,7 +247,7 @@ public class Life {
 			return false;
 	} 
 
-	// Formats this Life grid as a String to be printed (one call to this method returns the whole multi-line grid)
+	// formats the grid array as a String to be printed
 	public String toString() {
 		String response = "";
 
@@ -296,7 +295,7 @@ public class Life {
 	}
 
 	/**
-	 * Optionally, complete this method to draw the grid on a PApplet.
+	 * draws the grid on a PApplet
 	 * 
 	 * @param marker The PApplet used for drawing.
 	 * @param x The x pixel coordinate of the upper left corner of the grid drawing. 
@@ -349,7 +348,7 @@ public class Life {
 						marker.fill(252, 221, 119);
 						has2048 = true;
 					} 
-				} //end of has a number else
+				} //end of large else
 
 				marker.rect(cellWidth*j+x, cellHeight*i+y, cellWidth, cellHeight);
 				marker.textSize(15);
@@ -361,12 +360,12 @@ public class Life {
 			} //end of j
 		} //end of i
 
-
-		marker.popStyle(); //makes it so the marker setting here don't affect things drawn elsewhere
+		marker.popStyle(); //so the marker setting here don't affect things drawn elsewhere
 	}
 
 	/**
-	 * Optionally, complete this method to determine which element of the grid matches with a
+	 * UNUSED
+	 * method to determine which element of the grid matches with a
 	 * particular pixel coordinate.
 	 * 
 	 * @param p A Point object representing a graphical pixel coordinate.

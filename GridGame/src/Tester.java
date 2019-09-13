@@ -2,7 +2,7 @@
 public class Tester {
 	
 	public static void main(String[] args) {
-		Life grid = new Life();
+		Steps grid = new Steps();
 		
 		grid.step();
 		grid.step();
