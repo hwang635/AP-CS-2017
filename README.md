@@ -1,6 +1,6 @@
 # HS
 
-Various projects completed during high school Java programming courses.\
+Projects from high school APCS course.\
 \
 Some of the larger projects have been documented with READMEs: \
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [GridGame](https://github.com/hwang635/HS/blob/master/GridGame/README.md) - mock of single-player tile game 2048\
