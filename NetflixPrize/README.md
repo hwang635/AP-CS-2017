@@ -8,7 +8,7 @@ Functions:\
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Use binary search to find/match movie and user data\
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Calculate a user's predicted movie rating by weighing the user's ratings average and previous movie and genre ratings\
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Use ratings predictions to recommend an unwatched movie to a selected user\
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Access online IMDB page to display poster of recommended movie in pop-up window\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Access online IMDB page to display poster of recommended movie in pop-up window
 
 Test Results
 
